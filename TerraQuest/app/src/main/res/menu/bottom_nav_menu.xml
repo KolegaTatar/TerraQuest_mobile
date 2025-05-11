@@ -2,13 +2,16 @@
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
-        android:title="Szukaj"/>
+        android:title="Szukaj"
+        android:iconTint="@color/nav_icon_color"/>
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="Home"
+        android:iconTint="@color/nav_icon_color"/>
     <item
         android:id="@+id/nav_login"
         android:icon="@drawable/ic_login"
-        android:title="Zaloguj się"/>
+        android:title="Zaloguj się"
+        android:iconTint="@color/nav_icon_color"/>
 </menu>
