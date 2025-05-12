@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Rok -->
+    <TextView
+        android:id="@+id/yearText"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="2020"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <!-- Linia + kropka -->
+    <FrameLayout
+        android:layout_width="24dp"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="#FF9800" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/timeline_dot" />
+    </FrameLayout>
+
+    <!-- Opis -->
+    <TextView
+        android:id="@+id/eventText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:text="Opis wydarzenia"
+        android:textSize="14sp" />
+</LinearLayout>

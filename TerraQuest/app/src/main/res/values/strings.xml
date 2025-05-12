@@ -1,3 +1,63 @@
 <resources>
     <string name="app_name">TerraQuest</string>
+    <string name="pp">Data wejścia w życie: 01.05.2025
+\nOstatnia aktualizacja: 30.04.2025
+\n
+\n1. Postanowienia ogólne\n
+Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych użytkowników korzystających z usług TravelQuest.\n
+Administrator danych: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa, kontakt@travelquest.pl, tel. +48 123 456 789.
+\n\n
+2. Jakie dane zbieramy?\n
+\u2022 Dane identyfikacyjne: imię, nazwisko, nazwa firmy, e-mail, numer telefonu.\n
+\u2022 Dane logowania: nazwa użytkownika, zaszyfrowane hasło.\n
+\u2022 Dane kontaktowe: adres zamieszkania, adres dostawy.\n
+\u2022 Dane płatnicze: numer konta bankowego, dane karty płatniczej (PayU, Stripe).\n
+\u2022 Dane techniczne: adres IP, pliki cookie, aktywność na stronie.\n
+\n\n
+3. W jakim celu przetwarzamy Twoje dane?\n
+\u2022 Świadczenie usług – rejestracja konta, realizacja rezerwacji.\n
+\u2022 Obsługa płatności – przetwarzanie transakcji.\n
+\u2022 Obsługa zapytań i reklamacji.\n
+\u2022 Marketing i newslettery – za zgodą użytkownika.\n
+\u2022 Personalizacja treści.\n
+\u2022 Analiza i statystyki.\n
+\u2022 Wypełnienie obowiązków prawnych.\n
+\n\n
+4. Podstawa prawna przetwarzania danych\n
+\u2022 Art. 6 ust. 1 lit. a RODO – zgoda użytkownika.\n
+\u2022 Art. 6 ust. 1 lit. b RODO – wykonanie umowy.\n
+\u2022 Art. 6 ust. 1 lit. c RODO – obowiązki prawne.\n
+\u2022 Art. 6 ust. 1 lit. f RODO – uzasadniony interes administratora.\n
+\n\n
+5. Komu udostępniamy Twoje dane?\n
+\u2022 Dostawcy usług IT – AWS, Cloudflare.\n
+\u2022 Dostawcy płatności – PayU, Stripe.\n
+\u2022 Firmy kurierskie – InPost, DHL.\n
+\u2022 Organy ścigania – na podstawie przepisów prawa.\n
+\n\n
+6. Jak długo przechowujemy Twoje dane?\n
+\u2022 Dane konta – do usunięcia konta lub 5 lat od ostatniej aktywności.\n
+\u2022 Dane transakcji – zgodnie z przepisami podatkowymi (5 lat).\n
+\u2022 Dane marketingowe – do wycofania zgody.\n
+\u2022 Logi serwera – do 12 miesięcy.\n
+\n\n
+7. Jakie masz prawa?\n
+\u2022 Dostęp do danych.\n
+\u2022 Sprostowanie danych.\n
+\u2022 Usunięcie danych („prawo do bycia zapomnianym”).\n
+\u2022 Ograniczenie przetwarzania.\n
+\u2022 Przenoszenie danych.\n
+\u2022 Sprzeciw wobec przetwarzania.\n
+\u2022 Wycofanie zgody.\n
+\n\n
+8. Pliki cookies i technologie śledzące\n
+Nasza strona korzysta z plików cookies do poprawnego działania, analizy ruchu i personalizacji treści.\n
+\n\n
+9. Zmiany w Polityce Prywatności\n
+Możemy wprowadzać zmiany w Polityce Prywatności. Użytkownicy zostaną o nich poinformowani na stronie lub e-mailem.
+\n\n
+10. Kontakt\n
+📧 E-mail: kontakt@travelquest.pl\n
+📞 Telefon: +48 123 456 789\n
+🏢 Adres: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa\n</string>
 </resources>

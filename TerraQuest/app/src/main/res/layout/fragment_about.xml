@@ -1,9 +1,162 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="o nas"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</FrameLayout>
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Obrazek główny -->
+        <ImageView
+            android:id="@+id/headImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/about" />
+
+        <!-- Sekcja misji -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="#FFC107"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Nasza misja"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="Kiedy podróżni szukają hotelu, chcemy, aby oczywistym wyborem było TerraQuest. Pomagamy im znaleźć najlepsze miejsce na pobyt, najlepszy czas na wyjazd i najlepsze oferty rezerwacji."
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <!-- Sekcja o nas -->
+        <TextView
+            android:text="O TerraQuest"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Profesjonalny i elegancki wydźwięk, który pasuje do dużej aplikacji dla różnych platform.\n• Łatwość zapamiętania i silne nawiązanie do odkrywania nowych miejsc (terra = ziemia, quest = misja, podróż).\n• Uniwersalność – sprawdzi się zarówno dla klientów indywidualnych, jak i organizatorów wycieczek."
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!-- Statystyki -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="#FFC107"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textStatsLanguages"
+                style="@style/StatStyle"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textStatsApps"
+                style="@style/StatStyle"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textStatsCountries"
+                style="@style/StatStyle"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textStatsHotels"
+                style="@style/StatStyle"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Oś czasu -->
+        <TextView
+            android:text="Nasza Historia"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/timelineLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- === 2020 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2020_1"/>
+
+            <!-- === 2021 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2021_1"/>
+
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2021_2"/>
+
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2021_3"/>
+
+            <!-- === 2022 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2022_1"/>
+
+            <!-- === 2023 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2023_1"/>
+
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2023_2" />
+
+            <!-- === 2024 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2024_1" />
+
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2024_2" />
+
+            <!-- === 2025 === -->
+            <include layout="@layout/item_timeline_entry"
+                android:id="@+id/entry2025_1" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
