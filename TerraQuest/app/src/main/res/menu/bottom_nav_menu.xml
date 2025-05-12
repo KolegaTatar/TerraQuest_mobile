@@ -3,7 +3,7 @@
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search"
         android:title="Szukaj"
-        android:iconTint="@color/nav_icon_color"/>
+        android:iconTint="@color/nav_icon_color" />
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"

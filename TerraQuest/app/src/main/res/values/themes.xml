@@ -3,7 +3,25 @@
     <style name="Base.Theme.TerraQuest" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+
     </style>
+
+    <style name="CustomBottomNavStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconSize">24dp</item>
+        <item name="itemHorizontalTranslationEnabled">true</item>
+        <item name="itemPaddingTop">8dp</item>
+        <item name="itemPaddingBottom">8dp</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavLabel</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavLabel</item>
+    </style>
+
+
+    <style name="BottomNavLabel" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
 
     <style name="Theme.TerraQuest" parent="Base.Theme.TerraQuest" />
 </resources>
