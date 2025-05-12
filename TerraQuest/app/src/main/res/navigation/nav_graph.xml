@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="edu.zsk.terraquest.SearchFragment"
+        android:name="edu.zsk.terraquest.ExploreFragment"
         android:label="Szukaj" />
 
     <fragment
@@ -16,6 +16,6 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="edu.zsk.terraquest.LoginFragment"
+        android:name="edu.zsk.terraquest.User_menuFragment"
         android:label="Zaloguj się" />
 </navigation>

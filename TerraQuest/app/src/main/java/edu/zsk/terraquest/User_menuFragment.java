@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public class LoginFragment extends Fragment {
+public class User_menuFragment extends Fragment {
 
     @Nullable
     @Override
