@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    android:paddingTop="24dp"
-    android:paddingBottom="24dp"
     >
 
     <LinearLayout
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Konto"
-            android:textSize="20sp"
+            android:textSize="28sp"
             android:textColor="#000000"
             android:textStyle="bold"
             android:layout_marginBottom="16dp"
@@ -36,26 +36,19 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E0E0E0"
-            android:layout_marginBottom="24dp"
             />
 
-        <TextView
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Zaloguj się lub utwórz konto"
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"/>
+            style="@style/Log_reg_btn"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Warto odwiedzić"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#424242"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
@@ -100,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="O nas"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#424242"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
@@ -158,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nasze produkty"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="#424242"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
