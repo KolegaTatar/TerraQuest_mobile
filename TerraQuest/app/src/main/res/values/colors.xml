@@ -6,8 +6,8 @@
     <color name="gray">#808080</color>
     <color name="background_main">#FAFAFA</color>
     <color name="background_nav">#FFFFFF</color>
-    <color name="background_weather">#33333333</color>
-    <color name="primary">#6200EE</color>
+    <color name="background_weather">#D2D2D2</color>
+    <color name="primary">#FFA500</color>
     <color name="gray_200">#EEEEEE</color>
     <color name="gray_600">#757575</color>
 

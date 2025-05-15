@@ -2,12 +2,18 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/background_main"
+    android:paddingLeft="24dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:paddingRight="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingRight="24dp"
+        >
 
         <TextView
             android:layout_width="match_parent"
@@ -15,151 +21,142 @@
             android:text="Polityka Prywatności"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:paddingBottom="8dp"
-            android:gravity="center"/>
+            android:paddingBottom="35dp"
+            android:gravity="center"
+            android:textColor="#333333"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data wglądu w życie: 02/8/2025"
-            android:paddingBottom="12dp"/>
+            android:text="Data wejścia w życie: 01.06.2025"
+            android:paddingBottom="4dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ostatnia aktualizacja: 30.04.2025"
-            android:paddingBottom="12dp"/>
+            android:paddingBottom="20dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1. Postanowienia ogólne"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych użytkowników korzystających z usług TrzwiłŚuest. Administrator danych: TrzwiłŚuest Sp. z o.o., ul. światowa 12, 00-123 Warszawa, kontakt.pierow@just.pl, tel. +48 123 456 798."
-            android:paddingBottom="16dp"/>
+            android:text="Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych użytkowników korzystających z usług TravelQuest. \nAdministrator danych: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa, kontakt@travelquest.pl, tel. +48 123 456 789."
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="2. Jakie dane zbieramy?"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="✓ Dane identyfikacyjne: imię, nazwisko, nazwa firmy, e-mail, numer telefonu.\n✓ Dane adresowe: adres użytkownika, kod pocztowy, miejscowość.\n✓ Dane kontaktowe: adres korespondencyjny, adres dostawy.\n✓ Dane płatności: numer konta bankowego, dane karty płatniczej (tylko w przypadku transakcji).\n✓ Dane techniczne: adres IP, pliki cookie, aktywność na stronie."
-            android:paddingBottom="16dp"/>
+            android:text="✓ Dane identyfikacyjne: imię, nazwisko, nazwa firmy, e-mail, numer telefonu.\n✓ Dane logowania: nazwa użytkownika, zaszyfrowane hasło.\n✓ Dane kontaktowe: adres zamieszkania, adres dostawy.\n✓ Dane płatności: numer konta bankowego, dane karty płatniczej (tylko w przypadku transakcji).\n✓ Dane techniczne: adres IP, pliki cookie, aktywność na stronie."
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="3. W jakim celu przetwarzamy Twoje dane?"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="✓ Świadczenie usług – rejestracja konta, realizacja zamówień.\n✓ Obsługa płatności – przetwarzanie transakcji.\n✓ Marketing i promocje.\n✓ Wysyłka newsletterów – za zgodą użytkownika.\n✓ Personalizacja treści.\n✓ Analiza i statystyki.\n✓ Wypełnienie obowiązków prawnych."
-            android:paddingBottom="16dp"/>
+            android:text="✓ Świadczenie usług – rejestracja konta, realizacja rezerwacji.\n✓  Obsługa płatności – przetwarzanie transakcji.\n✓ Obsługa zapytań i reklamacji. \n✓ Marketing i newslettery - za zgodą użytkownika.\n✓ Personalizacja treści.\n✓ Analiza i statystyki.\n✓ Wypełnienie obowiązków prawnych."
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="4. Podstawy prawne przetwarzania danych"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="✓ Art. 6 ust. 1 lit. a RODO – zgoda użytkownika.\n✓ Art. 6 ust. 1 lit. b RODO – wykonanie umowy.\n✓ Art. 6 ust. 1 lit. c RODO – obowiązek prawny.\n✓ Art. 6 ust. 1 lit. f RODO – uzasadniony interes administratora."
-            android:paddingBottom="16dp"/>
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="5. Komu udostępniamy Twoje dane?"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="✓ Dostawcy usług – hosting, płatności.\n✓ Partnerzy biznesowi – kurierzy, dostawcy.\n✓ Organy ścigania – na podstawie przepisów prawa."
-            android:paddingBottom="16dp"/>
+            android:text="✓ Dostawcy usług IT – AWS,Cloudflare. \n✓ PDostawcy płatności – PayU, Stripe.\n✓ Firmy kurierskie – InPost, DHL. \n✓ Organy ścigania – na podstawie przepisów prawa."
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="6. Jak długo przechowujemy Twoje dane?"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="✓ Dane konta – do usunięcia konta lub 5 lat od ostatniej aktywności.\n✓ Dane transakcji – zgodnie z przepisami podatkowymi (5 lat).\n✓ Dane marketingowe – do odwołania zgody.\n✓ Logi serwera – do 12 miesięcy."
-            android:paddingBottom="16dp"/>
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="7. Jakie masz prawa?"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="✓ Dostęp do danych.\n✓ Sprostowanie danych.\n✓ Usunięcie danych (prawo do bycia zapomnianym).\n✓ Ograniczenie przetwarzania.\n✓ Przenoszenie danych.\n✓ Sprzeciw wobec przetwarzania.\n✓ Wycofanie zgody."
-            android:paddingBottom="16dp"/>
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="8. Pliki cookies i technologie śledzące"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
-
+            style="@style/AboutTextH" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nasza strona korzysta z plików cookies do poprawnego działania, analizy ruchu i personalizacji treści."
-            android:paddingBottom="16dp"/>
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="9. Zmiany w Polityce Prywatności"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Możemy wprowadzać zmiany w Polityce Prywatności. Użytkownicy zostaną o nich poinformowani na stronie lub e-mailem."
-            android:paddingBottom="16dp"/>
+            style="@style/AboutTextp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="10. Kontakt"
-            android:textStyle="bold"
-            android:paddingBottom="8dp"/>
+            style="@style/AboutTextH" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="✓ E-mail: kontakt.pierow@just.pl\n✓ Telefon: +48 123 456 798\n✓ Adres: TrzwiłŚuest Sp. z o.o., ul. światowa 12, 00-123 Warszawa"
-            android:paddingBottom="16dp"/>
+            android:text="📧 E-mail: kontakt@travelquest.pl\n📞 Telefon: +48 123 456 789\n🏢 Adres: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa"
+            style="@style/AboutTextp" />
 
     </LinearLayout>
 </ScrollView>
