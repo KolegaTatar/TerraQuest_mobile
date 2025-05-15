@@ -22,11 +22,10 @@ public class User_menuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         view.findViewById(R.id.btn_weather).setOnClickListener(v -> navigateTo(new WeatherFragment()));
         view.findViewById(R.id.btn_privacy).setOnClickListener(v -> navigateTo(new PPFragment()));
         view.findViewById(R.id.btn_about).setOnClickListener(v -> navigateTo(new AboutFragment()));
-
+        
     }
 
     private void navigateTo(Fragment fragment) {

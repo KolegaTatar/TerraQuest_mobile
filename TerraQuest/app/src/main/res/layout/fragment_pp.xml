@@ -1,304 +1,165 @@
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/background_main"
-    android:textColor="@color/black"
-    android:fillViewport="true"
-    >
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:showDividers="middle"
-        android:dividerPadding="8dp"
-        android:paddingBottom="60dp"
-        >
+        android:orientation="vertical">
 
-        <!-- Nagłówek -->
         <TextView
-            android:id="@+id/t1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Polityka Prywatności"
-            android:textColor="@color/black"
-            android:textSize="29sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_weight="0"
-            android:layout_marginBottom="16dp"/>
+            android:paddingBottom="8dp"
+            android:gravity="center"/>
 
-        <!-- Data aktualizacji -->
-            <TextView
-                android:id="@+id/t2"
-                android:textColor="@color/black"
-                android:layout_weight="0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Data wejścia w życie: 01.05.2025"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/t3"
-                android:layout_weight="0"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ostatnia aktualizacja: 30.04.2025"
-                android:layout_marginBottom="16dp"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-        <!-- Sekcja 1 -->
         <TextView
-            android:id="@+id/t4"
-            android:textColor="@color/black"
-            android:layout_weight="0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data wglądu w życie: 02/8/2025"
+            android:paddingBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ostatnia aktualizacja: 30.04.2025"
+            android:paddingBottom="12dp"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1. Postanowienia ogólne"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t5"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych użytkowników korzystających z usług TravelQuest."
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych użytkowników korzystających z usług TrzwiłŚuest. Administrator danych: TrzwiłŚuest Sp. z o.o., ul. światowa 12, 00-123 Warszawa, kontakt.pierow@just.pl, tel. +48 123 456 798."
+            android:paddingBottom="16dp"/>
 
         <TextView
-            android:id="@+id/t6"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Administrator danych: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa, kontakt@travelquest.pl, tel. +48 123 456 789."
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-        <!-- Sekcja 2 -->
-        <TextView
-            android:id="@+id/t7"
-            android:layout_weight="0"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="2. Jakie dane zbieramy?"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t8"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• Dane identyfikacyjne: imię, nazwisko, nazwa firmy, e-mail, numer telefonu.\n• Dane logowania: nazwa użytkownika, zaszyfrowane haste.\n• Dane kontaktowe: adres zamieszkania, adres dostawy.\n• Dane płatnicze: numer konta bankowego, dane karty płatniczej (PayU, Stripe).\n• Dane techniczne: adres IP, pliki cookie, aktywność na stronie."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ Dane identyfikacyjne: imię, nazwisko, nazwa firmy, e-mail, numer telefonu.\n✓ Dane adresowe: adres użytkownika, kod pocztowy, miejscowość.\n✓ Dane kontaktowe: adres korespondencyjny, adres dostawy.\n✓ Dane płatności: numer konta bankowego, dane karty płatniczej (tylko w przypadku transakcji).\n✓ Dane techniczne: adres IP, pliki cookie, aktywność na stronie."
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 3 -->
         <TextView
-            android:id="@+id/t9"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="3. W jakim celu przetwarzamy Twoje dane?"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <!-- Sekcja 4 -->
-        <TextView
-            android:id="@+id/t10"
-            android:layout_weight="0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginLeft="8dp"
-            android:text="• Świadczenie usług – rejestracja konta, realizacja rezerwacji.\n• Obsługa płatności – przetwarzanie transakcji.\n• Obsługa zapytku i reklamacji.\n• Marketingu i newslettery – za zgodą użytkownika.\n• Personalizacja treści.\n• Analiza i statystyki.\n• Wypełnienie obowiązków prawnych."
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t11"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="4. Podstawa prawna przetwarzania danych"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ Świadczenie usług – rejestracja konta, realizacja zamówień.\n✓ Obsługa płatności – przetwarzanie transakcji.\n✓ Marketing i promocje.\n✓ Wysyłka newsletterów – za zgodą użytkownika.\n✓ Personalizacja treści.\n✓ Analiza i statystyki.\n✓ Wypełnienie obowiązków prawnych."
+            android:paddingBottom="16dp"/>
 
         <TextView
-            android:id="@+id/t12"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="\u2022 Art. 6 ust. 1 lit. a RODO – zgoda użytkownika.\n\u2022 Art. 6 ust. 1 lit. b RODO – wykonanie umowy.\n\u2022 Art. 6 ust. 1 lit. c RODO – obowiązki prawne.\n\u2022 Art. 6 ust. 1 lit. f RODO – uzasadniony interes administratora."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="4. Podstawy prawne przetwarzania danych"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
-        <!-- Sekcja 5 -->
         <TextView
-            android:id="@+id/t13"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:text="✓ Art. 6 ust. 1 lit. a RODO – zgoda użytkownika.\n✓ Art. 6 ust. 1 lit. b RODO – wykonanie umowy.\n✓ Art. 6 ust. 1 lit. c RODO – obowiązek prawny.\n✓ Art. 6 ust. 1 lit. f RODO – uzasadniony interes administratora."
+            android:paddingBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="5. Komu udostępniamy Twoje dane?"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t14"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="\u2022 Dostawcy usług IT – AWS, Cloudflare.\n\u2022 Dostawcy płatności – PayU, Stripe.\n\u2022 Firmy kurierskie – InPost, DHL.\n\u2022 Organy ścigania – na podstawie przepisów prawa."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ Dostawcy usług – hosting, płatności.\n✓ Partnerzy biznesowi – kurierzy, dostawcy.\n✓ Organy ścigania – na podstawie przepisów prawa."
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 6 -->
         <TextView
-            android:id="@+id/t15"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="6. Jak długo przechowujemy Twoje dane?"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t16"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="\u2022 Dane konta – do usunięcia konta lub 5 lat od ostatniej aktywności.\n\u2022 Dane transakcji – zgodnie z przepisami podatkowymi (5 lat).\n\u2022 Dane marketingowe – do wycofania zgody.\n\u2022 Logi serwera – do 12 miesięcy."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ Dane konta – do usunięcia konta lub 5 lat od ostatniej aktywności.\n✓ Dane transakcji – zgodnie z przepisami podatkowymi (5 lat).\n✓ Dane marketingowe – do odwołania zgody.\n✓ Logi serwera – do 12 miesięcy."
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 7 -->
         <TextView
-            android:id="@+id/t17"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="7. Jakie masz prawa?"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t18"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="\u2022 Dostęp do danych.\n\u2022 Sprostowanie danych.\n\u2022 Usunięcie danych („prawo do bycia zapomnianym”).\n\u2022 Ograniczenie przetwarzania.\n\u2022 Przenoszenie danych.\n\u2022 Sprzeciw wobec przetwarzania.\n\u2022 Wycofanie zgody."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ Dostęp do danych.\n✓ Sprostowanie danych.\n✓ Usunięcie danych (prawo do bycia zapomnianym).\n✓ Ograniczenie przetwarzania.\n✓ Przenoszenie danych.\n✓ Sprzeciw wobec przetwarzania.\n✓ Wycofanie zgody."
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 8 -->
         <TextView
-            android:id="@+id/t19"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="8. Pliki cookies i technologie śledzące"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t20"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nasza strona korzysta z plików cookies do poprawnego działania, analizy ruchu i personalizacji treści."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 9 -->
         <TextView
-            android:id="@+id/t21"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="9. Zmiany w Polityce Prywatności"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t22"
-            android:layout_weight="0"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="Możemy wprowadzać zmiany w Polityce Prywatności. Użytkownicy zostaną o nich poinformowani na stronie lub e-mailem."
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:paddingBottom="16dp"/>
 
-        <!-- Sekcja 10 -->
         <TextView
-            android:id="@+id/t23"
-            android:textColor="@color/black"
-            android:layout_weight="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="10. Kontakt"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
 
         <TextView
-            android:id="@+id/t24"
-            android:layout_weight="0"
-            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📧 E-mail: kontakt@travelquest.pl\n📞 Telefon: +48 123 456 789\n🏢 Adres: TravelQuest Sp. z o.o., ul. Światowa 12, 00-123 Warszawa"
-            android:layout_marginLeft="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="✓ E-mail: kontakt.pierow@just.pl\n✓ Telefon: +48 123 456 798\n✓ Adres: TrzwiłŚuest Sp. z o.o., ul. światowa 12, 00-123 Warszawa"
+            android:paddingBottom="16dp"/>
 
     </LinearLayout>
 </ScrollView>
