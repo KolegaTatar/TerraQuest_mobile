@@ -1,9 +1,159 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="Kontakt"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</FrameLayout>
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    >
+
+        <LinearLayout
+            android:id="@+id/contactLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <edu.zsk.terraquest.TrapezoidImageView
+                    android:id="@+id/trapezoidImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/kontakt" />
+
+            <!-- Formularz kontaktowy -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="@drawable/rounded_white_bg"
+                    android:elevation="4dp"
+                    android:layout_margin="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masz pytanie?"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Odpowiemy Ci na wszystko"
+                        android:textColor="#666666"
+                        android:textSize="17sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Imię"
+                        android:textColor="@color/black"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nazwisko"
+                        android:textColor="@color/black"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:hint="Wiadomosc"
+                        android:textColor="@color/black"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:background="@drawable/rounded_edittext"
+                        android:padding="12dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wyślij"
+                        android:backgroundTint="#FFA500"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/rounded_button_orange" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Dane kontaktowe -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_white_bg"
+                android:elevation="4dp"
+                android:padding="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_margin="16dp">
+
+                <!-- Telefon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📞 Telefon"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginTop="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+48 849 583 521"
+                    android:textSize="16sp"
+                    android:textColor="#555555" />
+
+                <!-- Lokalizacja -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="📍 Lokalizacja"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Warszawa ul. Powstańców 21A"
+                    android:textColor="#555555" />
+
+                <!-- Email -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✉ EMAIL"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="jan.kowalski@gmail.com"
+                    android:textColor="#555555" />
+            </LinearLayout>
+        </LinearLayout>
+</ScrollView>
