@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_main"
     android:paddingLeft="24dp"
-    android:paddingTop="24dp"
-    android:paddingBottom="24dp"
+
     android:paddingRight="0dp">
 
     <LinearLayout
@@ -13,6 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingRight="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
         >
 
         <TextView
