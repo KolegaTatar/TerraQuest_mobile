@@ -25,7 +25,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="Logo"
-                android:src="@drawable/terra_quest_logo" />
+                android:src="@drawable/tq_logo" />
 
             <TextView
                 android:id="@+id/logoText"
@@ -101,9 +101,8 @@
                 android:layout_height="wrap_content"
                 android:text="Zaloguj się"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="#333333"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF" />
+                style="@style/Log_reg_btn"
+                android:backgroundTint="#333333"/>
 
             <TextView
                 android:id="@+id/forgetPassword"

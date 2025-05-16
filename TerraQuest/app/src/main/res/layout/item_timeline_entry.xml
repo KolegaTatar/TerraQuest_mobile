@@ -39,5 +39,5 @@
         android:layout_weight="1"
         android:textColor="@color/black"
         android:text="Opis wydarzenia"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 </LinearLayout>
