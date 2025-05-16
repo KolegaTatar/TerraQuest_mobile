@@ -1,6 +1,8 @@
 package edu.zsk.terraquest;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +25,9 @@ public class HelpFragment extends Fragment {
     private EditText searchInput;
 
     private List<FAQItem> faqList = new ArrayList<>();
+    private List<FAQItem> displayedFaqList = new ArrayList<>();
     private int currentPage = 1;
-    private final int itemsPerPage = 5;
+    private final int itemsPerPage = 6;
     private int totalPages;
 
     @Nullable
@@ -37,23 +39,43 @@ public class HelpFragment extends Fragment {
         faqContainer = view.findViewById(R.id.faqContainer);
         paginationContainer = view.findViewById(R.id.paginationContainer);
         searchInput = view.findViewById(R.id.searchInput);
-        Button searchButton = view.findViewById(R.id.searchButton);
 
-        // Przycisk szukania (niewymagana funkcjonalność)
-        searchButton.setOnClickListener(v -> {
-            String query = searchInput.getText().toString().trim();
-            // Możesz tu dodać filtrowanie po query
+        // Dane startowe
+        generateSampleFaqs();
+        displayedFaqList = new ArrayList<>(faqList);
+
+        // Live search
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString().trim().toLowerCase();
+
+                if (query.isEmpty()) {
+                    displayedFaqList = new ArrayList<>(faqList);
+                    paginationContainer.setVisibility(View.VISIBLE);
+                } else {
+                    displayedFaqList = new ArrayList<>();
+                    for (FAQItem item : faqList) {
+                        if (item.getTitle().toLowerCase().contains(query)) {
+                            displayedFaqList.add(item);
+                        }
+                    }
+                    paginationContainer.setVisibility(View.GONE);
+                }
+
+                currentPage = 1;
+                renderFaqs();
+                if (query.isEmpty()) renderPagination();
+            }
         });
 
-        // Dodaj przykładowe FAQ
-        generateSampleFaqs();
-
-        // Ustaw stronicowanie
-        totalPages = (int) Math.ceil((double) faqList.size() / itemsPerPage);
+        // Paginacja
         renderFaqs();
         renderPagination();
 
-        // Obsługa strzałek
         Button prevButton = view.findViewById(R.id.prevButton);
         Button nextButton = view.findViewById(R.id.nextButton);
 
@@ -89,31 +111,41 @@ public class HelpFragment extends Fragment {
         faqContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
+        totalPages = (int) Math.ceil((double) displayedFaqList.size() / itemsPerPage);
         int start = (currentPage - 1) * itemsPerPage;
-        int end = Math.min(start + itemsPerPage, faqList.size());
+        int end = Math.min(start + itemsPerPage, displayedFaqList.size());
 
         for (int i = start; i < end; i++) {
-            FAQItem item = faqList.get(i);
+            FAQItem item = displayedFaqList.get(i);
             View faqView = inflater.inflate(R.layout.faq_item, faqContainer, false);
 
             TextView titleView = faqView.findViewById(R.id.faqTitle);
             TextView contentView = faqView.findViewById(R.id.faqContent);
             ImageView arrowView = faqView.findViewById(R.id.arrowIcon);
+            LinearLayout faqItemLayout = faqView.findViewById(R.id.faqItemLayout);
 
             titleView.setText(item.getTitle());
             contentView.setText(item.getContent());
 
-            // Obsługa rozwijania/zamykania z animacją strzałki i tekstu
-            titleView.setOnClickListener(v -> {
+            // Animacja pojawiania się całego bloku
+            AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+            anim.setDuration(300);
+            faqView.startAnimation(anim);
+
+            // Klikanie w tytuł pytania – rozwijanie odpowiedzi
+            faqItemLayout.setOnClickListener(v -> {
                 boolean isVisible = contentView.getVisibility() == View.VISIBLE;
                 if (isVisible) {
+                    AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
+                    fadeOut.setDuration(200);
+                    contentView.startAnimation(fadeOut);
                     contentView.setVisibility(View.GONE);
                     arrowView.animate().rotation(0f).setDuration(200).start();
                 } else {
                     contentView.setVisibility(View.VISIBLE);
-                    AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-                    anim.setDuration(300);
-                    contentView.startAnimation(anim);
+                    AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
+                    fadeIn.setDuration(300);
+                    contentView.startAnimation(fadeIn);
                     arrowView.animate().rotation(180f).setDuration(200).start();
                 }
             });
@@ -122,26 +154,27 @@ public class HelpFragment extends Fragment {
         }
     }
 
+
     private void renderPagination() {
         int count = paginationContainer.getChildCount();
         if (count > 2) paginationContainer.removeViews(1, count - 2);
+
+        totalPages = (int) Math.ceil((double) displayedFaqList.size() / itemsPerPage);
 
         for (int i = 1; i <= totalPages; i++) {
             Button pageButton = new Button(getContext());
             pageButton.setText(String.valueOf(i));
 
-            // Zmniejszony margines i większy rozmiar
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    (int) getResources().getDisplayMetrics().density * 40, // 40dp
-                    (int) getResources().getDisplayMetrics().density * 40  // 40dp
+                    (int) getResources().getDisplayMetrics().density * 50,
+                    (int) getResources().getDisplayMetrics().density * 50
             );
-            params.setMargins(4, 0, 4, 0);
+            params.setMargins(20, 0, 20, 0);
             pageButton.setLayoutParams(params);
 
-            // Wygląd przycisku
             pageButton.setBackgroundColor(i == currentPage ? 0xFF000000 : 0xFFDDDDDD);
             pageButton.setTextColor(i == currentPage ? 0xFFFFFFFF : 0xFF000000);
-            pageButton.setTextSize(14f);
+            pageButton.setTextSize(20f);
             pageButton.setPadding(0, 0, 0, 0);
 
             final int page = i;
@@ -153,12 +186,8 @@ public class HelpFragment extends Fragment {
 
             paginationContainer.addView(pageButton, paginationContainer.getChildCount() - 1);
         }
-
-        // Zmiana rozmiaru strzałek (w XML upewnij się, że przyciski prevButton i nextButton są widoczne i mają szerokość 48dp, wysokość 40dp)
     }
 
-
-    // Model FAQ
     private static class FAQItem {
         private final String title;
         private final String content;
@@ -168,12 +197,7 @@ public class HelpFragment extends Fragment {
             this.content = content;
         }
 
-        public String getTitle() {
-            return title;
-        }
-
-        public String getContent() {
-            return content;
-        }
+        public String getTitle() { return title; }
+        public String getContent() { return content; }
     }
 }
