@@ -5,6 +5,7 @@
     <color name="orange">#FFA500</color>
     <color name="gray">#808080</color>
     <color name="background_main">#FAFAFA</color>
+    <color name="background_info_bar">#F2F2F0</color>
     <color name="background_nav">#FFFFFF</color>
     <color name="background_weather">#D2D2D2</color>
     <color name="primary">#FFA500</color>

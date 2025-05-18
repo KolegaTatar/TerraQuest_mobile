@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="16dp">
 
             <ImageView
                 android:id="@+id/logoImage"
@@ -50,7 +51,6 @@
                 android:text="Zarejestruj się"
                 android:textSize="28sp"
                 android:layout_gravity="center"
-
                 android:textStyle="bold"
                 android:layout_marginTop="32dp" />
 
@@ -59,7 +59,7 @@
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:text="Email"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="32dp" />
 
             <EditText
@@ -72,13 +72,14 @@
                 android:textSize="16sp"
                 android:padding="12dp"
                 android:background="@drawable/rounded_edittext"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:textColorHint="@color/gray"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hasło"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="32dp" />
 
@@ -92,7 +93,8 @@
                 android:inputType="textPassword"
                 android:padding="12dp"
                 android:background="@drawable/rounded_edittext"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:textColorHint="@color/gray"/>
 
             <CheckBox
                 android:id="@+id/autoLoginCheckBox"
@@ -100,8 +102,7 @@
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:text="Automatyczne logowanie"
-                android:layout_marginTop="8dp" />
-
+                android:layout_marginTop="8dp"/>
             <Button
                 android:id="@+id/registerButton"
                 android:layout_width="match_parent"

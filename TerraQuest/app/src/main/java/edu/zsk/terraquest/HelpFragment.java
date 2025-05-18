@@ -1,5 +1,7 @@
 package edu.zsk.terraquest;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,7 +29,7 @@ public class HelpFragment extends Fragment {
     private List<FAQItem> faqList = new ArrayList<>();
     private List<FAQItem> displayedFaqList = new ArrayList<>();
     private int currentPage = 1;
-    private final int itemsPerPage = 6;
+    private final int itemsPerPage = 5;
     private int totalPages;
 
     @Nullable
@@ -36,15 +38,16 @@ public class HelpFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_help, container, false);
 
+
         faqContainer = view.findViewById(R.id.faqContainer);
         paginationContainer = view.findViewById(R.id.paginationContainer);
         searchInput = view.findViewById(R.id.searchInput);
 
-        // Dane startowe
+
         generateSampleFaqs();
         displayedFaqList = new ArrayList<>(faqList);
 
-        // Live search
+
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void afterTextChanged(Editable s) {}
@@ -72,7 +75,7 @@ public class HelpFragment extends Fragment {
             }
         });
 
-        // Paginacja
+
         renderFaqs();
         renderPagination();
 
@@ -94,6 +97,8 @@ public class HelpFragment extends Fragment {
                 renderPagination();
             }
         });
+
+
 
         return view;
     }
@@ -118,6 +123,8 @@ public class HelpFragment extends Fragment {
         for (int i = start; i < end; i++) {
             FAQItem item = displayedFaqList.get(i);
             View faqView = inflater.inflate(R.layout.faq_item, faqContainer, false);
+            faqView.setBackgroundColor(Color.parseColor("#FAFAFA"));
+
 
             TextView titleView = faqView.findViewById(R.id.faqTitle);
             TextView contentView = faqView.findViewById(R.id.faqContent);
@@ -125,14 +132,15 @@ public class HelpFragment extends Fragment {
             LinearLayout faqItemLayout = faqView.findViewById(R.id.faqItemLayout);
 
             titleView.setText(item.getTitle());
+            titleView.setTextSize(16f);
             contentView.setText(item.getContent());
 
-            // Animacja pojawiania się całego bloku
+
             AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
             anim.setDuration(300);
             faqView.startAnimation(anim);
 
-            // Klikanie w tytuł pytania – rozwijanie odpowiedzi
+
             faqItemLayout.setOnClickListener(v -> {
                 boolean isVisible = contentView.getVisibility() == View.VISIBLE;
                 if (isVisible) {
@@ -155,26 +163,35 @@ public class HelpFragment extends Fragment {
     }
 
 
+
     private void renderPagination() {
         int count = paginationContainer.getChildCount();
         if (count > 2) paginationContainer.removeViews(1, count - 2);
 
         totalPages = (int) Math.ceil((double) displayedFaqList.size() / itemsPerPage);
 
+        float radius = 10 * getResources().getDisplayMetrics().density;
+
         for (int i = 1; i <= totalPages; i++) {
             Button pageButton = new Button(getContext());
             pageButton.setText(String.valueOf(i));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    (int) getResources().getDisplayMetrics().density * 50,
-                    (int) getResources().getDisplayMetrics().density * 50
+                    (int) (getResources().getDisplayMetrics().density * 40),
+                    (int) (getResources().getDisplayMetrics().density * 40)
             );
             params.setMargins(20, 0, 20, 0);
             pageButton.setLayoutParams(params);
 
-            pageButton.setBackgroundColor(i == currentPage ? 0xFF000000 : 0xFFDDDDDD);
+
+            GradientDrawable bgDrawable = new GradientDrawable();
+            bgDrawable.setShape(GradientDrawable.RECTANGLE);
+            bgDrawable.setCornerRadius(radius);
+            bgDrawable.setColor(i == currentPage ? 0xFF000000 : 0xFFDDDDDD);
+
+            pageButton.setBackground(bgDrawable);
             pageButton.setTextColor(i == currentPage ? 0xFFFFFFFF : 0xFF000000);
-            pageButton.setTextSize(20f);
+            pageButton.setTextSize(14f);
             pageButton.setPadding(0, 0, 0, 0);
 
             final int page = i;
@@ -187,6 +204,7 @@ public class HelpFragment extends Fragment {
             paginationContainer.addView(pageButton, paginationContainer.getChildCount() - 1);
         }
     }
+
 
     private static class FAQItem {
         private final String title;
