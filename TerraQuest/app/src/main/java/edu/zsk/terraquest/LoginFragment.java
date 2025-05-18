@@ -49,13 +49,20 @@ public class LoginFragment extends Fragment {
             String hashedPassword = hashPassword(password);
 
             if (checkCredentials(email, hashedPassword)) {
+                // Zapisz status zalogowania
+                requireActivity().getSharedPreferences("user_prefs", 0)
+                        .edit()
+                        .putBoolean("is_logged_in", true)
+                        .apply();
+
                 Toast.makeText(getContext(), "Zalogowano!", Toast.LENGTH_SHORT).show();
                 Fragment userFragment = new UserFragment();
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, userFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-            } else {
+            }
+            else {
                 Toast.makeText(getContext(), "Niepoprawne dane logowania!", Toast.LENGTH_SHORT).show();
                 passwordInput.setText("");
             }
