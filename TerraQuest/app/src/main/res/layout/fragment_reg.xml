@@ -95,11 +95,11 @@
                 android:layout_marginTop="8dp" />
 
             <CheckBox
-                android:id="@+id/keepLoggedIn"
+                android:id="@+id/autoLoginCheckBox"
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
-                android:text="Nie wylogowuj"
+                android:text="Automatyczne logowanie"
                 android:layout_marginTop="8dp" />
 
             <Button

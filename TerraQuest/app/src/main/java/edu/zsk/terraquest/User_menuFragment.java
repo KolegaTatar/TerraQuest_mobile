@@ -38,9 +38,6 @@ public class User_menuFragment extends Fragment {
         view.findViewById(R.id.btn_desktop).setOnClickListener(v -> openUrl("https://github.com/KolegaTatar/SkyVision_desktop.git"));
         view.findViewById(R.id.btn_project).setOnClickListener(v -> openUrl("https://www.figma.com/proto/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podr%C3%B3%C5%BCy-i-Rezerwacji---TerraQuest?node-id=1095-7789&p=f&t=Ks5QFEs4WzJU5fcy-0&scaling=scale-down&content-scaling=fixed&page-id=87%3A1675&starting-point-node-id=1095%3A7789"));
 
-
-
-
     }
 
     private void navigateTo(Fragment fragment) {
