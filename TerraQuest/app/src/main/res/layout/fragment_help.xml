@@ -4,31 +4,39 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:paddingTop="16dp"
-    android:background="#FFFFFF">
+    android:paddingTop="24dp"
+    android:paddingBottom="8dp"
+    android:background="@color/background_main">
 
     <TextView
         android:id="@+id/helpTitle"
-        android:layout_width="369dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:text="Cześć, jak możemy Ci pomóc?"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"/>
 
     <EditText
         android:id="@+id/searchInput"
-        android:layout_width="334dp"
-        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="Wyszukaj pytanie"
-        android:textColor="#000000"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
         android:background="@drawable/rounded_edittext"
         android:padding="12dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"/>
+
 
     <!-- Przycisk szukania -->
     <!--<Button
@@ -44,8 +52,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="335dp"
-        android:layout_weight="1">
+        android:layout_height="400dp"
+        android:layout_weight="1"
+        android:background="@color/background_main">
 
         <LinearLayout
             android:id="@+id/faqContainer"
@@ -54,19 +63,26 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingTop="15dp"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            android:background="@color/background_main"
+
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"/>
     </ScrollView>
 
     <!-- Paginacja -->
+
     <LinearLayout
         android:id="@+id/paginationContainer"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
 
         <Button
             android:id="@+id/prevButton"
