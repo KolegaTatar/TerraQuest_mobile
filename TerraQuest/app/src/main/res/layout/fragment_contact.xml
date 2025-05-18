@@ -15,16 +15,17 @@
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <edu.zsk.terraquest.TrapezoidImageView
                     android:id="@+id/trapezoidImage"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/kontakt" />
+                    android:src="@drawable/kontakt"
+                    />
 
-            <!-- Formularz kontaktowy -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -32,7 +33,9 @@
                     android:padding="16dp"
                     android:background="@drawable/rounded_white_bg"
                     android:elevation="4dp"
-                    android:layout_margin="16dp">
+                    android:layout_margin="16dp"
+
+                   >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -57,7 +60,10 @@
                         android:textColor="@color/black"
                         android:background="@drawable/rounded_edittext"
                         android:padding="12dp"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="16dp"
+                        android:textColorHint="@color/gray"
+                        android:textSize="16sp"/>
 
                     <EditText
                         android:layout_width="match_parent"
@@ -66,7 +72,10 @@
                         android:textColor="@color/black"
                         android:background="@drawable/rounded_edittext"
                         android:padding="12dp"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="12dp"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/gray"/>
 
                     <EditText
                         android:layout_width="match_parent"
@@ -76,18 +85,24 @@
                         android:inputType="textEmailAddress"
                         android:background="@drawable/rounded_edittext"
                         android:padding="12dp"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="12dp"
+                        android:textSize="16sp"
+                        android:textColorHint="@color/gray"/>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:hint="Wiadomosc"
+                        android:textSize="16sp"
                         android:textColor="@color/black"
                         android:gravity="top"
                         android:inputType="textMultiLine"
                         android:background="@drawable/rounded_edittext"
                         android:padding="12dp"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="12dp"
+                        android:textColorHint="@color/gray"/>
 
                     <Button
                         android:layout_width="match_parent"
@@ -107,7 +122,7 @@
                 android:background="@drawable/rounded_white_bg"
                 android:elevation="4dp"
                 android:padding="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="36dp"
                 android:layout_margin="16dp">
 
                 <!-- Telefon -->
@@ -117,13 +132,14 @@
                     android:text="📞 Telefon"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+48 849 583 521"
                     android:textSize="16sp"
-                    android:textColor="#555555" />
+                    android:textColor="@color/gray" />
 
                 <!-- Lokalizacja -->
                 <TextView
@@ -132,13 +148,14 @@
                     android:textSize="20sp"
                     android:text="📍 Lokalizacja"
                     android:textStyle="bold"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="12dp"
+                    android:paddingBottom="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="Warszawa ul. Powstańców 21A"
-                    android:textColor="#555555" />
+                    android:textColor="@color/gray" />
 
                 <!-- Email -->
                 <TextView
@@ -147,13 +164,14 @@
                     android:text="✉ EMAIL"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="12dp"
+                    android:paddingBottom="4dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="jan.kowalski@gmail.com"
-                    android:textColor="#555555" />
+                    android:textColor="@color/gray" />
             </LinearLayout>
         </LinearLayout>
 </ScrollView>
