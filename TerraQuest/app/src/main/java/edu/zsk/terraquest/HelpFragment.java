@@ -132,7 +132,6 @@ public class HelpFragment extends Fragment {
             anim.setDuration(300);
             faqView.startAnimation(anim);
 
-            // Klikanie w tytuł pytania – rozwijanie odpowiedzi
             faqItemLayout.setOnClickListener(v -> {
                 boolean isVisible = contentView.getVisibility() == View.VISIBLE;
                 if (isVisible) {

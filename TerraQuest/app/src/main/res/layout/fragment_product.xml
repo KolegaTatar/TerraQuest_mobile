@@ -1,9 +1,211 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="Produkt"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Zdjęcie -->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_1" />
+
+        <!-- Miasto i kraj -->
+        <TextView
+            android:id="@+id/textMiastoKraj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Madryt (Hiszpania)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+
+
+        <!-- Cena i liczba nocy -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_edittext_green"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="za 3 noce"
+            android:textColor="#273A28"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="350 zł"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textNazwaObiektu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Samotnia Suszka"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+
+
+        <!-- Przycisk Zarezerwuj -->
+        <Button
+            android:id="@+id/btnZarezerwuj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/black"
+            android:text="Zarezerwuj"
+            android:textColor="@color/white" />
+
+        <!-- Opis jako rozwijany label -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/labelOpis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opis"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/labelArrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="▼"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textOpis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Przepiękna willa na obrzeżu miasta z własnym basenem."
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Najlepsze udogodnienia z czarną ramką -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:padding="12dp"
+            android:background="@drawable/border_black">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Najlepsze udogodnienia"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textUdogodnienia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Wi-Fi w lobby, Wi-Fi w pokojach, Bar hotelowy, Restauracja, Fitness"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Info z czarną ramką -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:background="@drawable/border_black">
+
+            <TextView
+                android:id="@+id/textInfoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apartamenty Collegia – info"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textInfoOpis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Willa z basenem. 5 sypialni, kuchnia i kort tenisowy."
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Oceny klientów -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oceny naszych klientów"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statystyki mówią same za siebie!"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <!-- ViewPager -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerRecenzje"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Kropki -->
+        <LinearLayout
+            android:id="@+id/pagerDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal" />
+    </LinearLayout>
+</ScrollView>
