@@ -9,19 +9,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Nagłówek TerraQuest -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TerraQuest"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:gravity="left"
-            android:textColor="@color/orange"
-            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="8dp"
+            android:gravity="left"
+            android:text="TerraQuest"
+            android:textColor="@color/orange"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -218,7 +217,7 @@
                 android:textAllCaps="false"
                 android:layout_marginTop="24dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/rounded_button" />
+                android:background="@drawable/rounded_button2" />
         </LinearLayout>
 
         <TextView
@@ -234,7 +233,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oferty i promocje specjalnie dla ciebie"
+            android:text="Najpopularniejsze cele podrózy wśrod gości z Polski"
             android:textColor="#757575"
             android:layout_marginBottom="24dp"
             android:textSize="18sp"
@@ -242,123 +241,147 @@
             android:layout_marginLeft="24dp"/>
 
 
-        <TextView
+        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tylko u nas specjalne oferty zagraniczne."
-            android:layout_marginBottom="16dp"/>
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:layout_marginBottom="60dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!-- Karta miasta 1 -->
-                <LinearLayout
-                    android:layout_width="120dp"
+                <FrameLayout
+                    android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginRight="8dp">
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/city_card_background">
 
                     <ImageView
+                        android:id="@+id/cityImage1"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:src="@drawable/warsaw"
-                        android:scaleType="centerCrop"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/warsaw" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/cityName1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Warszawa"
-                        android:textSize="16sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"/>
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Polska"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </LinearLayout>
-
-                <!-- Karta miasta 2 -->
-                <LinearLayout
-                    android:layout_width="120dp"
+                <FrameLayout
+                    android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginRight="8dp">
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/city_card_background">
 
                     <ImageView
+                        android:id="@+id/cityImage2"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:src="@drawable/rome"
-                        android:scaleType="centerCrop"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/gdansk" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/cityName2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rzym"
-                        android:textSize="16sp"
+                        android:text="Gdańsk"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Włochy"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </LinearLayout>
-
-                <!-- Karta miasta 3 -->
-                <LinearLayout
-                    android:layout_width="120dp"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginRight="8dp">
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/city_card_background">
 
                     <ImageView
+                        android:id="@+id/cityImage3"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:src="@drawable/paris"
-                        android:scaleType="centerCrop"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/krakow" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/cityName3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Paryż"
-                        android:textSize="16sp"
+                        android:text="Kraków"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"/>
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/city_card_background">
+
+                    <ImageView
+                        android:id="@+id/cityImage4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/poznan" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/cityName4"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Francja"
-                        android:textSize="12sp"
-                        android:gravity="center"/>
-                </LinearLayout>
+                        android:text="Poznań"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
 
-                <!-- Możesz dodać więcej kart miast tutaj -->
+                <FrameLayout
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/city_card_background">
+
+                    <ImageView
+                        android:id="@+id/cityImage5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/karpacz" />
+
+                    <TextView
+                        android:id="@+id/cityName5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Karpacz"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent" />
+                </FrameLayout>
+
 
             </LinearLayout>
         </HorizontalScrollView>
-
 
 
         <TextView
@@ -404,11 +427,16 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="24dp"/>
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nudzisz się w jednym miejscu? To może podróż przez Hiszpanię? 6 dni, 4 hotele i brak nudy. Idealne dla wszystkich poszukiwaczy przygód."
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="400dp"
+            android:src="@drawable/austria"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="50dp"/>
+
+
 
     </LinearLayout>
 </ScrollView>
