@@ -25,7 +25,6 @@ public class HotelApiService {
     public void getHotelsForCity(String cityName, HotelApiCallback callback) {
         new Thread(() -> {
             try {
-                // 1. Pobierz LocationId
                 String urlCity = "https://api.travsrv.com/widgetapi.aspx?type=cities&name=" + cityName + "&count=1";
 
                 Request requestCity = new Request.Builder()
@@ -53,7 +52,7 @@ public class HotelApiService {
                     return;
                 }
 
-                // 2. Pobierz hotele po LocationId
+
                 String urlHotels = "https://api.travsrv.com/Content.aspx?type=findfeaturedhoteldeals&locationid=" + locationId;
 
                 Request requestHotels = new Request.Builder()
@@ -69,7 +68,7 @@ public class HotelApiService {
                 String hotelsResponseStr = responseHotels.body().string();
                 Log.d("API_RESPONSE", hotelsResponseStr);
 
-                callback.onSuccess(hotelsResponseStr); // <<< TERAZ OK
+                callback.onSuccess(hotelsResponseStr);
 
             } catch (IOException e) {
                 Log.e(TAG, "IO error: ", e);

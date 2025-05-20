@@ -12,9 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +21,9 @@
             android:textStyle="bold"
             android:textSize="28sp"
             android:textColor="@color/black"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,9 @@
             android:text="Porównujemy ceny pokoi hotelowych"
             android:textSize="16sp"
             android:textColor="#757575"
-            android:layout_marginBottom="50dp" />
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <!-- Formularz wyszukiwania -->
         <LinearLayout
@@ -41,7 +43,9 @@
             android:orientation="vertical"
             android:padding="16dp"
             android:elevation="4dp"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp">
 
             <TextView
                 android:id="@+id/label_destination"
@@ -89,7 +93,7 @@
                         android:text="Data"
                         android:textColor="#808080"
                         android:textSize="14sp"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="0dp"/>
 
                     <EditText
                         android:id="@+id/editTextDate"
@@ -119,7 +123,7 @@
                         android:text="Osoby"
                         android:textColor="#808080"
                         android:textSize="14sp"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="0dp"/>
 
                     <EditText
                         android:id="@+id/text_people"
@@ -155,22 +159,26 @@
             android:text="Często wyszukiwane"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Zaoszczędź na pobytach"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
-            android:textSize="18sp"/>
+            android:layout_marginBottom="12dp"
+            android:textSize="18sp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHotels"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="40dp" />
 
 
         <TextView
@@ -179,7 +187,9 @@
             android:text="Zapisz się do Newslettera"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -187,7 +197,9 @@
             android:text="Zyskaj dodatkowe zniżki"
             android:textColor="#757575"
             android:layout_marginBottom="24dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -207,7 +219,9 @@
             android:layout_marginBottom="12dp"
             android:padding="12dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray"/>
+            android:textColorHint="@color/gray"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <Button
             android:id="@+id/buttonSubscribe"
@@ -218,7 +232,9 @@
             android:textStyle="bold"
             android:backgroundTint="#FFC802"
             android:textColor="#000000"
-            android:layout_marginBottom="60dp"/>
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
 
         <TextView
@@ -227,7 +243,9 @@
             android:text="Oceny klientów"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -235,47 +253,18 @@
             android:text="Statystyki mówią same za siebie"
             android:textColor="#757575"
             android:layout_marginBottom="24dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
 
-        <LinearLayout
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/reviewsViewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@android:color/white"
-            android:layout_marginBottom="16dp"
-            android:elevation="4dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="★★★★★"
-                android:textSize="20sp"
-                android:textColor="#FFC802"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wakacje życia!!!"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Najlepsze wakacje ever!"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jan Kowalski – 15 maja 2025"
-                android:textColor="#777777"
-                android:textSize="12sp"
-                android:layout_marginTop="8dp" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

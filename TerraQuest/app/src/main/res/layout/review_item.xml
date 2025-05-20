@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/reviewStars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="★★★★★"
+        android:textSize="20sp"
+        android:textColor="#FFC802" />
+
+    <TextView
+        android:id="@+id/reviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wakacje życia!!!"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/reviewContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Najlepsze wakacje ever!"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/reviewAuthorDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jan Kowalski – 15 maja 2025"
+        android:textColor="#777777"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

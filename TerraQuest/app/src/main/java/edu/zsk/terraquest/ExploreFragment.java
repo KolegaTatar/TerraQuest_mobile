@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,7 +30,16 @@ public class ExploreFragment extends Fragment {
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
     private List<Hotel> hotelList;
+
+    private ViewPager2 reviewsViewPager;
+    private ReviewPagerAdapter reviewPagerAdapter;
+    private List<Review> reviewList;
+
     private EditText editTextDate;
+    private EditText inputDestination;
+    private EditText textPeople;
+    private Button buttonSearch;
+
     private final Calendar calendar = Calendar.getInstance();
 
     private HotelApiService apiService;
@@ -36,22 +48,70 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
+
         recyclerViewHotels = view.findViewById(R.id.recyclerViewHotels);
         recyclerViewHotels.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
         hotelList = new ArrayList<>();
-        hotelAdapter = new HotelAdapter(hotelList);
+        hotelAdapter = new HotelAdapter(hotelList, hotel -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("name", hotel.getName());
+            bundle.putString("location", hotel.getLocation());
+            bundle.putString("imageUrl", hotel.getImageUrl());
+            bundle.putInt("price", hotel.getDiscountedPrice());
+            bundle.putInt("oldPrice", hotel.getOriginalPrice());
+            bundle.putInt("nights", hotel.getNights());
+
+            ProductFragment productFragment = new ProductFragment();
+            productFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, productFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
         recyclerViewHotels.setAdapter(hotelAdapter);
+
+        reviewsViewPager = view.findViewById(R.id.reviewsViewPager);
+        reviewList = new ArrayList<>();
+        reviewPagerAdapter = new ReviewPagerAdapter(reviewList);
+        reviewsViewPager.setAdapter(reviewPagerAdapter);
 
         editTextDate = view.findViewById(R.id.editTextDate);
         editTextDate.setFocusable(false);
         editTextDate.setOnClickListener(v -> showDatePicker());
 
-        // Inicjalizacja API
+        inputDestination = view.findViewById(R.id.input_destination);
+        textPeople = view.findViewById(R.id.text_people);
+        buttonSearch = view.findViewById(R.id.button_search);
+
+        buttonSearch.setOnClickListener(v -> {
+            String destination = inputDestination.getText().toString().trim();
+            String date = editTextDate.getText().toString().trim();
+            String people = textPeople.getText().toString().trim();
+
+            if(destination.isEmpty() || date.isEmpty() || people.isEmpty()) {
+                Toast.makeText(getContext(), "Wypełnij wszystkie pola", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Bundle bundle = new Bundle();
+            bundle.putString("destination", destination);
+            bundle.putString("date", date);
+            bundle.putString("people", people);
+
+            SearchFragment searchFragment = new SearchFragment();
+            searchFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, searchFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
         apiService = new HotelApiService();
 
-        // Pobierz hotele dla domyślnego miasta
         loadHotels("Tokio");
+        loadReviews();
 
         return view;
     }
@@ -96,7 +156,7 @@ public class ExploreFragment extends Fragment {
                         String imageUrl = "https:" + hotelJson.optString("PropertyImageUrl", "");
                         int price = (int) hotelJson.optDouble("ReferencePrice", 0);
                         int oldPrice = price + 200;
-                        int nights = 1; // Brak info w API – ustaw domyślnie 1
+                        int nights = 1;
 
                         Hotel hotel = new Hotel(name, location, imageUrl, oldPrice, price, nights);
                         hotelList.add(hotel);
@@ -111,7 +171,6 @@ public class ExploreFragment extends Fragment {
                 }
             }
 
-
             @Override
             public void onError(String errorMessage) {
                 requireActivity().runOnUiThread(() ->
@@ -119,5 +178,15 @@ public class ExploreFragment extends Fragment {
                 );
             }
         });
+    }
+
+    private void loadReviews() {
+        reviewList.clear();
+        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
+        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
+        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
+        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
+
+        requireActivity().runOnUiThread(() -> reviewPagerAdapter.notifyDataSetChanged());
     }
 }
