@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -40,6 +43,10 @@ public class ExploreFragment extends Fragment {
     private EditText textPeople;
     private Button buttonSearch;
 
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase database;
+
+
     private final Calendar calendar = Calendar.getInstance();
 
     private HotelApiService apiService;
@@ -47,7 +54,6 @@ public class ExploreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
-
 
         recyclerViewHotels = view.findViewById(R.id.recyclerViewHotels);
         recyclerViewHotels.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -89,7 +95,7 @@ public class ExploreFragment extends Fragment {
             String date = editTextDate.getText().toString().trim();
             String people = textPeople.getText().toString().trim();
 
-            if(destination.isEmpty() || date.isEmpty() || people.isEmpty()) {
+            if (destination.isEmpty() || date.isEmpty() || people.isEmpty()) {
                 Toast.makeText(getContext(), "Wypełnij wszystkie pola", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -110,8 +116,13 @@ public class ExploreFragment extends Fragment {
 
         apiService = new HotelApiService();
 
+        dbHelper = new DatabaseHelper(getContext());
+        database = dbHelper.getReadableDatabase();
+
+        loadReviewsFromDb();
+
+
         loadHotels("Tokio");
-        loadReviews();
 
         return view;
     }
@@ -154,8 +165,14 @@ public class ExploreFragment extends Fragment {
                         String name = hotelJson.optString("PropertyName", "Brak nazwy");
                         String location = hotelJson.optString("PropertyAddress", "Nieznana lokalizacja");
                         String imageUrl = "https:" + hotelJson.optString("PropertyImageUrl", "");
-                        int price = (int) hotelJson.optDouble("ReferencePrice", 0);
-                        int oldPrice = price + 200;
+                        double rawPrice = hotelJson.optDouble("ReferencePrice", 0);
+                        double maxdiscountedPrice = hotelJson.optDouble("MaxDiscountPercent", 0);
+
+                        String currency = hotelJson.optString("Currency", "USD");
+
+                        int oldPrice = convertToPLN(rawPrice, currency);
+                        int price = (int) ((oldPrice * (100-maxdiscountedPrice)) / 100);
+
                         int nights = 1;
 
                         Hotel hotel = new Hotel(name, location, imageUrl, oldPrice, price, nights);
@@ -180,13 +197,51 @@ public class ExploreFragment extends Fragment {
         });
     }
 
-    private void loadReviews() {
+    private void loadReviewsFromDb() {
         reviewList.clear();
-        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
-        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
-        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
-        reviewList.add(new Review("★★★★★", "Świetny hotel!", "Polecam wszystkim.", "Jan Kowalski, 2025-05-20"));
+
+        Cursor cursor = database.rawQuery("SELECT * FROM reviews_terraQuest ORDER BY date DESC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ratingInt = cursor.getInt(cursor.getColumnIndexOrThrow("rating"));
+                String rating = "★★★★★".substring(0, ratingInt); // wyświetlam gwiazdki według oceny
+
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                String reviewer = cursor.getString(cursor.getColumnIndexOrThrow("reviewer"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+
+                Review review = new Review(rating, title, description, reviewer + ", " + date);
+                reviewList.add(review);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
 
         requireActivity().runOnUiThread(() -> reviewPagerAdapter.notifyDataSetChanged());
     }
+
+
+    private int convertToPLN(double price, String currency) {
+        double exchangeRate;
+        switch (currency) {
+            case "USD":
+                exchangeRate = 4.3;
+                break;
+            case "EUR":
+                exchangeRate = 4.5;
+                break;
+            default:
+                exchangeRate = 1.0;
+        }
+        return (int) (price * exchangeRate);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (database != null && database.isOpen()) {
+            database.close();
+        }
+    }
+
 }
