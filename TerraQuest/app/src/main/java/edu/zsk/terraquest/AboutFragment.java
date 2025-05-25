@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.Typeface;
+import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,6 +39,15 @@ public class AboutFragment extends Fragment {
         setTimelineEntry(view, R.id.entry2024_1, "2024", "Przejęcie weekend.com\n");
         setTimelineEntry(view, R.id.entry2024_2, "", "Rozpoczęcie współpracy z Chelsea FC\n\n");
         setTimelineEntry(view, R.id.entry2025_1, "2025", "Uruchomienie pierwszej w swoim rodzaju kampanii reklamowej opartej na sztucznej inteligencji w ramach innowacyjnego odświeżenia marki\n");
+
+
+        ImageView headImage = view.findViewById(R.id.headImage);
+
+        Glide.with(this)
+                .load(R.drawable.about)
+                .override(1080, 600)
+                .centerCrop()
+                .into(headImage);
 
         return view;
     }
