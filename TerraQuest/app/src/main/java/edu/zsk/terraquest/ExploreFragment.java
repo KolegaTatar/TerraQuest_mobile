@@ -1,13 +1,18 @@
 package edu.zsk.terraquest;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +31,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class ExploreFragment extends Fragment {
+
+    private EditText editTextEmail;
+    private Button buttonSubscribe;
+    private UserDatabaseHelper dbHelper;
 
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
@@ -113,7 +122,51 @@ public class ExploreFragment extends Fragment {
         loadHotels("Tokio");
         loadReviews();
 
+        EditText editTextEmail = view.findViewById(R.id.editTextEmail);
+        Button buttonSubscribe = view.findViewById(R.id.buttonSubscribe);
+
+        buttonSubscribe.setOnClickListener(v -> {
+            String email = editTextEmail.getText().toString().trim();
+
+            if (!email.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                // Zapisz do newslettera
+                saveNewsletterStatusToDatabase(1); // ustawienie newsletter = 1
+                Toast.makeText(getContext(), "Zapisano do newslettera!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Podaj poprawny email!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button newsletterSection = view.findViewById(R.id.buttonSubscribe);
+
+        Bundle args = getArguments();
+        if (args != null && args.getBoolean("scrollToNewsletter", false)) {
+            new Handler().postDelayed(() -> {
+                newsletterSection.getParent().requestChildFocus(newsletterSection, newsletterSection);
+            }, 1500); // odroczone, by ScrollView się załadował
+        }
+
         return view;
+    }
+
+    private void saveNewsletterStatusToDatabase(int status) {
+        UserDatabaseHelper dbHelper = new UserDatabaseHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("newsletter", status);
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("user_prefs", 0);
+        String email = prefs.getString("email", null);
+
+        if (email != null) {
+            int rows = db.update("users", values, "email = ?", new String[]{email});
+            if (rows == 0) {
+                Toast.makeText(getContext(), "Nie udało się zapisać ustawień newslettera.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        db.close();
     }
 
     private void showDatePicker() {

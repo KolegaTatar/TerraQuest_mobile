@@ -1,122 +1,168 @@
 package edu.zsk.terraquest;
 
-import android.widget.Toast;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.os.Handler;
+import android.view.*;
+import android.widget.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class UserFragment extends Fragment {
+
+    private SQLiteDatabase database;
+    private TextView emailView, firstNameInput, textNewsletterStatus;
+    private String email;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
-        View profileUpdate = view.findViewById(R.id.profile_update);
-        View timeSettings = view.findViewById(R.id.time_settings);
-        View newsActive = view.findViewById(R.id.news_active);
-        View logoutButton = view.findViewById(R.id.logout_button);
+        TextView currentTimeText = view.findViewById(R.id.current_time);
 
-        profileUpdate.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Aktualizacja profilu", Toast.LENGTH_SHORT).show());
-
-        timeSettings.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Czas i godzina", Toast.LENGTH_SHORT).show());
-
-        newsActive.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Historia rezerwacji", Toast.LENGTH_SHORT).show());
-
-        logoutButton.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Wylogowano", Toast.LENGTH_SHORT).show());
-
-
-        TextView nameTextView = view.findViewById(R.id.user_name);
-        TextView emailTextView = view.findViewById(R.id.user_email);
-
-        String firstName = "Jacek";
-        String lastName = "Prokop";
-        String email = "filiptogowno@gmail.com";
-
-        nameTextView.setText(firstName + " " + lastName);
-        emailTextView.setText(email);
-
-        LinearLayout bookingContainer = view.findViewById(R.id.booking_container);
-        addBookingEntry(inflater, bookingContainer,
-                "Bergson Lubi w Dupe",
-                "ul. Wiktora Tatrynowicza 69",
-                "100.20 PLN",
-                "505.43 PLN",
-                "Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno ");
-
-        addBookingEntry(inflater, bookingContainer,
-                "Niech to sie w koncu skonczy",
-                "ul. Malpiszona Palacza 1",
-                "100.20 PLN",
-                "505.43 PLN",
-                "Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno Gówno ");
-
-        return view;
-
-
-    }
-
-    private void addBookingEntry(LayoutInflater inflater, LinearLayout container,
-                                 String hotelName, String address, String priceOld,
-                                 String priceNew, String details) {
-
-        View bookingView = inflater.inflate(R.layout.booking_item, container, false);
-
-        TextView title = bookingView.findViewById(R.id.booking_title);
-        TextView subtitle = bookingView.findViewById(R.id.booking_subtitle);
-        TextView oldPrice = bookingView.findViewById(R.id.booking_old_price);
-        TextView newPrice = bookingView.findViewById(R.id.booking_new_price);
-        TextView detailsText = bookingView.findViewById(R.id.booking_details);
-        View arrowIcon = bookingView.findViewById(R.id.arrow_icon);
-
-        title.setText(hotelName);
-        subtitle.setText(address);
-        oldPrice.setText(priceOld);
-        newPrice.setText(priceNew);
-        detailsText.setText(details);
-
-        bookingView.setOnClickListener(v -> {
-            boolean isVisible = detailsText.getVisibility() == View.VISIBLE;
-
-            if (isVisible) {
-                detailsText.animate()
-                        .alpha(0f)
-                        .translationY(-10f)
-                        .setDuration(200)
-                        .withEndAction(() -> detailsText.setVisibility(View.GONE))
-                        .start();
-
-                arrowIcon.animate()
-                        .rotation(0f)
-                        .setDuration(200)
-                        .start();
-            } else {
-                detailsText.setAlpha(0f);
-                detailsText.setTranslationY(-10f);
-                detailsText.setVisibility(View.VISIBLE);
-                detailsText.animate()
-                        .alpha(1f)
-                        .translationY(0f)
-                        .setDuration(200)
-                        .start();
-
-                arrowIcon.animate()
-                        .rotation(180f)
-                        .setDuration(200)
-                        .start();
+        Handler handler = new Handler();
+        Runnable updateClock = new Runnable() {
+            @Override
+            public void run() {
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+                currentTimeText.setText("Aktualna godzina: " + currentTime);
+                handler.postDelayed(this, 1000);
             }
+        };
+        handler.post(updateClock);
+
+        UserDatabaseHelper dbHelper = new UserDatabaseHelper(getContext());
+        database = dbHelper.getWritableDatabase();
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("user_prefs", 0);
+        email = prefs.getString("email", null);
+
+        firstNameInput = view.findViewById(R.id.user_name);
+        emailView = view.findViewById(R.id.user_email);
+        textNewsletterStatus = view.findViewById(R.id.textNewsletterStatus);
+
+        emailView.setText(email);
+
+        loadUserData();
+
+        LinearLayout saveBtn = view.findViewById(R.id.profile_update);
+        LinearLayout logoutBtn = view.findViewById(R.id.logout_button);
+
+        saveBtn.setOnClickListener(v -> {
+            Context context = requireContext();
+
+            // Tworzymy layout z dwoma EditTextami
+            LinearLayout layout = new LinearLayout(context);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            layout.setPadding(50, 40, 50, 10);
+
+            EditText firstNameEdit = new EditText(context);
+            firstNameEdit.setHint("Imię");
+
+            EditText lastNameEdit = new EditText(context);
+            lastNameEdit.setHint("Nazwisko");
+
+            layout.addView(firstNameEdit);
+            layout.addView(lastNameEdit);
+
+            new android.app.AlertDialog.Builder(context)
+                    .setTitle("Aktualizuj profil")
+                    .setView(layout)
+                    .setPositiveButton("Zapisz", (dialog, which) -> {
+                        String fname = firstNameEdit.getText().toString().trim();
+                        String lname = lastNameEdit.getText().toString().trim();
+
+                        ContentValues values = new ContentValues();
+                        values.put("first_name", fname);
+                        values.put("last_name", lname);
+
+                        int updated = database.update("users", values, "email = ?", new String[]{email});
+                        if (updated > 0) {
+                            Toast.makeText(context, "Zaktualizowano profil!", Toast.LENGTH_SHORT).show();
+                            loadUserData(); // odśwież wyświetlane dane
+                        } else {
+                            Toast.makeText(context, "Błąd podczas aktualizacji.", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Anuluj", null)
+                    .show();
         });
 
-        container.addView(bookingView);
+        LinearLayout toNewsletterLayout = view.findViewById(R.id.toNewsletter);
+        toNewsletterLayout.setOnClickListener(w -> {
+            ExploreFragment exploreFragment = new ExploreFragment();
+
+            Bundle args = new Bundle();
+            args.putBoolean("scrollToNewsletter", true);
+            exploreFragment.setArguments(args);
+
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, exploreFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+        logoutBtn.setOnClickListener(v -> {
+            prefs.edit().clear().apply();
+
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new LoginFragment());
+            transaction.commit();
+
+            Toast.makeText(getContext(), "Wylogowano", Toast.LENGTH_SHORT).show();
+        });
+
+        return view;
     }
 
+    private void updateNewsletterStatusUI(int status) {
+        if (status == 1) {
+            textNewsletterStatus.setText("Newsletter aktywny");
+            textNewsletterStatus.setTextColor(Color.parseColor("#4CAF50")); // zielony
+        } else {
+            textNewsletterStatus.setText("Newsletter nieaktywny");
+            textNewsletterStatus.setTextColor(Color.RED);
+        }
+    }
+
+    private void loadUserData() {
+        Cursor cursor = database.rawQuery("SELECT first_name, last_name, newsletter FROM users WHERE email = ?", new String[]{email});
+
+        if (cursor.moveToFirst()) {
+            String firstName = cursor.getString(0);
+            String lastName = cursor.getString(1);
+            int newsletterStatus = cursor.getInt(2);
+
+            if(firstName.isEmpty() || lastName.isEmpty()){
+                firstNameInput.setText("Zaktualizuj profil");
+            }
+            else{
+                firstNameInput.setText(firstName + " " + lastName);
+            }
+
+
+            updateNewsletterStatusUI(newsletterStatus);
+        } else {
+            Toast.makeText(getContext(), "Nie znaleziono użytkownika!", Toast.LENGTH_SHORT).show();
+        }
+
+        cursor.close();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (database != null) database.close();
+    }
 }

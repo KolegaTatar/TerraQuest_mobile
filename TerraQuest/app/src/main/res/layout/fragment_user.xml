@@ -72,6 +72,7 @@
                     android:src="@drawable/ic_watch" />
 
                 <TextView
+                    android:id="@+id/current_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Czas i godzina (PM)"
@@ -150,13 +151,16 @@
                     android:src="@drawable/ic_newsletter_info" />
 
                 <TextView
+                    android:id="@+id/textNewsletterStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
                     android:text="Aktywny newsletter"
                     android:textSize="18sp" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/toNewsletter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
