@@ -3,17 +3,12 @@ package edu.zsk.terraquest;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,21 +26,21 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reg, container, false);
 
-        TextView loginLink = view.findViewById(R.id.loginLink);
-        loginLink.setOnClickListener(v -> {
-            Fragment loginFragment = new LoginFragment();
-            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, loginFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
-
-        initDb();
+        UserDatabaseHelper dbHelper = new UserDatabaseHelper(getContext());
+        database = dbHelper.getWritableDatabase();
 
         EditText emailInput = view.findViewById(R.id.emailInput);
         EditText passwordInput = view.findViewById(R.id.passwordInput);
+        CheckBox autoLoginCheckBox = view.findViewById(R.id.autoLoginCheckBox);
         Button registerButton = view.findViewById(R.id.registerButton);
-        CheckBox autoLoginCheckBox = view.findViewById(R.id.autoLoginCheckBox); // dodaj do XML checkbox z takim ID
+        TextView loginLink = view.findViewById(R.id.loginLink);
+
+        loginLink.setOnClickListener(v -> {
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new LoginFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
 
         registerButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
@@ -61,53 +56,44 @@ public class RegisterFragment extends Fragment {
                 return;
             }
 
-            String hashedPassword = hashPassword(password);
-
             if (isEmailTaken(email)) {
                 Toast.makeText(getContext(), "Ten e-mail jest już zajęty!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            String hashedPassword = hashPassword(password);
+
             ContentValues values = new ContentValues();
             values.put("email", email);
             values.put("password", hashedPassword);
+            values.put("first_name", "");
+            values.put("last_name", "");
 
             long result = database.insert("users", null, values);
-            if (result == -1) {
-                Toast.makeText(getContext(), "Błąd rejestracji!", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
-            Toast.makeText(getContext(), "Zarejestrowano pomyślnie!", Toast.LENGTH_SHORT).show();
+            if (result != -1) {
+                Toast.makeText(getContext(), "Zarejestrowano pomyślnie!", Toast.LENGTH_SHORT).show();
 
-            if (autoLoginCheckBox.isChecked()) {
-                goToUserFragment();
+                if (autoLoginCheckBox.isChecked()) {
+                    requireActivity().getSharedPreferences("user_prefs", 0)
+                            .edit()
+                            .putBoolean("is_logged_in", true)
+                            .putString("email", email)
+                            .apply();
+
+                    goToUserFragment();
+                } else {
+                    FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, new LoginFragment());
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
             } else {
-                Fragment loginFragment = new LoginFragment();
-                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, loginFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                Toast.makeText(getContext(), "Błąd rejestracji!", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
-    }
-
-    private void initDb() {
-        SQLiteOpenHelper dbHelper = new SQLiteOpenHelper(getContext(), "users.db", null, 1) {
-            @Override
-            public void onCreate(SQLiteDatabase db) {
-                db.execSQL("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE, password TEXT)");
-            }
-
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-                db.execSQL("DROP TABLE IF EXISTS users");
-                onCreate(db);
-            }
-        };
-        database = dbHelper.getWritableDatabase();
     }
 
     private boolean isEmailTaken(String email) {
@@ -120,19 +106,18 @@ public class RegisterFragment extends Fragment {
     private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] result = digest.digest(password.getBytes());
+            byte[] hash = digest.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
-            for (byte b : result) sb.append(String.format("%02x", b));
+            for (byte b : hash) sb.append(String.format("%02x", b));
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Błąd hashowania hasła", e);
+            throw new RuntimeException("Hashing error", e);
         }
     }
 
     private void goToUserFragment() {
-        Fragment userFragment = new UserFragment(); // przygotuj ten fragment
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, userFragment);
+        transaction.replace(R.id.fragment_container, new UserFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
