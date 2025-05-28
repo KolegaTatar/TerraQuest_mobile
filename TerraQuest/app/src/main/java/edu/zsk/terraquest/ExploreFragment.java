@@ -167,11 +167,10 @@ public class ExploreFragment extends Fragment {
                         String imageUrl = "https:" + hotelJson.optString("PropertyImageUrl", "");
                         double rawPrice = hotelJson.optDouble("ReferencePrice", 0);
                         double maxdiscountedPrice = hotelJson.optDouble("MaxDiscountPercent", 0);
-
                         String currency = hotelJson.optString("Currency", "USD");
 
                         int oldPrice = convertToPLN(rawPrice, currency);
-                        int price = (int) ((oldPrice * (100-maxdiscountedPrice)) / 100);
+                        int price = (int) ((oldPrice * (100 - maxdiscountedPrice)) / 100);
 
                         int nights = 1;
 
@@ -179,21 +178,28 @@ public class ExploreFragment extends Fragment {
                         hotelList.add(hotel);
                     }
 
-                    requireActivity().runOnUiThread(() -> hotelAdapter.notifyDataSetChanged());
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() -> hotelAdapter.notifyDataSetChanged());
+                    }
 
                 } catch (Exception e) {
-                    requireActivity().runOnUiThread(() ->
-                            Toast.makeText(getContext(), "Błąd przetwarzania danych", Toast.LENGTH_SHORT).show()
-                    );
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() ->
+                                Toast.makeText(getContext(), "Błąd przetwarzania danych", Toast.LENGTH_SHORT).show()
+                        );
+                    }
                 }
             }
 
             @Override
             public void onError(String errorMessage) {
-                requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
-                );
+                if (isAdded()) {
+                    requireActivity().runOnUiThread(() ->
+                            Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
+                    );
+                }
             }
+
         });
     }
 
@@ -205,7 +211,7 @@ public class ExploreFragment extends Fragment {
         if (cursor.moveToFirst()) {
             do {
                 int ratingInt = cursor.getInt(cursor.getColumnIndexOrThrow("rating"));
-                String rating = "★★★★★".substring(0, ratingInt); // wyświetlam gwiazdki według oceny
+                String rating = "★★★★★".substring(0, ratingInt);
 
                 String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));

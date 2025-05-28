@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="4dp"
     android:fillViewport="true">
 
     <LinearLayout
@@ -25,61 +26,61 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oto wyniki twojego wyszukiwania"
-            android:textStyle="bold"
-            android:textSize="28sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="8dp"
+            android:text="Oto wyniki twojego wyszukiwania"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Porównujemy ceny pokoi hotelowych na ponad 100 stronach"
-            android:textSize="16sp"
-            android:textColor="#757575"
-            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="50dp"
+            android:text="Porównujemy ceny pokoi hotelowych na ponad 100 stronach"
+            android:textColor="#757575"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_background"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:elevation="4dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp">
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/label_destination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="Docelowe miejsce podróży"
                 android:textColor="#808080"
-                android:textSize="14sp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/input_destination"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Rzym, Włochy"
                 android:background="@drawable/edit_text_bg"
-                android:padding="12dp"
-                android:textSize="16sp"
+                android:hint="Rzym, Włochy"
                 android:inputType="text"
+                android:padding="12dp"
                 android:textColor="#000000"
-                android:textColorHint="#999999" />
+                android:textColorHint="#999999"
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="12dp"
-                android:background="#999999"/>
+                android:background="#999999" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,60 +90,60 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
                         android:text="Data"
                         android:textColor="#808080"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="0dp"/>
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/editTextDate"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:clickable="true"
+                        android:focusable="false"
                         android:hint="13 maj 2025"
+                        android:inputType="none"
                         android:padding="12dp"
-                        android:textSize="16sp"
+                        android:paddingTop="4dp"
                         android:textColor="#000000"
                         android:textColorHint="#999999"
-                        android:paddingTop="4dp"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:inputType="none"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
                         android:text="Osoby"
                         android:textColor="#808080"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="0dp"/>
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/text_people"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:hint="3"
-                        android:padding="12dp"
-                        android:textSize="16sp"
                         android:inputType="numberDecimal"
+                        android:padding="12dp"
+                        android:paddingTop="4dp"
                         android:textColor="#000000"
                         android:textColorHint="#999999"
-                        android:paddingTop="4dp"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -150,102 +151,110 @@
                 android:id="@+id/button_search"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Szukaj"
-                android:textSize="14sp"
-                android:textAllCaps="false"
                 android:layout_marginTop="24dp"
-                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button"
                 android:backgroundTint="#000000"
-                android:background="@drawable/rounded_button" />
+                android:text="Szukaj"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oferty specjalnie dla Ciebie"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="4dp"
+            android:text="Oferty specjalnie dla Ciebie"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
             android:text="Oferty i promocje specjalnie dla ciebie"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
-            android:textSize="18sp"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_background"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:elevation="4dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp">
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="Zaoszczędź na podróżach międzynarodowych"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="18sp"
-                android:layout_marginBottom="10dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
                 android:text="Urlop za granicą taniej niż nad Polskim morzem lub w górach? \nTylko u nas specjalne oferty zagraniczne.Zaoszczędź na podróżach międzynarodowych"
                 android:textColor="@color/gray_600"
-                android:textStyle="normal"
                 android:textSize="16sp"
-                android:layout_marginBottom="10dp"/>
+                android:textStyle="normal" />
 
             <Button
-                android:id="@+id/learn_more"
+                android:id="@+id/learn_more2"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Szukaj"
-                android:textSize="14sp"
-                android:textAllCaps="false"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_button2"
+                android:text="Dowiedz się więcej"
+                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/rounded_button2" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Popularne cele podróży"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="4dp"
+            android:text="Popularne cele podróży"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
             android:text="Najpopularniejsze cele podrózy wśrod gości z Polski"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
-            android:textSize="18sp"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:textSize="18sp" />
 
 
         <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="60dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -257,126 +266,135 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/city_card_background">
+                    android:background="@drawable/city_card_background"
+                    android:clipToOutline="true">
 
                     <ImageView
                         android:id="@+id/cityImage1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/warsaw" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/cityName1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="#80FFFFFF"
+                        android:padding="2dp"
                         android:text="Warszawa"
-                        android:textStyle="bold"
                         android:textColor="#000000"
                         android:textSize="16sp"
-                        android:layout_margin="8dp"
-                        android:background="@android:color/transparent" />
+                        android:textStyle="bold" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:layout_marginEnd="12dp"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/city_card_background">
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/city_card_background"
+                    android:clipToOutline="true">
 
                     <ImageView
                         android:id="@+id/cityImage2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/gdansk" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/cityName2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="#80FFFFFF"
+                        android:padding="2dp"
                         android:text="Gdańsk"
-                        android:textStyle="bold"
                         android:textColor="#000000"
                         android:textSize="16sp"
-                        android:layout_margin="8dp"
-                        android:background="@android:color/transparent" />
+                        android:textStyle="bold"
+                        />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:layout_marginEnd="12dp"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/city_card_background">
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/city_card_background"
+                    android:clipToOutline="true">
 
                     <ImageView
                         android:id="@+id/cityImage3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/krakow" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/cityName3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="#80FFFFFF"
+                        android:padding="2dp"
                         android:text="Kraków"
-                        android:textStyle="bold"
                         android:textColor="#000000"
                         android:textSize="16sp"
-                        android:layout_margin="8dp"
-                        android:background="@android:color/transparent" />
+                        android:textStyle="bold"
+                       />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:layout_marginEnd="12dp"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/city_card_background">
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/city_card_background"
+                    android:clipToOutline="true">
 
                     <ImageView
                         android:id="@+id/cityImage4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/poznan" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/cityName4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="#80FFFFFF"
+                        android:padding="2dp"
                         android:text="Poznań"
-                        android:textStyle="bold"
                         android:textColor="#000000"
                         android:textSize="16sp"
-                        android:layout_margin="8dp"
-                        android:background="@android:color/transparent" />
+                        android:textStyle="bold" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
                     android:layout_marginEnd="24dp"
-                    android:background="@drawable/city_card_background">
+                    android:background="@drawable/city_card_background"
+                    android:clipToOutline="true">
 
                     <ImageView
                         android:id="@+id/cityImage5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/karpacz" />
+                        android:scaleType="centerCrop" />
 
                     <TextView
                         android:id="@+id/cityName5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="#80FFFFFF"
+                        android:padding="2dp"
                         android:text="Karpacz"
-                        android:textStyle="bold"
                         android:textColor="#000000"
                         android:textSize="16sp"
-                        android:layout_margin="8dp"
-                        android:background="@android:color/transparent" />
+                        android:textStyle="bold" />
                 </FrameLayout>
 
 
@@ -387,56 +405,167 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Często wyszukiwane"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="4dp"
+            android:text="Często wyszukiwane"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
             android:text="Zaoszczędź na pobytach"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
-            android:textSize="18sp"
+            android:textSize="18sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHotels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/rounded_image"
+                android:id="@+id/sale"
+                android:clipToOutline="true"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:text="Podróżuj więcej, płać mniej. Zaloguj się i oszczędzaj"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <!-- Inspiracje -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:text="Promocje? Last minute? I wiele więce? Zaloguj się, by nie przegabić żadnych z nich."
+                android:textColor="@color/gray_600"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/learn_more"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_button2"
+                android:text="Zaloguj sie lub utwórz konto"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Poszukaj inspiracji na kolejna podróż"
-            android:textStyle="bold"
-            android:textSize="24sp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:layout_marginBottom="4dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:text="Poszukaj inspiracji na kolejna podróż"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
             android:text="Z nami nie ominą cię żadne atrakcje"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
-            android:textSize="18sp"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"/>
+            android:textSize="18sp" />
 
         <ImageView
+            android:id="@+id/image_inspiration"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:src="@drawable/austria"
-            android:scaleType="centerCrop"
-            android:layout_marginRight="24dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"/>
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="4dp"
+            android:text="6 niepowtarzalnych domów wakacyjnych w Austrii"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="30dp"
+            android:text="Wakacje z wiekszą ekipą? Trafiłeś idealnie!"
+            android:textColor="#757575"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/image_inspiration2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="4dp"
+            android:text="Nudzisz się w jednym miejscu? To może podróż przez Hiszpanie?"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="40dp"
+            android:text="6 dni, 4 hotele i brak nudy. Idealne dla wszystkich poszukiwaczy przygód."
+            android:textColor="#757575"
+            android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView>
