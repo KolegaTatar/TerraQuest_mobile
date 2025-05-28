@@ -59,15 +59,18 @@
                 android:id="@+id/label_destination"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_marginBottom="10dp"
                 android:text="Docelowe miejsce podróży"
                 android:textColor="#808080"
                 android:textSize="14sp" />
 
+
             <EditText
                 android:id="@+id/input_destination"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+
                 android:background="@drawable/edit_text_bg"
                 android:hint="Rzym, Włochy"
                 android:inputType="text"
@@ -81,6 +84,7 @@
                 android:layout_height="1dp"
                 android:layout_marginVertical="12dp"
                 android:background="#999999" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -158,6 +162,7 @@
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
         <TextView
@@ -170,6 +175,7 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,6 +185,7 @@
             android:text="Oferty i promocje specjalnie dla ciebie"
             android:textColor="#757575"
             android:textSize="18sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -190,7 +197,6 @@
             android:elevation="4dp"
             android:orientation="vertical"
             android:paddingBottom="16dp">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -207,6 +213,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
@@ -269,6 +276,7 @@
                     android:background="@drawable/city_card_background"
                     android:clipToOutline="true">
 
+
                     <ImageView
                         android:id="@+id/cityImage1"
                         android:layout_width="match_parent"
@@ -319,10 +327,9 @@
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/city_card_background"
-                    android:clipToOutline="true">
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/city_card_background">
 
                     <ImageView
                         android:id="@+id/cityImage3"
@@ -347,16 +354,16 @@
                 <FrameLayout
                     android:layout_width="200dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="12dp"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/city_card_background"
-                    android:clipToOutline="true">
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/city_card_background">
 
                     <ImageView
                         android:id="@+id/cityImage4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop" />
+
 
                     <TextView
                         android:id="@+id/cityName4"
@@ -383,7 +390,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop" />
-
                     <TextView
                         android:id="@+id/cityName5"
                         android:layout_width="wrap_content"
