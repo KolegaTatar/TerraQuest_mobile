@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,15 +23,27 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
     private List<Hotel> hotelList;
     private OnHotelClickListener listener;
 
+
+    @LayoutRes
+    private int itemLayoutResId = R.layout.hotel_item;
+
+
     public HotelAdapter(List<Hotel> hotelList, OnHotelClickListener listener) {
         this.hotelList = hotelList;
         this.listener = listener;
     }
 
+
+    public HotelAdapter(List<Hotel> hotelList, OnHotelClickListener listener, @LayoutRes int itemLayoutResId) {
+        this.hotelList = hotelList;
+        this.listener = listener;
+        this.itemLayoutResId = itemLayoutResId;
+    }
+
     @NonNull
     @Override
     public HotelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hotel_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(itemLayoutResId, parent, false);
         return new HotelViewHolder(view);
     }
 
