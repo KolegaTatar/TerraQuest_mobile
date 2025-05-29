@@ -93,7 +93,7 @@ public class UserFragment extends Fragment {
                         int updated = database.update("users", values, "email = ?", new String[]{email});
                         if (updated > 0) {
                             Toast.makeText(context, "Zaktualizowano profil!", Toast.LENGTH_SHORT).show();
-                            loadUserData(); // odśwież wyświetlane dane
+                            loadUserData(); //
                         } else {
                             Toast.makeText(context, "Błąd podczas aktualizacji.", Toast.LENGTH_SHORT).show();
                         }
