@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import android.widget.TextView;
+
+import edu.zsk.terraquest.R;
 
 public class User_menuFragment extends Fragment {
 

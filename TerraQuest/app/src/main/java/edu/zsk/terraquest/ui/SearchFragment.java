@@ -1,23 +1,25 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,38 +27,41 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class ExploreFragment extends Fragment {
+import edu.zsk.terraquest.hotels.Hotel;
+import edu.zsk.terraquest.hotels.HotelAdapter;
+import edu.zsk.terraquest.hotels.HotelApiService;
+import edu.zsk.terraquest.R;
+
+public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
     private List<Hotel> hotelList;
-
-    private ViewPager2 reviewsViewPager;
-    private ReviewPagerAdapter reviewPagerAdapter;
-    private List<Review> reviewList;
+    private List<Hotel> fullHotelList = new ArrayList<>();
 
     private EditText editTextDate;
     private EditText inputDestination;
     private EditText textPeople;
     private Button buttonSearch;
-
-    private DatabaseHelper dbHelper;
-    private SQLiteDatabase database;
-
+    private SeekBar seekBarPrice;
+    private TextView textViewPriceValue;
+    private LinearLayout layoutFilters;
+    private Button buttonToggleFilters;
 
     private final Calendar calendar = Calendar.getInstance();
-
     private HotelApiService apiService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         recyclerViewHotels = view.findViewById(R.id.recyclerViewHotels);
-        recyclerViewHotels.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewHotels.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         hotelList = new ArrayList<>();
         hotelAdapter = new HotelAdapter(hotelList, hotel -> {
             Bundle bundle = new Bundle();
@@ -74,13 +79,8 @@ public class ExploreFragment extends Fragment {
             transaction.replace(R.id.fragment_container, productFragment);
             transaction.addToBackStack(null);
             transaction.commit();
-        });
+        }, R.layout.hotel_item2);
         recyclerViewHotels.setAdapter(hotelAdapter);
-
-        reviewsViewPager = view.findViewById(R.id.reviewsViewPager);
-        reviewList = new ArrayList<>();
-        reviewPagerAdapter = new ReviewPagerAdapter(reviewList);
-        reviewsViewPager.setAdapter(reviewPagerAdapter);
 
         editTextDate = view.findViewById(R.id.editTextDate);
         editTextDate.setFocusable(false);
@@ -89,8 +89,73 @@ public class ExploreFragment extends Fragment {
         inputDestination = view.findViewById(R.id.input_destination);
         textPeople = view.findViewById(R.id.text_people);
         buttonSearch = view.findViewById(R.id.button_search);
+        seekBarPrice = view.findViewById(R.id.seekBarPrice);
+        textViewPriceValue = view.findViewById(R.id.textViewPriceValue);
+        layoutFilters = view.findViewById(R.id.layout_filters);
+        layoutFilters.setVisibility(View.GONE);
+        buttonToggleFilters = view.findViewById(R.id.button_toggle_filters);
+
+        buttonToggleFilters.setOnClickListener(v -> {
+            if (layoutFilters.getVisibility() == View.VISIBLE) {
+                layoutFilters.setVisibility(View.GONE);
+                buttonToggleFilters.setText("Pokaż filtry");
+            } else {
+                layoutFilters.setVisibility(View.VISIBLE);
+                buttonToggleFilters.setText("Ukryj filtry");
+            }
+        });
+
+        seekBarPrice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textViewPriceValue.setText(progress + " zł");
+                applyFilters();
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        view.findViewById(R.id.button_sort_price_asc).setOnClickListener(v -> {
+            hotelList.sort(Comparator.comparingInt(Hotel::getDiscountedPrice));
+            hotelAdapter.notifyDataSetChanged();
+        });
+
+        view.findViewById(R.id.button_sort_price_desc).setOnClickListener(v -> {
+            hotelList.sort((h1, h2) -> Integer.compare(h2.getDiscountedPrice(), h1.getDiscountedPrice()));
+            hotelAdapter.notifyDataSetChanged();
+        });
+
+        view.findViewById(R.id.button_sort_newest).setOnClickListener(v -> {
+            Collections.shuffle(hotelList);
+            hotelAdapter.notifyDataSetChanged();
+        });
+
+
+        inputDestination.addTextChangedListener(new TextWatcher() {
+            private long lastInputTime = 0;
+
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                lastInputTime = System.currentTimeMillis();
+                inputDestination.postDelayed(() -> {
+                    if (System.currentTimeMillis() - lastInputTime >= 500) {
+                        String city = s.toString().trim();
+                        if (city.length() >= 3) {
+                            loadHotels(city);
+                        }
+                    }
+                }, 600);
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        });
+
 
         buttonSearch.setOnClickListener(v -> {
+            InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            View focusedView = requireActivity().getCurrentFocus();
+            if (imm != null && focusedView != null) {
+                imm.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+            }
+
             String destination = inputDestination.getText().toString().trim();
             String date = editTextDate.getText().toString().trim();
             String people = textPeople.getText().toString().trim();
@@ -100,31 +165,27 @@ public class ExploreFragment extends Fragment {
                 return;
             }
 
-            Bundle bundle = new Bundle();
-            bundle.putString("destination", destination);
-            bundle.putString("date", date);
-            bundle.putString("people", people);
-
-            SearchFragment searchFragment = new SearchFragment();
-            searchFragment.setArguments(bundle);
-
-            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, searchFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            loadHotels(destination);
         });
 
         apiService = new HotelApiService();
-
-        dbHelper = new DatabaseHelper(getContext());
-        database = dbHelper.getReadableDatabase();
-
-        loadReviewsFromDb();
-
-
-        loadHotels("Tokio");
+        Bundle args = getArguments();
+        if (args != null) loadHotels(args.getString("destination"));
 
         return view;
+    }
+
+    private void applyFilters() {
+        int maxPrice = seekBarPrice.getProgress();
+        List<Hotel> filtered = new ArrayList<>();
+        for (Hotel hotel : fullHotelList) {
+            if (hotel.getDiscountedPrice() <= maxPrice) {
+                filtered.add(hotel);
+            }
+        }
+        hotelList.clear();
+        hotelList.addAll(filtered);
+        hotelAdapter.notifyDataSetChanged();
     }
 
     private void showDatePicker() {
@@ -158,6 +219,8 @@ public class ExploreFragment extends Fragment {
             public void onSuccess(String hotelsJsonString) {
                 try {
                     JSONArray hotelsArray = new JSONArray(hotelsJsonString);
+                    hotelList.clear();
+                    fullHotelList.clear();
 
                     for (int i = 0; i < hotelsArray.length(); i++) {
                         JSONObject hotelJson = hotelsArray.getJSONObject(i);
@@ -166,25 +229,24 @@ public class ExploreFragment extends Fragment {
                         String location = hotelJson.optString("PropertyAddress", "Nieznana lokalizacja");
                         String imageUrl = "https:" + hotelJson.optString("PropertyImageUrl", "");
                         double rawPrice = hotelJson.optDouble("ReferencePrice", 0);
-                        double maxdiscountedPrice = hotelJson.optDouble("MaxDiscountPercent", 0);
+                        double maxDiscount = hotelJson.optDouble("MaxDiscountPercent", 0);
                         String currency = hotelJson.optString("Currency", "USD");
 
                         int oldPrice = convertToPLN(rawPrice, currency);
-                        int price = (int) ((oldPrice * (100 - maxdiscountedPrice)) / 100);
-
+                        int price = (int) ((oldPrice * (100 - maxDiscount)) / 100);
                         int nights = 1;
 
                         Hotel hotel = new Hotel(name, location, imageUrl, oldPrice, price, nights);
                         hotelList.add(hotel);
                     }
 
-                    if (isAdded()) {
-                        requireActivity().runOnUiThread(() -> hotelAdapter.notifyDataSetChanged());
+                    fullHotelList.addAll(hotelList);
+                    if (isAdded() && getActivity() != null) {
+                        getActivity().runOnUiThread(() -> hotelAdapter.notifyDataSetChanged());
                     }
-
                 } catch (Exception e) {
-                    if (isAdded()) {
-                        requireActivity().runOnUiThread(() ->
+                    if (isAdded() && getActivity() != null) {
+                        getActivity().runOnUiThread(() ->
                                 Toast.makeText(getContext(), "Błąd przetwarzania danych", Toast.LENGTH_SHORT).show()
                         );
                     }
@@ -193,40 +255,12 @@ public class ExploreFragment extends Fragment {
 
             @Override
             public void onError(String errorMessage) {
-                if (isAdded()) {
-                    requireActivity().runOnUiThread(() ->
-                            Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
-                    );
-                }
+                requireActivity().runOnUiThread(() ->
+                        Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
+                );
             }
-
         });
     }
-
-    private void loadReviewsFromDb() {
-        reviewList.clear();
-
-        Cursor cursor = database.rawQuery("SELECT * FROM reviews_terraQuest ORDER BY date DESC", null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                int ratingInt = cursor.getInt(cursor.getColumnIndexOrThrow("rating"));
-                String rating = "★★★★★".substring(0, ratingInt);
-
-                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
-                String reviewer = cursor.getString(cursor.getColumnIndexOrThrow("reviewer"));
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-
-                Review review = new Review(rating, title, description, reviewer + ", " + date);
-                reviewList.add(review);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        requireActivity().runOnUiThread(() -> reviewPagerAdapter.notifyDataSetChanged());
-    }
-
 
     private int convertToPLN(double price, String currency) {
         double exchangeRate;
@@ -242,12 +276,4 @@ public class ExploreFragment extends Fragment {
         }
         return (int) (price * exchangeRate);
     }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (database != null && database.isOpen()) {
-            database.close();
-        }
-    }
-
 }

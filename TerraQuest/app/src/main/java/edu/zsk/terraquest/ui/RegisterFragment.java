@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -16,6 +16,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import edu.zsk.terraquest.R;
+import edu.zsk.terraquest.database.UserDatabaseHelper;
 
 public class RegisterFragment extends Fragment {
 

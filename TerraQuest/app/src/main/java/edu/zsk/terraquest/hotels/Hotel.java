@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.hotels;
 public class Hotel {
     private String name;
     private String location;

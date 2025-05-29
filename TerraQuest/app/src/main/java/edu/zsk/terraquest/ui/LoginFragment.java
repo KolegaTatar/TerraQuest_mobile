@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import edu.zsk.terraquest.R;
+import edu.zsk.terraquest.database.AppDatabaseHelper;
+
 public class LoginFragment extends Fragment {
 
     private SQLiteDatabase database;
@@ -22,8 +25,9 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        UserDatabaseHelper dbHelper = new UserDatabaseHelper(getContext());
+        AppDatabaseHelper dbHelper = new AppDatabaseHelper(getContext());
         database = dbHelper.getReadableDatabase();
+
 
         EditText emailInput = view.findViewById(R.id.emailInput);
         EditText passwordInput = view.findViewById(R.id.passwordInput);

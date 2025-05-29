@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import edu.zsk.terraquest.ui.ExploreFragment;
+import edu.zsk.terraquest.ui.HomeFragment;
+import edu.zsk.terraquest.ui.User_menuFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;

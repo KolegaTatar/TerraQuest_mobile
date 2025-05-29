@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.os.Bundle;
 import android.text.Spannable;
@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import edu.zsk.terraquest.R;
 
 public class AboutFragment extends Fragment {
 

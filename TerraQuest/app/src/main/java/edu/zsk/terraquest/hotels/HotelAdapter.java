@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.hotels;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import edu.zsk.terraquest.R;
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHolder> {
 

@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.reviews;
 
 public class Review {
     private String stars;

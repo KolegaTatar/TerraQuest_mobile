@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.reviews;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import edu.zsk.terraquest.R;
 
 public class ReviewPagerAdapter extends RecyclerView.Adapter<ReviewPagerAdapter.ReviewViewHolder> {
 

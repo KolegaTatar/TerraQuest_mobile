@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -7,16 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import com.bumptech.glide.Glide;
+import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,111 +27,40 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeFragment extends Fragment {
+import edu.zsk.terraquest.hotels.Hotel;
+import edu.zsk.terraquest.hotels.HotelAdapter;
+import edu.zsk.terraquest.hotels.HotelApiService;
+import edu.zsk.terraquest.R;
+import edu.zsk.terraquest.reviews.Review;
+import edu.zsk.terraquest.reviews.ReviewPagerAdapter;
+import edu.zsk.terraquest.database.DatabaseHelper;
 
+public class ExploreFragment extends Fragment {
 
     private RecyclerView recyclerViewHotels;
     private HotelAdapter hotelAdapter;
     private List<Hotel> hotelList;
+
+    private ViewPager2 reviewsViewPager;
+    private ReviewPagerAdapter reviewPagerAdapter;
+    private List<Review> reviewList;
 
     private EditText editTextDate;
     private EditText inputDestination;
     private EditText textPeople;
     private Button buttonSearch;
 
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase database;
+
 
     private final Calendar calendar = Calendar.getInstance();
-    private HotelApiService apiService;
 
+    private HotelApiService apiService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        ImageView cityImage1 = view.findViewById(R.id.cityImage1);
-        Glide.with(this)
-                .load(R.drawable.warsaw)
-                .centerCrop()
-                .into(cityImage1);
-
-        ImageView cityImage2 = view.findViewById(R.id.cityImage2);
-        Glide.with(this)
-                .load(R.drawable.gdansk)
-                .centerCrop()
-                .into(cityImage2);
-
-        ImageView cityImage3 = view.findViewById(R.id.cityImage3);
-        Glide.with(this)
-                .load(R.drawable.krakow)
-                .centerCrop()
-                .into(cityImage3);
-
-        ImageView cityImage4 = view.findViewById(R.id.cityImage4);
-        Glide.with(this)
-                .load(R.drawable.poznan)
-                .centerCrop()
-                .into(cityImage4);
-
-        ImageView cityImage5 = view.findViewById(R.id.cityImage5);
-        Glide.with(this)
-                .load(R.drawable.karpacz)
-                .centerCrop()
-                .into(cityImage5);
-
-        ImageView inspirationImage = view.findViewById(R.id.image_inspiration);
-        Glide.with(this)
-                .load(R.drawable.austria)
-                .centerCrop()
-                .into(inspirationImage);
-        inspirationImage.setOnClickListener(v -> {
-            ExploreFragment newFragment = new ExploreFragment();
-
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, newFragment)
-                    .commit();
-        });
-
-        ImageView inspirationImage2 = view.findViewById(R.id.image_inspiration2);
-        Glide.with(this)
-                .load(R.drawable.spain)
-                .centerCrop()
-                .into(inspirationImage2);
-        inspirationImage2.setOnClickListener(v -> {
-            ExploreFragment newFragment = new ExploreFragment();
-
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, newFragment)
-                    .commit();
-        });
-
-        ImageView sale = view.findViewById(R.id.sale);
-        Glide.with(this)
-                .load(R.drawable.baner_weather)
-                .centerCrop()
-                .into(sale);
-
-        Button learn_more = view.findViewById((R.id.learn_more));
-        learn_more.setOnClickListener(v -> {
-            LoginFragment newFragment = new LoginFragment();
-
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, newFragment)
-                    .commit();
-        });
-
-        Button learn_more2 = view.findViewById((R.id.learn_more2));
-        learn_more2.setOnClickListener(v -> {
-            ExploreFragment newFragment = new ExploreFragment();
-
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, newFragment)
-                    .commit();
-        });
+        View view = inflater.inflate(R.layout.fragment_explore, container, false);
 
         recyclerViewHotels = view.findViewById(R.id.recyclerViewHotels);
         recyclerViewHotels.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -154,6 +83,11 @@ public class HomeFragment extends Fragment {
             transaction.commit();
         });
         recyclerViewHotels.setAdapter(hotelAdapter);
+
+        reviewsViewPager = view.findViewById(R.id.reviewsViewPager);
+        reviewList = new ArrayList<>();
+        reviewPagerAdapter = new ReviewPagerAdapter(reviewList);
+        reviewsViewPager.setAdapter(reviewPagerAdapter);
 
         editTextDate = view.findViewById(R.id.editTextDate);
         editTextDate.setFocusable(false);
@@ -186,7 +120,15 @@ public class HomeFragment extends Fragment {
             transaction.addToBackStack(null);
             transaction.commit();
         });
+
         apiService = new HotelApiService();
+
+        dbHelper = new DatabaseHelper(getContext());
+        database = dbHelper.getReadableDatabase();
+
+        loadReviewsFromDb();
+
+
         loadHotels("Tokio");
 
         return view;
@@ -213,6 +155,7 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         editTextDate.setText(sdf.format(calendar.getTime()));
     }
+
     private void loadHotels(String cityName) {
         hotelList.clear();
         hotelAdapter.notifyDataSetChanged();
@@ -222,8 +165,6 @@ public class HomeFragment extends Fragment {
             public void onSuccess(String hotelsJsonString) {
                 try {
                     JSONArray hotelsArray = new JSONArray(hotelsJsonString);
-
-                    hotelList.clear();
 
                     for (int i = 0; i < hotelsArray.length(); i++) {
                         JSONObject hotelJson = hotelsArray.getJSONObject(i);
@@ -237,21 +178,20 @@ public class HomeFragment extends Fragment {
 
                         int oldPrice = convertToPLN(rawPrice, currency);
                         int price = (int) ((oldPrice * (100 - maxdiscountedPrice)) / 100);
+
                         int nights = 1;
 
                         Hotel hotel = new Hotel(name, location, imageUrl, oldPrice, price, nights);
                         hotelList.add(hotel);
                     }
 
-                    if (isAdded() && getActivity() != null) {
-                        getActivity().runOnUiThread(() -> {
-                            hotelAdapter.notifyDataSetChanged();
-                        });
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() -> hotelAdapter.notifyDataSetChanged());
                     }
 
                 } catch (Exception e) {
-                    if (isAdded() && getActivity() != null) {
-                        getActivity().runOnUiThread(() ->
+                    if (isAdded()) {
+                        requireActivity().runOnUiThread(() ->
                                 Toast.makeText(getContext(), "Błąd przetwarzania danych", Toast.LENGTH_SHORT).show()
                         );
                     }
@@ -260,11 +200,38 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onError(String errorMessage) {
-                requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
-                );
+                if (isAdded()) {
+                    requireActivity().runOnUiThread(() ->
+                            Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
+                    );
+                }
             }
+
         });
+    }
+
+    private void loadReviewsFromDb() {
+        reviewList.clear();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM reviews_terraQuest ORDER BY date DESC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int ratingInt = cursor.getInt(cursor.getColumnIndexOrThrow("rating"));
+                String rating = "★★★★★".substring(0, ratingInt);
+
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                String reviewer = cursor.getString(cursor.getColumnIndexOrThrow("reviewer"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+
+                Review review = new Review(rating, title, description, reviewer + ", " + date);
+                reviewList.add(review);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        requireActivity().runOnUiThread(() -> reviewPagerAdapter.notifyDataSetChanged());
     }
 
 
@@ -282,4 +249,12 @@ public class HomeFragment extends Fragment {
         }
         return (int) (price * exchangeRate);
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (database != null && database.isOpen()) {
+            database.close();
+        }
+    }
+
 }

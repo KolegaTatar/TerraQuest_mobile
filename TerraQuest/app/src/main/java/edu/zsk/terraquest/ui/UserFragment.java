@@ -1,4 +1,4 @@
-package edu.zsk.terraquest;
+package edu.zsk.terraquest.ui;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,6 +17,9 @@ import java.util.Locale;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import edu.zsk.terraquest.R;
+import edu.zsk.terraquest.database.UserDatabaseHelper;
 
 public class UserFragment extends Fragment {
 
