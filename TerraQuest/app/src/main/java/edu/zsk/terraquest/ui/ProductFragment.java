@@ -1,21 +1,27 @@
 package edu.zsk.terraquest.ui;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import edu.zsk.terraquest.R;
 import edu.zsk.terraquest.reviews.Review;
@@ -46,6 +52,8 @@ public class ProductFragment extends Fragment {
         TextView priceText = view.findViewById(R.id.discountedPrice);
         TextView oldPriceText = view.findViewById(R.id.originalPrice);
         TextView nightsText = view.findViewById(R.id.nightsCount);
+        SharedPreferences prefs = requireActivity().getSharedPreferences("user_prefs", 0);
+        String email = prefs.getString("email", null);
 
 
         TextView textOpis = view.findViewById(R.id.textOpis);
@@ -94,9 +102,46 @@ public class ProductFragment extends Fragment {
         database = dbHelper.getReadableDatabase();
 
         loadReviewsFromDb();
+
+        Button reserveButton = view.findViewById(R.id.btnReserve);
+
+        reserveButton.setOnClickListener(v -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Calendar calendar = Calendar.getInstance();
+
+            String checkIn = sdf.format(calendar.getTime());
+
+            calendar.add(Calendar.DAY_OF_MONTH, 3);
+            String checkOut = sdf.format(calendar.getTime());
+
+            int userId = getUserIdByEmail(email);
+            String hotelName = nameText.getText().toString();
+            int guests = 2;
+            String location = locationText.getText().toString();
+            int prize = args.getInt("oldPrice");
+            int newPrize = args.getInt("price");
+
+            SQLiteDatabase writableDb = dbHelper.getWritableDatabase();
+
+            writableDb.execSQL(
+                    "INSERT INTO reservation (user_id, hotel_name, prize, new_prize, hotel_location, check_in, check_out, guests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                    new Object[]{userId, hotelName, prize, newPrize, location, checkIn, checkOut, guests}
+            );
+
+            Toast.makeText(getContext(), "Rezerwacja dodana!", Toast.LENGTH_SHORT).show();
+        });
+
         return view;
     }
-
+    private int getUserIdByEmail(String email) {
+        Cursor cursor = database.rawQuery("SELECT id FROM users WHERE email = ?", new String[]{email});
+        int userId = -1;
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(0);
+        }
+        cursor.close();
+        return userId;
+    }
     private void loadReviewsFromDb() {
         reviewList.clear();
 

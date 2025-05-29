@@ -126,6 +126,8 @@ public class UserFragment extends Fragment {
             Toast.makeText(getContext(), "Wylogowano", Toast.LENGTH_SHORT).show();
         });
 
+        loadBookings(view);
+
         return view;
     }
 
@@ -161,6 +163,73 @@ public class UserFragment extends Fragment {
         }
 
         cursor.close();
+    }
+
+    private void loadBookings(View root) {
+        LinearLayout bookingContainer = root.findViewById(R.id.booking_container);
+        bookingContainer.removeAllViews();
+
+        Cursor cursor = database.rawQuery(
+                "SELECT hotel_name, hotel_location, prize, new_prize, check_in, check_out FROM reservation WHERE user_id = ?",
+                new String[]{String.valueOf(getUserIdFromEmail(email))}
+        );
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        while (cursor.moveToNext()) {
+            View bookingView = inflater.inflate(R.layout.booking_item, bookingContainer, false);
+
+            TextView title = bookingView.findViewById(R.id.booking_title);
+            TextView subtitle = bookingView.findViewById(R.id.booking_subtitle);
+            TextView oldPrice = bookingView.findViewById(R.id.booking_old_price);
+            TextView newPrice = bookingView.findViewById(R.id.booking_new_price);
+            TextView details = bookingView.findViewById(R.id.booking_details);
+            ImageView arrow = bookingView.findViewById(R.id.arrow_icon);
+
+            String hotelName = cursor.getString(0);
+            String oldP = cursor.getString(1);
+            String newP = cursor.getString(2);
+            String location = cursor.getString(3);
+            String checkIn = formatDate(cursor.getString(4));
+            String checkOut = formatDate(cursor.getString(5));
+
+            title.setText(cursor.getString(0)); // hotel_name
+            subtitle.setText(cursor.getString(1)); // hotel_location
+            oldPrice.setText(cursor.getString(2) + " zł"); // prize
+            newPrice.setText(cursor.getString(3) + " zł"); // new_prize
+            details.setText("Od: " + formatDate(cursor.getString(4)) + "\nDo: " + formatDate(cursor.getString(5))); // check_in/out
+
+            bookingView.setOnClickListener(v -> {
+                boolean visible = details.getVisibility() == View.VISIBLE;
+                details.setVisibility(visible ? View.GONE : View.VISIBLE);
+                arrow.setRotation(visible ? 0f : 180f);
+            });
+
+            bookingContainer.addView(bookingView);
+        }
+
+        cursor.close();
+    }
+
+    private int getUserIdFromEmail(String email) {
+        Cursor cursor = database.rawQuery("SELECT id FROM users WHERE email = ?", new String[]{email});
+        int userId = -1;
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(0);
+        }
+        cursor.close();
+        return userId;
+    }
+
+    // pomocnicza metoda do formatowania daty
+    private String formatDate(String dbDate) {
+        try {
+            SimpleDateFormat dbFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat displayFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+            Date date = dbFormat.parse(dbDate);
+            return displayFormat.format(date);
+        } catch (Exception e) {
+            return dbDate;
+        }
     }
 
     @Override
