@@ -2,13 +2,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/background_main">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
         <ImageView
             android:id="@+id/user_image"
@@ -22,8 +24,9 @@
         <TextView
             android:id="@+id/user_name"
             android:text="Jan Kowalski"
-            android:textSize="25dp"
+            android:textSize="28sp"
             android:textStyle="bold"
+            android:layout_marginBottom="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -31,7 +34,8 @@
             android:id="@+id/user_email"
             android:text="jankowalski@gmail.com"
             android:textColor="#888888"
-            android:layout_marginBottom="12dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -40,22 +44,28 @@
             android:textSize="12sp"
             android:textColor="#666666"
             android:gravity="center"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="35dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView
             android:text="Dane użytkownika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#424242"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"
-            android:textSize="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
 
             <LinearLayout
                 android:id="@+id/time_settings"
@@ -63,11 +73,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingVertical="8dp">
+                android:paddingVertical="12dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/menu_item_selector"
+                android:layout_marginBottom="4dp">
+
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_watch" />
 
@@ -76,8 +92,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Czas i godzina (PM)"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                   />
             </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/profile_update"
@@ -85,11 +104,17 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingVertical="8dp">
+                android:paddingVertical="12dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/menu_item_selector"
+                android:layout_marginBottom="4dp"
+                >
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_update" />
 
@@ -97,7 +122,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aktualizacja profilu"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -106,35 +134,53 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingVertical="8dp">
+                android:paddingVertical="12dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/menu_item_selector">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_door" />
+                    android:src="@drawable/ic_logout" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wyloguj"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                   />
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
+
         <TextView
             android:text="Dodatkowe"
-            android:textStyle="bold"
+
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#424242"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
 
             <LinearLayout
                 android:id="@+id/news_active"
@@ -142,11 +188,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingVertical="8dp">
+                android:paddingVertical="12dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/menu_item_selector"
+                android:layout_marginBottom="4dp">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_newsletter_info" />
 
@@ -154,9 +205,10 @@
                     android:id="@+id/textNewsletterStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FF0000"
+                    android:textColor="#CC0000"
+                    android:textStyle="bold"
                     android:text="Aktywny newsletter"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -165,11 +217,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingVertical="8dp">
+                android:paddingVertical="12dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:background="@drawable/menu_item_selector">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_at" />
 
@@ -177,18 +233,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Zapisz sie do newslettera"
-                    android:textSize="18sp" />
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
+
+
         <TextView
             android:text="Historia rezerwacji"
-            android:textSize="25dp"
-            android:textStyle="bold"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#424242"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"/>
 
         <LinearLayout
             android:id="@+id/booking_container"

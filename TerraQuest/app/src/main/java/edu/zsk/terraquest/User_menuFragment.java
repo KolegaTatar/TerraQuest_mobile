@@ -25,9 +25,7 @@ public class User_menuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        //view.findViewById(R.id.btn_weather).setOnClickListener(v -> navigateTo(new WeatherFragment()));
-        view.findViewById(R.id.btn_weather).setOnClickListener(v -> navigateTo(new ProductFragment()));
-        //view.findViewById(R.id.btn_weather).setOnClickListener(v -> navigateTo(new WeatherFragment()));
+        view.findViewById(R.id.btn_weather).setOnClickListener(v -> navigateTo(new WeatherFragment()));
 
         view.findViewById(R.id.btn_privacy).setOnClickListener(v -> navigateTo(new PPFragment()));
         view.findViewById(R.id.btn_about).setOnClickListener(v -> navigateTo(new AboutFragment()));
