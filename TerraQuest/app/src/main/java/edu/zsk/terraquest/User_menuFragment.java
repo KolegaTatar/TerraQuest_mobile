@@ -47,15 +47,15 @@ public class User_menuFragment extends Fragment {
                 .getBoolean("is_logged_in", false);
 
         if (isLoggedIn) {
-            // Zmień wygląd przycisku (np. tekst lub kolor)
+          
             if (btnReg instanceof TextView) {
                 ((TextView) btnReg).setText("Profil");
             }
 
-            // Zmieniamy działanie - przejście do UserFragment
+
             btnReg.setOnClickListener(v -> navigateTo(new UserFragment()));
         } else {
-            // Domyślne działanie - rejestracja
+
             btnReg.setOnClickListener(v -> navigateTo(new RegisterFragment()));
         }
 
