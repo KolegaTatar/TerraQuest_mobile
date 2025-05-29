@@ -1,6 +1,7 @@
 package edu.zsk.terraquest.ui;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,9 @@ public class ExploreFragment extends Fragment {
 
     private DatabaseHelper dbHelper;
     private SQLiteDatabase database;
+
+    private EditText editTextEmail;
+    private Button buttonSubscribe;
 
 
     private final Calendar calendar = Calendar.getInstance();
@@ -121,6 +125,20 @@ public class ExploreFragment extends Fragment {
             transaction.commit();
         });
 
+        editTextEmail = view.findViewById(R.id.editTextEmail);
+        buttonSubscribe = view.findViewById(R.id.buttonSubscribe);
+
+        buttonSubscribe.setOnClickListener(v -> {
+            String email = editTextEmail.getText().toString().trim();
+            if (!email.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                saveNewsletterStatusToDatabase(email, 1);
+                Toast.makeText(getContext(), "Zapisano do newslettera!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Podaj poprawny email!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         apiService = new HotelApiService();
 
         dbHelper = new DatabaseHelper(getContext());
@@ -133,6 +151,29 @@ public class ExploreFragment extends Fragment {
 
         return view;
     }
+
+    private void saveNewsletterStatusToDatabase(String email, int newsletterStatus) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT id FROM users WHERE email = ?", new String[]{email});
+
+        ContentValues values = new ContentValues();
+        values.put("newsletter", newsletterStatus);
+
+        if (cursor.moveToFirst()) {
+
+            int rows = db.update("users", values, "email = ?", new String[]{email});
+            if (rows == 0) {
+                Toast.makeText(getContext(), "Nie udało się zaktualizować newslettera.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+
+            Toast.makeText(getContext(), "Email nie istnieje w bazie.", Toast.LENGTH_SHORT).show();
+        }
+        cursor.close();
+
+    }
+
 
     private void showDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, month, dayOfMonth) -> {
