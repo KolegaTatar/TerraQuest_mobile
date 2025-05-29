@@ -30,10 +30,10 @@ public class TrapezoidImageView extends AppCompatImageView {
         float height = getHeight();
 
         path.reset();
-        path.moveTo(0, 0);                // górny lewy
-        path.lineTo(width * 0.35f, 0);    // górny prawy lekko cofnięty
-        path.lineTo(width, height);       // dolny prawy
-        path.lineTo(0, height);           // dolny lewy
+        path.moveTo(0, 0);
+        path.lineTo(width * 0.35f, 0);
+        path.lineTo(width, height);
+        path.lineTo(0, height);
         path.close();
 
         canvas.clipPath(path);

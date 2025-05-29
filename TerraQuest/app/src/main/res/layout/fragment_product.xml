@@ -1,42 +1,242 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/background_main">
 
     <LinearLayout
+        android:id="@+id/mainLayout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
         <ImageView
             android:id="@+id/hotelImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:clipToOutline="true"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
-        <TextView android:id="@+id/hotelName"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="8dp"
+
+        <TextView
+            android:id="@+id/hotelName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="Madryt"
+            android:textColor="@color/black"
+            android:layout_marginTop="18sp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
 
         <TextView android:id="@+id/hotelLocation"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#757575"
+            android:textSize="16sp"
+            android:text="Madryt"/>
 
-        <TextView android:id="@+id/discountedPrice"
-            android:textColor="#388E3C"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <TextView android:id="@+id/originalPrice"
-            android:textColor="#9E9E9E"
+        <TextView
+            android:id="@+id/nightsCount"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_edittext_green"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="#02542D"
+            android:textStyle="bold"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="10dp"/>
 
-        <TextView android:id="@+id/nightsCount"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <TextView android:id="@+id/originalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:textSize="16sp"
+                android:textColor="#999999"
+                android:textStyle="bold"
+                android:text="543zł"/>
+
+            <TextView android:id="@+id/discountedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="12dp"
+                android:textSize="22sp"
+                android:textColor="#FF0000"
+                android:textStyle="bold"
+                android:text="543zł"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnZarezerwuj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/rounded_button"
+            android:text="Zarezerwuj"
+            android:textColor="@color/white"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp">
+
+            <TextView
+                android:id="@+id/labelOpis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Opis"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/labelArrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="▼"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textOpis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Przepiękna willa na obrzeżu miasta z własnym basenem."
+            android:visibility="gone"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="32dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:padding="16dp"
+            android:background="@drawable/rounded_background_hotels"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Najlepsze udogodnienia"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textUdogodnienia"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Wi-Fi w lobby, Wi-Fi w pokojach, Bar hotelowy, Restauracja, Fitness"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:padding="16dp"
+            android:background="@drawable/rounded_background_hotels"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:elevation="2dp">
+
+            <TextView
+                android:id="@+id/textInfoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wyposażenie - informacje"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textInfoOpis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="Willa z basenem. 5 sypialni, kuchnia i kort tenisowy."
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Oceny klientów"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statystyki mówią same za siebie"
+            android:textColor="#757575"
+            android:layout_marginBottom="12dp"
+            android:textSize="18sp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/reviewsViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="12dp" />
+
     </LinearLayout>
 </ScrollView>

@@ -4,11 +4,14 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.view.MenuItem;
-
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import edu.zsk.terraquest.ui.ExploreFragment;
+import edu.zsk.terraquest.ui.HomeFragment;
+import edu.zsk.terraquest.ui.User_menuFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
 
-
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         if (savedInstanceState == null) {
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Sprawdź, czy użytkownik jest zalogowany i zmień tytuł itemu
         boolean isLoggedIn = getSharedPreferences("user_prefs", 0)
                 .getBoolean("is_logged_in", false);
 
@@ -56,20 +56,29 @@ public class MainActivity extends AppCompatActivity {
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                 Fragment selectedFragment = null;
 
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
-                    selectedFragment = new HomeFragment();
+                    if (!(currentFragment instanceof HomeFragment)) {
+                        selectedFragment = new HomeFragment();
+                    }
                 } else if (id == R.id.nav_search) {
-                    selectedFragment = new ExploreFragment();
+                    if (!(currentFragment instanceof ExploreFragment)) {
+                        selectedFragment = new ExploreFragment();
+                    }
                 } else if (id == R.id.nav_login) {
-                    selectedFragment = new User_menuFragment();
+                    if (!(currentFragment instanceof User_menuFragment)) {
+                        selectedFragment = new User_menuFragment();
+                    }
                 }
 
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, selectedFragment)
-                        .commit();
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                }
 
                 return true;
             };

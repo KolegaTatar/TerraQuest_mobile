@@ -252,7 +252,7 @@
             android:layout_height="wrap_content"
             android:text="Statystyki mówią same za siebie"
             android:textColor="#757575"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
             android:textSize="18sp"
             android:layout_marginRight="24dp"
             android:layout_marginLeft="24dp"/>
@@ -262,8 +262,7 @@
             android:id="@+id/reviewsViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="12dp" />
 
 
     </LinearLayout>

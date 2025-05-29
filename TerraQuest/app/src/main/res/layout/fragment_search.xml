@@ -35,7 +35,7 @@
             android:layout_marginRight="24dp"
             android:layout_marginLeft="24dp"/>
 
-        <!-- Formularz wyszukiwania -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,13 +151,113 @@
                 android:backgroundTint="#000000"
                 android:background="@drawable/rounded_button" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button_toggle_filters"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Pokaż filtry"
+            android:background="@drawable/rounded_button"
+            android:textColor="#fff"
+            android:padding="8dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/layout_filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:backgroundTint="#fff"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp">
+
+            <!-- Slider cenowy -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cena (promocyjna)"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="12dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBarPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="2000"
+                android:progressTint="@color/orange"
+                android:thumbTint="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/textViewPriceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 zł"
+                android:textSize="14sp"/>
+
+
+        </LinearLayout>
+
+
         <TextView
-            android:id="@+id/textViewInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dane wyszukiwania"
-            android:textSize="18sp"/>
+            android:text="Sortuj po:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="18dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/button_sort_newest"
+                android:text="Nowe"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/gray_200"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/button_sort_price_asc"
+                android:text="Rosnąco"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/gray_200"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/button_sort_price_desc"
+                android:text="Malejąco"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+                android:backgroundTint="@color/gray_200"
+                android:textColor="@color/black"/>
+
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHotels"
