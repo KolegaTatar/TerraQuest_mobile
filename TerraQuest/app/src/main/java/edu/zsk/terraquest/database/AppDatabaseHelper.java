@@ -47,6 +47,9 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "user_id INTEGER," +
                 "hotel_name TEXT," +
+                "prize INTEGER," +
+                "new_prize INTEGER," +
+                "hotel_location TEXT," +
                 "check_in TEXT," +
                 "check_out TEXT," +
                 "guests INTEGER," +
