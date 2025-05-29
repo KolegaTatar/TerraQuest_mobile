@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,14 +28,35 @@ public class ContactFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        View layout = view.findViewById(R.id.frameLayout); // Twój LinearLayout
-        View trapezoidImage = view.findViewById(R.id.trapezoidImage); // TrapezoidImageView
+        View layout = view.findViewById(R.id.frameLayout);
+        View trapezoidImage = view.findViewById(R.id.trapezoidImage);
 
         layout.post(() -> {
             int height = layout.getHeight();
             LayoutParams params = trapezoidImage.getLayoutParams();
             params.height = height;
             trapezoidImage.setLayoutParams(params);
+        });
+
+        // Znajdź pola formularza
+        EditText etImie = view.findViewById(R.id.etImie);
+        EditText etNazwisko = view.findViewById(R.id.etNazwisko);
+        EditText etEmail = view.findViewById(R.id.etEmail);
+        EditText etWiadomosc = view.findViewById(R.id.etWiadomosc);
+        Button sendButton = view.findViewById(R.id.btnSend);
+
+        // Obsługa kliknięcia przycisku "Wyślij"
+        sendButton.setOnClickListener(v -> {
+            String imie = etImie.getText().toString().trim();
+            String nazwisko = etNazwisko.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String wiadomosc = etWiadomosc.getText().toString().trim();
+
+            if (imie.isEmpty() || nazwisko.isEmpty() || email.isEmpty() || wiadomosc.isEmpty()) {
+                Toast.makeText(getContext(), "Wszystkie pola są wymagane", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Wysłano formularz", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }
