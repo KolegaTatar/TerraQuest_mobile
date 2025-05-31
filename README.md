@@ -1,6 +1,6 @@
 <div style="display: flex; align-items: center; gap: 10px;">
   <img src="TerraQuest/app/src/main/res/drawable/tq_logo.png" alt="Logo" width="100">
-  <h1 style="color:gold; margin: 0;">TerraQuest</h1>
+  <h1 style="color:gold; margin: 0;">TerraQuest_mobile</h1>
 </div>
 
 **TerraQuest_mobile** to natywna aplikacja na Androida będąca częścią ekosystemu TerraQuest – platformy wspomagającej planowanie podróży, zarządzanie atrakcjami turystycznymi oraz organizowanie wycieczek w Polsce i za granicą. Projekt ten powstał jako część pracy inżynierskiej studentów Zespołu Szkół Komunikacji w Poznaniu.
@@ -61,7 +61,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
       cd TerraQuest_mobile/TerraQuest
    ```
 
-# Podział pracy w projekcie TerraQuest
+# Podział pracy w projekcie TerraQuest_mobile
 
 ## Frontend:
 
@@ -113,7 +113,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ---
 
-# 🌐 Opis podstron / backendu
+# 🌐 Opis layoutów / backendu
 
 ## Frontend:
 
