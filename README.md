@@ -11,8 +11,8 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## 📲 Demo aplikacji
 
-<img src="app/res/drawable/Screen1.jpg" alt="Screen aplikacji 1" width="100">
-<img src="app/res/drawable/Screen2.jpg" alt="Screen aplikacji 2" width="100">
+<img src="TerraQuest_mobile/TerraQuest/app/src/main/res/drawable/screen1.jpg" alt="Screen aplikacji 1" width="100">
+<img src="TerraQuest_mobile/TerraQuest/app/src/main/res/drawable/screen2.jpg" alt="Screen aplikacji 2" width="100">
 
 ---
 
