@@ -106,6 +106,10 @@ public class ProductFragment extends Fragment {
         Button reserveButton = view.findViewById(R.id.btnReserve);
 
         reserveButton.setOnClickListener(v -> {
+            if (email == null) {
+                Toast.makeText(getContext(), "Zaloguj się, by zarezerwować hotel", Toast.LENGTH_SHORT).show();
+                return;
+            }
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             Calendar calendar = Calendar.getInstance();
 
@@ -115,6 +119,10 @@ public class ProductFragment extends Fragment {
             String checkOut = sdf.format(calendar.getTime());
 
             int userId = getUserIdByEmail(email);
+            if (userId == -1) {
+                Toast.makeText(getContext(), "Zaloguj się, by zarezerwować hotel", Toast.LENGTH_SHORT).show();
+                return;
+            }
             String hotelName = nameText.getText().toString();
             int guests = 2;
             String location = locationText.getText().toString();
@@ -140,8 +148,6 @@ public class ProductFragment extends Fragment {
                     "INSERT INTO reservation (user_id, hotel_name, prize, new_prize, hotel_location, check_in, check_out, guests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                     new Object[]{userId, hotelName, prize, newPrize, location, checkIn, checkOut, guests}
             );
-
-            Toast.makeText(getContext(), "Rezerwacja dodana!", Toast.LENGTH_SHORT).show();
 
             Toast.makeText(getContext(), "Rezerwacja dodana!", Toast.LENGTH_SHORT).show();
         });
