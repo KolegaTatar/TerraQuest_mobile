@@ -91,7 +91,28 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## Backend:
 
-
+- **HelpAdapter** [Jacek]
+- **HelpItem** [Jacek]
+- **Hotel** [Wiktor]
+- **HotelAdapter** [Wiktor]
+- **HotelApiService** [Wiktor]
+- **Review** [Wiktor]
+- **ReviewPagerAdapter** [Wiktor]
+- **AboutFragment** [Filip]
+- **ContactFragment** [Filip]
+- **ExploreFragment** [Wiktor]
+- **HelpFragment** [Jacek]
+- **HomeFragment** [Wiktor]
+- **LoginFragment** [Filip]
+- **PPFragment** [Filip]
+- **ProductFragment** [Wiktor/Filip]
+- **RegisterFragment** [Filip]
+- **SearchFragment** [Wiktor]
+- **User_menuFragment** [Wiktor]
+- **UserFragment** [Filip]
+- **WeatherFragment** [Filip]
+- **MainActivity** [Każdy]
+- **TrapezoidImageView** [Filip]
 
 ---
 
@@ -651,7 +672,252 @@ Prosty, informacyjny layout wyświetlający komunikat o trwających pracach tech
 
 ## Backend:
 
+# `HelpAdapter.java`
+- **Opis**:  
+  Adapter RecyclerView do wyświetlania listy pytań i odpowiedzi (FAQ) w aplikacji.
 
+- **Funkcje**:
+    - Przechowuje listę obiektów `HelpItem` reprezentujących pojedyncze pytanie i odpowiedź.
+    - Tworzy i wiąże widoki elementów listy z layoutem `faq_item.xml`.
+    - W `onBindViewHolder` ustawia tytuł i treść FAQ na odpowiednich `TextView`.
+    - Zawiera wewnętrzną klasę `HelpViewHolder` przechowującą referencje do elementów UI pojedynczego wiersza.
+
+---
+
+# `HelpItem.java`
+- **Opis**:  
+  Model danych reprezentujący pojedynczy wpis FAQ w aplikacji TerraQuest.
+
+- **Funkcje**:
+    - Przechowuje unikalny identyfikator (`id`), tytuł (`title`) oraz treść (`content`) wpisu pomocy.
+    - Dostarcza publiczne metody dostępowe (`getId()`, `getTitle()`, `getContent()`) do odczytu pól.
+
+---
+
+# `Hotel.java`
+- **Opis**:  
+  Model danych reprezentujący hotel w aplikacji TerraQuest.
+
+- **Funkcje**:
+    - Przechowuje informacje o nazwie (`name`), lokalizacji (`location`), adresie obrazka (`imageUrl`), cenie oryginalnej (`originalPrice`), cenie po zniżce (`discountedPrice`) oraz liczbie nocy (`nights`).
+    - Udostępnia metody dostępowe do odczytu tych właściwości (`getName()`, `getLocation()`, `getImageUrl()`, `getOriginalPrice()`, `getDiscountedPrice()`, `getNights()`).
+
+---
+
+# `HotelAdapter.java`
+- **Opis**:  
+  Adapter RecyclerView do wyświetlania listy hoteli w aplikacji TerraQuest. Obsługuje różne layouty elementów listy oraz zdarzenia kliknięcia na hotel.
+
+- **Funkcje**:
+    - Przyjmuje listę obiektów `Hotel` oraz listener do obsługi kliknięć (`OnHotelClickListener`).
+    - Obsługuje różne layouty elementów listy (domyślnie `hotel_item.xml`, można podać inny).
+    - W `onBindViewHolder` wiąże dane hotelu z widokami, w tym ładuje obraz z URL przez Glide.
+    - Przekazuje kliknięcie użytkownika na element listy przez interfejs `OnHotelClickListener`.
+    - ViewHolder zawiera referencje do widoków elementu i metodę `bind` do aktualizacji widoków.
+
+---
+
+# `HotelApiService.java`
+- **Opis**:  
+  Usługa sieciowa do pobierania danych o hotelach na podstawie nazwy miasta z zewnętrznego API.
+
+- **Funkcje**:
+    - Metoda `getHotelsForCity(String cityName, HotelApiCallback callback)` wykonuje asynchroniczne zapytania HTTP w osobnym wątku.
+    - Najpierw pobiera `LocationId` miasta przez zapytanie do endpointu `widgetapi.aspx` z parametrem miasta.
+    - Następnie na podstawie `LocationId` pobiera oferty hoteli z endpointu `Content.aspx`.
+    - Obsługuje błędy sieci i parsowania, przekazując komunikaty do callbacka.
+    - Wynik (JSON string z listą hoteli) zwraca w metodzie `onSuccess` callbacka.
+    - Loguje odpowiedzi i błędy do logów systemowych.
+
+- **Użycie**:  
+  Klasa przyjmuje implementację `HotelApiCallback` do odbioru danych lub obsługi błędów po zakończeniu pobierania.
+
+---
+
+# `Review.java`
+- **Opis**:  
+  Model danych reprezentujący recenzję użytkownika w aplikacji.
+
+- **Funkcje**:
+    - Przechowuje informacje o liczbie gwiazdek (`stars`), tytule recenzji (`title`), treści recenzji (`content`) oraz autorze i dacie (`authorDate`).
+    - Zapewnia konstruktor do inicjalizacji wszystkich pól.
+    - Udostępnia metody getter do pobierania wartości poszczególnych właściwości.
+
+- **Użycie**:  
+  Obiekt `Review` służy do przechowywania i wyświetlania recenzji w interfejsie użytkownika.
+
+---
+
+# `ReviewPagerAdapter.java`
+- **Opis**:  
+  Adapter RecyclerView do wyświetlania listy recenzji w formie przewijanego widoku (pager).
+
+- **Funkcje**:
+    - Inflatuje layout `review_item` dla pojedynczej recenzji.
+    - Wiąże dane obiektu `Review` z widokami: gwiazdki, tytuł, treść i autor z datą.
+    - Obsługuje listę recenzji (`List<Review>`) i zarządza ilością elementów do wyświetlenia.
+    - Przechowuje wewnętrzną klasę `ReviewViewHolder` do trzymania referencji do elementów widoku.
+
+- **Użycie**:  
+  Stosowany w RecyclerView do dynamicznego wyświetlania recenzji użytkowników w interfejsie aplikacji.
+
+---
+
+# AboutFragment
+
+Fragment wyświetlający stronę „O nas” aplikacji TerraQuest.  
+Zawiera statystyki, oś czasu z kluczowymi wydarzeniami oraz nagłówek z obrazem.  
+Służy do zaprezentowania informacji o projekcie i jego historii użytkownikowi.
+
+---
+
+# ContactFragment
+
+Fragment zawierający formularz kontaktowy z polami na imię, nazwisko, e-mail oraz wiadomość.  
+Obsługuje walidację danych i wyświetla komunikaty o błędach lub potwierdzenie wysłania formularza.  
+Dostosowuje wizualnie wysokość elementu graficznego względem layoutu.
+
+---
+
+# ExploreFragment
+
+Fragment służący do przeglądania i wyszukiwania hoteli oraz wyświetlania opinii użytkowników.  
+Obsługuje wybór daty pobytu, wprowadzenie celu podróży i liczby osób, a także subskrypcję newslettera z walidacją adresu e-mail i zapisem do lokalnej bazy danych.  
+Ładuje dane hoteli z API i recenzje z lokalnej bazy SQLite, wyświetlając je w listach i pagerze.  
+Umożliwia przejście do szczegółów wybranego hotelu oraz do ekranu wyników wyszukiwania.
+
+---
+
+# HelpFragment
+
+Fragment wyświetlający sekcję FAQ (Najczęściej zadawane pytania) z paginacją i możliwością wyszukiwania.  
+Wczytuje pytania i odpowiedzi z lokalnej bazy danych oraz pozwala na filtrowanie wyników poprzez dynamiczne wyszukiwanie.  
+Umożliwia rozwijanie i zwijanie pojedynczych pozycji FAQ z animacją.  
+Implementuje paginację, pokazując ograniczoną liczbę pozycji na stronę i umożliwia nawigację między stronami.
+
+---
+
+# HomeFragment
+
+Fragment ekranu głównego aplikacji turystycznej, który:
+
+- Wyświetla przewijany poziomo widok hoteli (RecyclerView) z danymi pobieranymi z API.
+- Pozwala użytkownikowi wybrać datę pobytu poprzez DatePicker.
+- Umożliwia wpisanie celu podróży i liczby osób.
+- Po kliknięciu przycisku "Szukaj" przechodzi do fragmentu wyników wyszukiwania z wybranymi parametrami.
+- Wyświetla statyczne zdjęcia miast oraz banery z możliwością przejścia do innych fragmentów (ExploreFragment, LoginFragment).
+- Obsługuje wyświetlanie i aktualizację listy hoteli na podstawie danych JSON z API, wraz z konwersją walut na PLN.
+- Używa biblioteki Glide do ładowania obrazów.
+
+Metoda `loadHotels(String cityName)` wykonuje asynchroniczne pobranie hoteli dla podanego miasta, parsuje odpowiedź i aktualizuje widok
+
+---
+
+# LoginFragment
+
+Fragment odpowiedzialny za ekran logowania użytkownika.
+
+## Funkcjonalności
+
+- Wyświetla formularz logowania z polami na email i hasło.
+- Hasło jest hashowane przy użyciu SHA-256 przed weryfikacją.
+- Sprawdza dane logowania w lokalnej bazie SQLite (`users` tabela).
+- Jeśli dane są poprawne:
+    - Zapisuje stan zalogowania i email w `SharedPreferences`.
+    - Przechodzi do fragmentu `UserFragment`.
+- W przypadku niepoprawnych danych wyświetla komunikat błędu i czyści pole hasła.
+- Umożliwia przejście do fragmentu rejestracji (`RegisterFragment`) po kliknięciu linku "register".
+
+## Implementacja
+
+- Korzysta z `AppDatabaseHelper` do dostępu do bazy danych.
+- Używa `MessageDigest` do hashowania haseł (SHA-256).
+- Zamknięcie połączenia z bazą w metodzie `onDestroy()`.
+
+Fragment jest częścią aplikacji i wymaga istnienia odpowiednich layoutów i klas (`RegisterFragment`, `UserFragment`).
+
+---
+
+# ProductFragment
+
+Fragment wyświetlający szczegóły hotelu wraz z galerią recenzji oraz umożliwiający dokonanie rezerwacji.  
+Ładuje dane z bazy SQLite i korzysta z SharedPreferences do identyfikacji użytkownika.
+
+---
+
+# RegisterFragment
+
+Fragment rejestracji nowego użytkownika.  
+Weryfikuje poprawność e-maila i hasła, zabezpiecza hasło przez SHA-256,  
+sprawdza unikalność e-maila w bazie i zapisuje dane użytkownika.  
+Pozwala na automatyczne logowanie po rejestracji.
+
+---
+
+# SearchFragment
+
+Fragment umożliwiający wyszukiwanie hoteli według miasta, daty i liczby osób.  
+Zawiera filtrowanie po cenie oraz sortowanie wyników.  
+Wykorzystuje API do pobierania danych hoteli i wyświetla je w liście.  
+Pozwala przejść do szczegółów wybranego hotelu.
+
+---
+
+# User_menuFragment
+
+Fragment menu użytkownika z przyciskami do nawigacji między podstronami aplikacji (pogoda, polityka prywatności, kontakt itp.).  
+Pozwala także otworzyć zewnętrzne linki do repozytoriów projektu oraz prototypu w Figma.  
+Przycisk rejestracji zmienia się na "Profil" po zalogowaniu i przekierowuje do odpowiedniego fragmentu.
+
+---
+
+# UserFragment
+
+Fragment wyświetlający dane użytkownika oraz jego rezerwacje.
+
+## Funkcjonalności
+- Pokazuje aktualny czas (aktualizowany co sekundę)
+- Wyświetla email, imię i nazwisko użytkownika pobrane z bazy SQLite
+- Pokazuje status newslettera (aktywny/nieaktywny)
+- Pozwala na aktualizację imienia i nazwiska przez dialog
+- Przycisk wylogowania
+- Przejście do fragmentu Explore z przewinięciem do newslettera
+- Lista rezerwacji użytkownika z możliwością rozwinięcia szczegółów (daty, ceny)
+
+---
+
+# MainActivity
+
+Główna aktywność aplikacji zarządzająca nawigacją dolnego paska (BottomNavigationView).
+
+## Funkcjonalności
+- Inicjalizacja i wyświetlanie fragmentów: HomeFragment, ExploreFragment, User_menuFragment
+- Ustawienie domyślnego fragmentu (HomeFragment) przy starcie
+- Dynamiczna zmiana tytułu przycisku nawigacji „Profil” lub „Zaloguj” w zależności od statusu logowania (SharedPreferences)
+- Obsługa wyboru elementów nawigacji i wymiana fragmentów bez powielania (sprawdzenie czy fragment nie jest już aktualnie wyświetlany)
+- Ustawienie jasnego koloru status baru na Androidzie Marshmallow i nowszych
+
+---
+
+# TrapezoidImageView
+
+Custom ImageView wyświetlający obraz w kształcie trapezu.
+
+## Funkcjonalności
+- Nadpisuje metodę `onDraw`, aby wyciąć obszar widoku w kształcie trapezu
+- Tworzy ścieżkę (Path) trapezu, gdzie górna krawędź jest skrócona do 35% szerokości, a dolna zajmuje całą szerokość
+- Przycinanie obrazu do tego kształtu dzięki `canvas.clipPath(path)`
+
+## Konstruktor
+- Obsługuje trzy konstruktory wymagane do poprawnej integracji w XML i programowo
+
+## Zastosowanie
+- Można użyć w layoutach zamiast standardowego ImageView, aby uzyskać efekt trapezu wizualnie wycinającego obraz
+
+## Technologie
+- Android Canvas API
+- Path do definiowania niestandardowego kształtu
+- AppCompatImageView jako baza klasy
 
 ---
 
