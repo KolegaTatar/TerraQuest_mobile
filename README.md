@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; gap: 10px;">
-  <img src="app/res/drawable/tq_logo.png" alt="Logo" width="100">
+  <img src="TerraQuest/app/src/main/res/drawable/tq_logo.png" alt="Logo" width="100">
   <h1 style="color:gold; margin: 0;">TerraQuest</h1>
 </div>
 
@@ -11,7 +11,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## 📲 Demo aplikacji
 
-<img src="TerraQuest/app/src/main/res/drawable/screen1.jpg" alt="Screen aplikacji 1" width="100"><img src="TerraQuest/app/src/main/res/drawable/screen2.jpg" alt="Screen aplikacji 2" width="100">
+<img src="TerraQuest/app/src/main/res/drawable/screen1.jpg" alt="Screen aplikacji 1" width="100"><img src="TerraQuest/app/src/main/res/drawable/screen2.jpg" alt="Screen aplikacji 2" height="200">
 
 ---
 
@@ -65,7 +65,27 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## Frontend:
 
-
+- **activity_main.xml** [Każdy]
+- **booking_item.xml** [Jacek]
+- *faq_item.xml** [Jacek]
+- *fragment_about.xml** [Filip]
+- *fragment_contact.xml** [Filip]
+- *fragment_explore.xml** [Wiktor]
+- *fragment_help.xml** [Jacek]
+- *fragment_home.xml** [Wiktor]
+- *fragment_login.xml** [Filip]
+- *fragment_pp.xml** [Filip]
+- *fragment_product.xml** [Wiktor]
+- *fragment_reg.xml** [Filip]
+- *fragment_search.xml** [Wiktor]
+- *fragment_user.xml** [Jacek]
+- *fragment_user_menu.xml** [Wiktor]
+- *fragment_weather.xml** [Filip]
+- *hotel_item.xml** [Wiktor]
+- *hotel_item2.xml** [Wiktor]
+- *item_timeline_entry.xml** [Filip]
+- *recenzja_item.xml** [Wiktor]
+- *review_item.xml** [Wiktor]
 
 ---
 
@@ -83,6 +103,10 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ---
 
+## Inne pliki
+
+- **Styles, drawable, layout itd.**: [Każdy]
+
 ## Dokumentacja
 
 - **Przygotowanie dokumentacji technicznej**: [Każdy]
@@ -92,6 +116,226 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 # 🌐 Opis podstron / backendu
 
 ## Frontend:
+
+# `activity_main.xml`
+- **Opis**:  
+  Główny layout aplikacji TerraQuest definiujący strukturę interfejsu użytkownika. Zawiera kontener na fragmenty oraz dolną nawigację.
+
+- **Funkcje**:
+    - `FrameLayout` o ID `fragment_container` służy do dynamicznego wyświetlania fragmentów aplikacji.
+    - `BottomNavigationView` zapewnia dolne menu nawigacyjne z ikonami i etykietami.
+    - Spójny styl i kolorystyka zgodna z motywem aplikacji.
+
+# `booking_item.xml`
+
+## Opis
+Layout reprezentujący pojedynczy element rezerwacji w aplikacji. Przeznaczony do prezentacji podstawowych informacji o rezerwacji z możliwością rozwinięcia szczegółów. Stylizowany z użyciem zaokrąglonego tła i wewnętrznych marginesów dla estetyki i czytelności.
+
+## Funkcje
+- **Kontener główny**:  
+  `RelativeLayout` z tłem `@drawable/rounded_edittext` i marginesami po bokach oraz od dołu.
+
+- **Strzałka rozwijająca (`@+id/arrow_icon`)**:  
+  `ImageView` umieszczony po prawej stronie, służący do rozwijania/zwijania szczegółów. Zawiera ikonę `@drawable/ic_arrow_down` i może być animowany poprzez rotację.
+
+- **Kontener tekstu (`@+id/text_container`)**:  
+  `LinearLayout` w układzie pionowym zawierający:
+
+    - `TextView` `booking_title`:  
+      Wyświetla tytuł elementu, np. nazwę hotelu. Pogrubiona czcionka, rozmiar 16sp.
+
+    - `TextView` `booking_subtitle`:  
+      Wyświetla podtytuł, np. adres. Rozmiar 14sp, kolor #666666.
+
+    - **Sekcja cen** (`LinearLayout` poziomy):
+        - `TextView` `booking_old_price`:  
+          Poprzednia cena, kolor czerwony (#FF0000), odstęp od nowej ceny.
+        - `TextView` `booking_new_price`:  
+          Aktualna cena, pogrubiona.
+
+    - `TextView` `booking_details`:  
+      Szczegółowy opis rezerwacji, domyślnie ukryty (`visibility="gone"`), wyświetlany po rozwinięciu.
+
+## Styl i UX
+- Zaokrąglone rogi i padding zapewniają spójny, nowoczesny wygląd.
+- Komponent gotowy do obsługi interakcji użytkownika (np. rozwijanie po kliknięciu).
+- Może być używany w listach lub jako część większego widoku rezerwacji.
+
+# `faq_item.xml`
+
+## Opis
+Layout pojedynczego elementu FAQ z tytułem i rozwijaną odpowiedzią. Stylizowany z zaokrąglonym tłem i ikoną strzałki do interakcji.
+
+## Funkcje
+- **Nagłówek (`RelativeLayout`)**:  
+  Zawiera `faqTitle` (tekst pytania) oraz `arrowIcon` do rozwijania/zwijania treści.
+
+- **Treść FAQ (`faqContent`)**:  
+  Tekst odpowiedzi, domyślnie ukryty (`visibility="gone"`), pojawia się po rozwinięciu.
+
+- **Stylizacja**:  
+  Białe tło, padding wewnętrzny, spójny wygląd zgodny z resztą aplikacji.
+
+# `fragment_about.xml`
+
+## Opis
+Widok przewijalny prezentujący sekcję „O nas” w aplikacji TerraQuest. Zawiera nagłówki, opisy, statystyki oraz oś czasu rozwoju aplikacji.
+
+## Funkcje
+- **Obraz nagłówkowy** (`headImage`) — ilustracja w górnej części widoku.
+- **Sekcja misji** — żółte tło z tytułem i opisem misji firmy.
+- **Opis aplikacji** — nagłówek „O TerraQuest” oraz charakterystyka aplikacji.
+- **Statystyki** — cztery tekstowe pola (`textStatsLanguages`, `Apps`, `Countries`, `Hotels`) oddzielone liniami.
+- **Oś czasu** (`timelineLayout`) — lista kroków historii aplikacji z użyciem layoutów `item_timeline_entry`.
+
+## Stylizacja
+Jasne kolory, przejrzysty układ, przewijalność dzięki `ScrollView`. Wyróżnione sekcje kolorem i paddingiem.
+
+# `fragment_contact.xml`
+
+## Opis
+Ekran kontaktowy aplikacji TerraQuest z formularzem zapytania oraz danymi kontaktowymi.
+
+## Funkcje
+- **Obraz w nagłówku** (`TrapezoidImageView`) – dekoracyjna grafika kontaktowa.
+- **Formularz kontaktowy** – pola: Imię, Nazwisko, Email, Wiadomość + przycisk `Wyślij`.
+- **Dane kontaktowe**:
+    - ☎ Telefon: `+48 517 086 440`
+    - 📍 Adres: `Warszawa, ul. Powstańców 21A`
+    - ✉ Email: `kontakt@terraquest.pl`
+
+## Stylizacja
+Zaokrąglone tła, padding, cień (`elevation`) oraz kolorystyka zgodna z brandingiem (pomarańcz i biel).
+
+# `fragment_explore.xml`
+
+## Opis
+Ekran główny aplikacji TerraQuest – zawiera wyszukiwarkę hoteli, listę popularnych miejsc, formularz newslettera oraz oceny użytkowników.
+
+---
+
+## Sekcje i Funkcje
+
+### 🎯 **Nagłówek promocyjny**
+- Informacja o oszczędnościach (`TextView` z tytułem i podtytułem).
+
+### 🔍 **Formularz wyszukiwania hoteli**
+- **Miejsce podróży** (`input_destination`)
+- **Data** (`editTextDate`)
+- **Liczba osób** (`text_people`)
+- Przycisk `Szukaj` (`button_search`)
+
+### 🏨 **Popularne wyszukiwania**
+- Tytuł + opis
+- `RecyclerView` (`recyclerViewHotels`) – lista popularnych lokalizacji/hoteli
+
+### 📨 **Newsletter**
+- Sekcja z banerem i formularzem zapisu (`editTextEmail` + `buttonSubscribe`)
+
+### 🌟 **Oceny klientów**
+- Teksty promocyjne + `ViewPager2` (`reviewsViewPager`) z opiniami użytkowników
+
+---
+
+## Stylizacja
+- Zaokrąglone przyciski i pola tekstowe (`@drawable/rounded_button`, `rounded_edittext`)
+- Odcienie szarości (#757575), czerni i żółci dla kontrastu
+- Marginesy wewnętrzne 24dp dla spójności
+
+---
+
+## Użycie
+Widok ten służy jako **strona startowa** aplikacji, umożliwiając szybkie wyszukiwanie i przegląd promowanych ofert.
+
+# `fragment_help.xml`
+
+## Opis
+Ekran pomocy użytkownika z możliwością przeszukiwania najczęściej zadawanych pytań (FAQ). Zawiera pole wyszukiwania, dynamicznie ładowane odpowiedzi i prostą paginację.
+
+---
+
+## Sekcje i Funkcje
+
+### 👋 **Nagłówek powitalny**
+- `TextView` (`helpTitle`) – zachęcający komunikat: _"Cześć, jak możemy Ci pomóc?"_
+
+### 🔎 **Wyszukiwanie FAQ**
+- `EditText` (`searchInput`) – pole tekstowe z podpowiedzią: _"Wyszukaj pytanie"_
+- *(Opcjonalny przycisk `searchButton` – zakomentowany, można przywrócić jeśli potrzebny)*
+
+### 📋 **Lista FAQ**
+- `ScrollView` zawierający `LinearLayout` (`faqContainer`) – kontener na dynamicznie dodawane pytania/odpowiedzi
+
+### 🔄 **Paginacja**
+- `LinearLayout` (`paginationContainer`) z dwoma przyciskami:
+    - `prevButton` – przejście do poprzedniej strony
+    - `nextButton` – przejście do kolejnej strony
+
+---
+
+## Styl i UI
+- Minimalistyczny, czytelny układ z dużymi marginesami bocznymi (`24dp`)
+- Użycie niestandardowego tła i zaokrąglonych elementów (`@drawable/rounded_edittext`)
+- Przejrzysty podział na nagłówek, wyszukiwarkę, wyniki i nawigację
+
+---
+
+## Użycie
+Ten fragment idealnie nadaje się do implementacji funkcji **Pomocy / FAQ**, gdzie dane są ładowane dynamicznie (np. z API), a użytkownik może przeszukiwać i przeglądać pytania z paginacją.
+
+---
+
+## Wskazówki developerskie
+- `faqContainer` można wypełniać programowo np. poprzez `LayoutInflater`
+- Dla paginacji warto przechowywać aktualną stronę i ilość dostępnych stron w ViewModelu
+- Opcjonalnie można dodać debounce dla `searchInput`, by wyszukiwanie nie uruchamiało się przy każdym znaku
+
+# `fragment_home.xml`
+
+## 📱 Opis
+Ekran startowy aplikacji TerraQuest, umożliwiający użytkownikowi wprowadzenie danych podróży: miejsca docelowego, daty oraz liczby osób. Zawiera także sekcję promującą oszczędności i porównywanie ofert.
+
+---
+
+## 📋 Zawartość widoku
+
+### 🔶 Nagłówek i opis
+- **`TextView`: TerraQuest**  
+  Nazwa aplikacji, stylizowana na pomarańczowo (`@color/orange`) z dużym rozmiarem (`35sp`)
+- **Opis promocyjny**  
+  Informacje o potencjalnych oszczędnościach i funkcji porównywania ofert
+
+### 📥 Formularz wyszukiwania (w `card_background`)
+- **`Docelowe miejsce podróży`**
+    - `EditText` (`input_destination`) z podpowiedzią (hint): _"Rzym, Włochy"_
+- **Separator (`View`)**
+    - Cienka linia oddzielająca pola formularza
+- **`Data`** (`editTextDate`) – zablokowane pole, domyślnie nieedytowalne, do otwierania np. `DatePickerDialog`
+- **`Osoby`** (`text_people`) – pole liczby uczestników
+
+---
+
+## 🎨 Styl i układ
+- Użycie `ScrollView` zapewnia przewijalność na mniejszych ekranach
+- Wszystkie główne pola i opisy mają boczne marginesy `24dp` dla spójnego layoutu
+- `LinearLayout` z `weightSum="2"` umożliwia estetyczne ułożenie pól **Data** i **Osoby** obok siebie
+- Pola `EditText` mają ustandaryzowaną wysokość `48dp` i padding `12dp`, zapewniając wygodę dotykową
+- Formularz otoczony kartą (`@drawable/card_background`) z cieniem (`elevation="4dp"`)
+
+---
+
+## 🛠️ Wskazówki developerskie
+- **`editTextDate`** – z uwagi na `focusable="false"`, można podpiąć listener otwierający `DatePickerDialog`
+- **Walidacja danych** – przed wykonaniem wyszukiwania, warto sprawdzić, czy pola nie są puste
+- **Responsywność** – warto przetestować działanie na różnych rozdzielczościach, szczególnie dla edytowalnych pól
+- **Animacje** – można dodać animację ładowania wyników po kliknięciu przycisku "Szukaj" (jeśli jest dodany programowo)
+
+---
+
+## 🔗 Potencjalne rozszerzenia
+- Lista rozwijana z sugestiami miejsc (autocomplete API)
+- Pola wyboru dla liczby pokoi / dzieci
+- Integracja z systemem rezerwacji lub backendem
 
 
 
@@ -133,6 +377,103 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
     - Udostępnienie metod:
         - `getReadableDatabase()` – otwiera bazę danych w trybie tylko do odczytu
         - `getWritableDatabase()` – otwiera bazę danych w trybie do zapisu
+
+# `fragment_login.xml`
+
+## 📱 Opis
+Ekran logowania użytkownika do aplikacji TerraQuest, z prostym i estetycznym układem zawierającym logo, pola do wpisania e-maila i hasła oraz przyciskiem logowania. Na dole znajduje się link do rejestracji oraz separator "lub".
+
+---
+
+## 📋 Struktura widoku
+
+### Nagłówek z logo
+- **`ImageView`** (`logoImage`) – logo aplikacji (`@drawable/tq_logo`), wymiar 120x120dp
+- **`TextView`** (`logoText`) – nazwa aplikacji "TerraQuest", kolor pomarańczowy (`@color/orange`), duża czcionka (`35sp`), pogrubiona
+
+### Formularz logowania (`LinearLayout` z tłem `@drawable/rounded_input`)
+- **Tytuł** – `TextView` z napisem "Zaloguj się", wyśrodkowany, rozmiar 28sp
+- **E-mail**
+    - `TextView` z etykietą "Email"
+    - `EditText` (`emailInput`) do wpisania adresu e-mail, podpowiedź "Podaj email", typ `textEmailAddress`
+- **Hasło**
+    - `TextView` z etykietą "Hasło"
+    - `EditText` (`passwordInput`) do wpisania hasła, podpowiedź "Podaj hasło", typ `textPassword`
+- **Przycisk logowania**
+    - `Button` (`loginButton`) z napisem "Zaloguj się", styl `@style/Log_reg_btn`, ciemny kolor tła (#333333)
+
+### Separator „lub”
+- Dwa cienkie paski po bokach `View` (1dp wysokości), szary kolor (#888888)
+- W środku tekst "lub" w tym samym odcieniu szarości
+
+### Link do rejestracji
+- `TextView` (`registerLink`) z napisem "Zarejestruj się", pogrubiony, czarny tekst, rozmiar 14sp
+
+---
+
+## 🎨 Styl i układ
+- Całość zawinięta w `ScrollView`, aby obsłużyć przewijanie na mniejszych ekranach
+- Elementy centrowane horyzontalnie (`gravity="center_horizontal"`)
+- Spójne marginesy boczne (`24dp`) i odstępy między elementami
+- Zaokrąglone tło formularza (`@drawable/rounded_input`) poprawia estetykę i komfort użytkowania
+- Przycisk logowania ma wyraźne tło i styl zdefiniowany w pliku stylów
+
+---
+
+## 🛠️ Uwagi dla programisty
+- Pola e-mail i hasło wykorzystują odpowiednie typy input (`textEmailAddress`, `textPassword`) dla lepszego UX i bezpieczeństwa
+- Link „Zarejestruj się” można podpiąć do przejścia do ekranu rejestracji
+- Przycisk „Zaloguj się” wymaga implementacji logiki uwierzytelniania w kodzie aplikacji
+- Dobrze byłoby obsłużyć walidację danych i komunikaty błędów
+
+---
+
+## 🔗 Możliwe rozszerzenia
+- Dodanie opcji „Zapomniałem hasła”
+- Integracja z logowaniem przez media społecznościowe (Google, Facebook itp.)
+- Animacje przy przejściu między ekranami logowania i rejestracji
+
+# `fragment_pp.xml`
+
+## 📄 Opis
+Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest podzielony na sekcje, które jasno wyjaśniają zasady przetwarzania danych osobowych użytkowników.
+
+---
+
+## 🏗️ Struktura widoku
+
+- Główny kontener to `ScrollView` z tłem ustawionym na kolor `@color/background_main` i paddingiem po bokach.
+- Wewnątrz `ScrollView` znajduje się `LinearLayout` (pionowy), który zawiera całą treść polityki.
+- Tekst jest podzielony na nagłówki (`TextView` ze stylem `@style/AboutTextH`) i akapity (`TextView` ze stylem `@style/AboutTextp`).
+- Tytuł ekranu "Polityka Prywatności" jest wycentrowany, pogrubiony i większy (`24sp`).
+- Data wejścia w życie i ostatnia aktualizacja są podane pod tytułem z odstępem.
+- Treść polityki jest szczegółowa i sformatowana w punktach, często z użyciem znaków „✓” dla list.
+
+---
+
+## 🖋️ Style
+
+- `@style/AboutTextH` — styl nagłówków rozdziałów (prawdopodobnie pogrubiony, większa czcionka)
+- `@style/AboutTextp` — styl paragrafów (czytelna czcionka, standardowy rozmiar i kolor)
+- Kolory tekstu są spójne, głównie ciemne (`#333333`, `@color/black`), co poprawia czytelność.
+
+---
+
+## 🛠️ Uwagi
+
+- Dzięki `ScrollView` cały tekst jest przewijalny na małych ekranach.
+- Paddingi zapewniają estetyczne marginesy tekstu.
+- Można łatwo zaktualizować tekst polityki poprzez modyfikację odpowiednich `TextView`.
+- Warto zadbać o tłumaczenia, jeśli aplikacja jest wielojęzyczna.
+
+---
+
+## ⚙️ Możliwe rozszerzenia
+
+- Dodanie linków do sekcji (np. spis treści z nawigacją)
+- Możliwość wyświetlania wersji PDF Polityki Prywatności
+- Implementacja akceptacji Polityki przy rejestracji/logowaniu
+
 
 
 ---
