@@ -1,4 +1,7 @@
-# 🌍 TerraQuest_mobile
+<div style="display: flex; align-items: center; gap: 10px;">
+  <img src="app/res/drawable/tq_logo.png" alt="Logo" width="100">
+  <h1 style="color:gold; margin: 0;">TerraQuest</h1>
+</div>
 
 **TerraQuest_mobile** to natywna aplikacja na Androida będąca częścią ekosystemu TerraQuest – platformy wspomagającej planowanie podróży, zarządzanie atrakcjami turystycznymi oraz organizowanie wycieczek w Polsce i za granicą. Projekt ten powstał jako część pracy inżynierskiej studentów Zespołu Szkół Komunikacji w Poznaniu.
 
@@ -8,7 +11,8 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## 📲 Demo aplikacji
 
-📷 Zrzuty ekranu wkrótce dostępne w katalogu `docs/screens`.
+<img src="app/res/drawable/Screen1.jpg" alt="Screen aplikacji 1" width="100">
+<img src="app/res/drawable/Screen2.jpg" alt="Screen aplikacji 2" width="100">
 
 ---
 
@@ -48,5 +52,9 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ---
 
-## 📂 Struktura katalogów
+## Makieta projektu - Figma:
+Opis:
+Makieta projektu w Figma to wizualne odwzorowanie interfejsu użytkownika aplikacji lub strony internetowej. Dokumentacja ta przedstawia sposób korzystania z makiety w Figma, jej cele, funkcje oraz strukturę, jak również zapewnia informacje dotyczące współpracy zespołowej i organizacji projektu w Figma.
 
+https://www.figma.com/design/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podróży-i-Rezerwacji---TerraQuest?node-id=0-1&t=TFYAgNNcLLNpHKD8-1
+---
