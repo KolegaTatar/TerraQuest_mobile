@@ -968,3 +968,9 @@ Makieta projektu w Figma to wizualne odwzorowanie interfejsu użytkownika aplika
 
 [https://www.figma.com/design/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podróży-i-Rezerwacji---TerraQuest?node-id=0-1&t=TFYAgNNcLLNpHKD8-1](https://www.figma.com/proto/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podr%C3%B3%C5%BCy-i-Rezerwacji---TerraQuest?node-id=1095-7789&p=f&t=JPO25UM7msW55Rxp-0&scaling=scale-down&content-scaling=fixed&page-id=87%3A1675&starting-point-node-id=1095%3A7789)
 ---
+
+##Schemat nawigacji po aplikacji (całość figma)
+
+<img src="App_navigation.png" alt="Nawigacja">
+
+---
