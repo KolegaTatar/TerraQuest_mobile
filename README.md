@@ -18,22 +18,16 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ### 🔍 Odkrywanie atrakcji
 - Przeglądanie listy atrakcji turystycznych.
-- Filtrowanie wg kategorii (np. zamek, muzeum, góry).
-- Widok szczegółowy atrakcji: opis, lokalizacja, zdjęcie, godziny otwarcia.
-
-### 📌 Planowanie trasy
-- Dodawanie atrakcji do planu podróży.
-- Tworzenie i zarządzanie trasami.
-- Podgląd trasy na mapie (Google Maps – planowane).
+- Filtrowanie wg ceny.
+- Widok szczegółowy atrakcji: opis, lokalizacja, zdjęcie, cena.
 
 ### 💬 Centrum pomocy (FAQ)
 - System FAQ z wyszukiwarką i paginacją.
 - Rozwijane odpowiedzi z animacjami.
 - Intuicyjny i przejrzysty interfejs użytkownika.
 
-### 🗂️ Profil użytkownika (planowane)
+### 🗂️ Profil użytkownika
 - Rejestracja i logowanie.
-- Zapisywanie tras w chmurze.
 - Historia wycieczek.
 
 ---
@@ -44,8 +38,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 |----------------|-------------------------------------|
 | Android UI     | XML Layouts, Fragments, RecyclerView|
 | Backend lokalny| SQLite (AppDatabaseHelper)          |
-| Język          | Java (min SDK 24)                   |
-| Architektura   | MVP / częściowo MVVM                |
+| Język          | Java                                |
 | IDE            | Android Studio                      |
 
 ---
@@ -967,5 +960,5 @@ Custom ImageView wyświetlający obraz w kształcie trapezu.
 Opis:
 Makieta projektu w Figma to wizualne odwzorowanie interfejsu użytkownika aplikacji lub strony internetowej. Dokumentacja ta przedstawia sposób korzystania z makiety w Figma, jej cele, funkcje oraz strukturę, jak również zapewnia informacje dotyczące współpracy zespołowej i organizacji projektu w Figma.
 
-https://www.figma.com/design/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podróży-i-Rezerwacji---TerraQuest?node-id=0-1&t=TFYAgNNcLLNpHKD8-1
+[https://www.figma.com/design/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podróży-i-Rezerwacji---TerraQuest?node-id=0-1&t=TFYAgNNcLLNpHKD8-1](https://www.figma.com/proto/VAEeMmg1rGRkZhTuEwuFnK/Platforma-do-Planowania-Podr%C3%B3%C5%BCy-i-Rezerwacji---TerraQuest?node-id=1095-7789&p=f&t=JPO25UM7msW55Rxp-0&scaling=scale-down&content-scaling=fixed&page-id=87%3A1675&starting-point-node-id=1095%3A7789)
 ---
