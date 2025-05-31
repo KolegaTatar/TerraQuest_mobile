@@ -39,14 +39,12 @@ public class ContactFragment extends Fragment {
             trapezoidImage.setLayoutParams(params);
         });
 
-        // Znajdź pola formularza
         EditText etImie = view.findViewById(R.id.etImie);
         EditText etNazwisko = view.findViewById(R.id.etNazwisko);
         EditText etEmail = view.findViewById(R.id.etEmail);
         EditText etWiadomosc = view.findViewById(R.id.etWiadomosc);
         Button sendButton = view.findViewById(R.id.btnSend);
 
-        // Obsługa kliknięcia przycisku "Wyślij"
         sendButton.setOnClickListener(v -> {
             String imie = etImie.getText().toString().trim();
             String nazwisko = etNazwisko.getText().toString().trim();
@@ -60,7 +58,6 @@ public class ContactFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Wysłano formularz", Toast.LENGTH_SHORT).show();
 
-                // Wyczyść pola
                 etImie.setText("");
                 etNazwisko.setText("");
                 etEmail.setText("");

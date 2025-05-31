@@ -72,27 +72,23 @@ public class UserFragment extends Fragment {
             layout.setPadding(50, 40, 50, 10);
             layout.setBackgroundColor(Color.parseColor("#919191"));
 
-            // Pierwszy EditText
             EditText firstNameEdit = new EditText(context);
             firstNameEdit.setHint("Imię");
-            firstNameEdit.setHintTextColor(Color.GRAY);  // kolor podpowiedzi
-            firstNameEdit.setTextColor(Color.BLACK);
-            firstNameEdit.setBackgroundColor(Color.parseColor("#dbdbdb"));
+            firstNameEdit.setHintTextColor(Color.rgb(219,219,219));
+            firstNameEdit.setTextColor(Color.WHITE);
+            firstNameEdit.setBackgroundColor(Color.parseColor("#919191"));
             firstNameEdit.setPadding(20, 20, 20, 20);
 
-            // Drugi EditText
             EditText lastNameEdit = new EditText(context);
             lastNameEdit.setHint("Nazwisko");
-            lastNameEdit.setHintTextColor(Color.GRAY);
-            lastNameEdit.setTextColor(Color.BLACK);
-            lastNameEdit.setBackgroundColor(Color.parseColor("#dbdbdb"));
+            lastNameEdit.setHintTextColor(Color.rgb(219,219,219));
+            lastNameEdit.setTextColor(Color.WHITE);
+            lastNameEdit.setBackgroundColor(Color.parseColor("#919191"));
             lastNameEdit.setPadding(20, 20, 20, 20);
 
-            // Dodanie do layoutu
             layout.addView(firstNameEdit);
             layout.addView(lastNameEdit);
 
-            // Dialog
             new AlertDialog.Builder(context, R.style.MyDialogTheme)
                     .setTitle("Aktualizuj profil")
                     .setView(layout)
@@ -235,7 +231,6 @@ public class UserFragment extends Fragment {
         return userId;
     }
 
-    // pomocnicza metoda do formatowania daty
     private String formatDate(String dbDate) {
         try {
             SimpleDateFormat dbFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());

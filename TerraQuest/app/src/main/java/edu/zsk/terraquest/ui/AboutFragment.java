@@ -24,13 +24,11 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-        // Teksty statystyk
         setBoldNumber(view, R.id.textStatsLanguages, "31", " języki");
         setBoldNumber(view, R.id.textStatsApps, "53", " strony internetowe i aplikacje");
         setBoldNumber(view, R.id.textStatsCountries, "190", " kraje");
         setBoldNumber(view, R.id.textStatsHotels, "5 mln", " hotele i podobne noclegi");
 
-        // Wypełnianie wpisów na osi czasu
         setTimelineEntry(view, R.id.entry2020_1, "2020", "Narodziny pomysłu TerraQuest\n\n");
         setTimelineEntry(view, R.id.entry2021_1, "2021", "Założenie w Niemczech\n");
         setTimelineEntry(view, R.id.entry2021_2, "", "Pierwsza runda finansowania\n");

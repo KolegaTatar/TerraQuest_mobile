@@ -143,7 +143,6 @@ public class ProductFragment extends Fragment {
             }
             checkCursor.close();
 
-            // Dodaj rezerwację
             writableDb.execSQL(
                     "INSERT INTO reservation (user_id, hotel_name, prize, new_prize, hotel_location, check_in, check_out, guests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                     new Object[]{userId, hotelName, prize, newPrize, location, checkIn, checkOut, guests}
