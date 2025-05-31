@@ -70,7 +70,7 @@ public class UserFragment extends Fragment {
             LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setPadding(50, 40, 50, 10);
-            layout.setBackgroundColor(Color.parseColor("#dbdbdb"));
+            layout.setBackgroundColor(Color.parseColor("#919191"));
 
             // Pierwszy EditText
             EditText firstNameEdit = new EditText(context);
