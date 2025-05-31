@@ -265,9 +265,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onError(String errorMessage) {
-                requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
-                );
+                if (isAdded() && getActivity() != null) {
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getContext(), "Błąd API: " + errorMessage, Toast.LENGTH_LONG).show()
+                    );
+                }
             }
         });
     }
