@@ -118,7 +118,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## Diagram bazy danych:
 
-<img src="Database_diagram.png" alt="Diagram" width="100">
+<img src="Database_diagram.png" alt="Diagram">
 
 ---
 
