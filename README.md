@@ -11,8 +11,7 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ## 📲 Demo aplikacji
 
-<img src="TerraQuest/app/src/main/res/drawable/screen1.jpg" alt="Screen aplikacji 1" width="100">
-<img src="TerraQuest/app/src/main/res/drawable/screen2.jpg" alt="Screen aplikacji 2" width="100">
+<img src="TerraQuest/app/src/main/res/drawable/screen1.jpg" alt="Screen aplikacji 1" width="100"><img src="TerraQuest/app/src/main/res/drawable/screen2.jpg" alt="Screen aplikacji 2" width="100">
 
 ---
 
@@ -49,6 +48,98 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 | Język          | Java (min SDK 24)                   |
 | Architektura   | MVP / częściowo MVVM                |
 | IDE            | Android Studio                      |
+
+---
+
+# ⚙️ Instalacja
+**📥 Krok 1 – Klonowanie repozytorium**
+   ```bash
+      git clone https://github.com/KolegaTatar/TerraQuest_mobile.git
+   ```
+**⬇️ Krok 2 – Przejście do projektu**
+   ```bash
+      cd TerraQuest_mobile/TerraQuest
+   ```
+
+# Podział pracy w projekcie TerraQuest
+
+## Frontend:
+
+
+
+---
+
+## Backend:
+
+
+
+---
+
+## Baza danych:
+
+- **AppDatabaseHelper.java**: [Każdy]
+- **DatabaseHelper.java**: [Każdy]
+- **UserDatabaseHelper.java**: [Każdy]
+
+---
+
+## Dokumentacja
+
+- **Przygotowanie dokumentacji technicznej**: [Każdy]
+
+---
+
+# 🌐 Opis podstron / backendu
+
+## Frontend:
+
+
+
+---
+
+## Backend:
+
+### `AppDatabaseHelper.java`
+- **Opis**:  
+  Klasa pomocnicza do zarządzania lokalną bazą danych SQLite w aplikacji TerraQuest. Odpowiada za tworzenie i aktualizację struktury bazy danych oraz inicjalizację danych startowych (recenzje i artykuły pomocy).
+
+- **Funkcje**:
+    - Tworzenie tabel:
+        - `users` – dane użytkowników (email, hasło, imię, nazwisko, newsletter)
+        - `reviews_terraQuest` – recenzje obiektów
+        - `help` – sekcja pomocy z pytaniami i odpowiedziami
+        - `reservation` – informacje o rezerwacjach z kluczem obcym do użytkownika
+        - `date` – dodatkowe dane z oznaczeniem typu i wartości
+    - Wstawianie początkowych danych do tabel `reviews_terraQuest` i `help`
+    - Obsługa aktualizacji wersji bazy (`onUpgrade`)
+    - Zapewnienie spójności danych (np. unikalność adresów e-mail)
+
+### `DatabaseHelper.java`
+- **Opis**:  
+  Prosta klasa pośrednicząca do obsługi lokalnej bazy danych w aplikacji TerraQuest. Ułatwia dostęp do metod odczytu i zapisu, wykorzystując `AppDatabaseHelper`.
+
+- **Funkcje**:
+    - Inicjalizacja pomocnika bazy danych (`AppDatabaseHelper`)
+    - Udostępnienie metod:
+        - `getReadableDatabase()` – uzyskanie instancji bazy danych tylko do odczytu
+        - `getWritableDatabase()` – uzyskanie instancji bazy danych z możliwością zapisu
+
+### `UserDatabaseHelper.java`
+- **Opis**:  
+  Klasa pomocnicza odpowiedzialna za dostęp do bazy danych użytkowników w aplikacji TerraQuest. Działa jako pośrednik, wykorzystując `AppDatabaseHelper`.
+
+- **Funkcje**:
+    - Inicjalizacja obiektu `AppDatabaseHelper`
+    - Udostępnienie metod:
+        - `getReadableDatabase()` – otwiera bazę danych w trybie tylko do odczytu
+        - `getWritableDatabase()` – otwiera bazę danych w trybie do zapisu
+
+
+---
+
+## Baza danych:
+
+
 
 ---
 
