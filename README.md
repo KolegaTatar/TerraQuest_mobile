@@ -307,53 +307,10 @@ Ekran startowy aplikacji TerraQuest, umożliwiający użytkownikowi wprowadzenie
 
 ---
 
-
-
----
-
-## Backend:
-
-### `AppDatabaseHelper.java`
-- **Opis**:  
-  Klasa pomocnicza do zarządzania lokalną bazą danych SQLite w aplikacji TerraQuest. Odpowiada za tworzenie i aktualizację struktury bazy danych oraz inicjalizację danych startowych (recenzje i artykuły pomocy).
-
-- **Funkcje**:
-    - Tworzenie tabel:
-        - `users` – dane użytkowników (email, hasło, imię, nazwisko, newsletter)
-        - `reviews_terraQuest` – recenzje obiektów
-        - `help` – sekcja pomocy z pytaniami i odpowiedziami
-        - `reservation` – informacje o rezerwacjach z kluczem obcym do użytkownika
-        - `date` – dodatkowe dane z oznaczeniem typu i wartości
-    - Wstawianie początkowych danych do tabel `reviews_terraQuest` i `help`
-    - Obsługa aktualizacji wersji bazy (`onUpgrade`)
-    - Zapewnienie spójności danych (np. unikalność adresów e-mail)
-
-### `DatabaseHelper.java`
-- **Opis**:  
-  Prosta klasa pośrednicząca do obsługi lokalnej bazy danych w aplikacji TerraQuest. Ułatwia dostęp do metod odczytu i zapisu, wykorzystując `AppDatabaseHelper`.
-
-- **Funkcje**:
-    - Inicjalizacja pomocnika bazy danych (`AppDatabaseHelper`)
-    - Udostępnienie metod:
-        - `getReadableDatabase()` – uzyskanie instancji bazy danych tylko do odczytu
-        - `getWritableDatabase()` – uzyskanie instancji bazy danych z możliwością zapisu
-
-### `UserDatabaseHelper.java`
-- **Opis**:  
-  Klasa pomocnicza odpowiedzialna za dostęp do bazy danych użytkowników w aplikacji TerraQuest. Działa jako pośrednik, wykorzystując `AppDatabaseHelper`.
-
-- **Funkcje**:
-    - Inicjalizacja obiektu `AppDatabaseHelper`
-    - Udostępnienie metod:
-        - `getReadableDatabase()` – otwiera bazę danych w trybie tylko do odczytu
-        - `getWritableDatabase()` – otwiera bazę danych w trybie do zapisu
-
 # `fragment_login.xml`
 
 ## 📱 Opis
 Ekran logowania użytkownika do aplikacji TerraQuest, z prostym i estetycznym układem zawierającym logo, pola do wpisania e-maila i hasła oraz przyciskiem logowania. Na dole znajduje się link do rejestracji oraz separator "lub".
-
----
 
 ## 📋 Struktura widoku
 
@@ -379,8 +336,6 @@ Ekran logowania użytkownika do aplikacji TerraQuest, z prostym i estetycznym uk
 ### Link do rejestracji
 - `TextView` (`registerLink`) z napisem "Zarejestruj się", pogrubiony, czarny tekst, rozmiar 14sp
 
----
-
 ## 🎨 Styl i układ
 - Całość zawinięta w `ScrollView`, aby obsłużyć przewijanie na mniejszych ekranach
 - Elementy centrowane horyzontalnie (`gravity="center_horizontal"`)
@@ -390,25 +345,10 @@ Ekran logowania użytkownika do aplikacji TerraQuest, z prostym i estetycznym uk
 
 ---
 
-## 🛠️ Uwagi dla programisty
-- Pola e-mail i hasło wykorzystują odpowiednie typy input (`textEmailAddress`, `textPassword`) dla lepszego UX i bezpieczeństwa
-- Link „Zarejestruj się” można podpiąć do przejścia do ekranu rejestracji
-- Przycisk „Zaloguj się” wymaga implementacji logiki uwierzytelniania w kodzie aplikacji
-- Dobrze byłoby obsłużyć walidację danych i komunikaty błędów
-
----
-
-## 🔗 Możliwe rozszerzenia
-- Dodanie opcji „Zapomniałem hasła”
-- Integracja z logowaniem przez media społecznościowe (Google, Facebook itp.)
-- Animacje przy przejściu między ekranami logowania i rejestracji
-
 # `fragment_pp.xml`
 
 ## 📄 Opis
 Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest podzielony na sekcje, które jasno wyjaśniają zasady przetwarzania danych osobowych użytkowników.
-
----
 
 ## 🏗️ Struktura widoku
 
@@ -419,8 +359,6 @@ Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest 
 - Data wejścia w życie i ostatnia aktualizacja są podane pod tytułem z odstępem.
 - Treść polityki jest szczegółowa i sformatowana w punktach, często z użyciem znaków „✓” dla list.
 
----
-
 ## 🖋️ Style
 
 - `@style/AboutTextH` — styl nagłówków rozdziałów (prawdopodobnie pogrubiony, większa czcionka)
@@ -429,20 +367,7 @@ Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest 
 
 ---
 
-## 🛠️ Uwagi
-
-- Dzięki `ScrollView` cały tekst jest przewijalny na małych ekranach.
-- Paddingi zapewniają estetyczne marginesy tekstu.
-- Można łatwo zaktualizować tekst polityki poprzez modyfikację odpowiednich `TextView`.
-- Warto zadbać o tłumaczenia, jeśli aplikacja jest wielojęzyczna.
-
----
-
-## ⚙️ Możliwe rozszerzenia
-
-- Dodanie linków do sekcji (np. spis treści z nawigacją)
-- Możliwość wyświetlania wersji PDF Polityki Prywatności
-- Implementacja akceptacji Polityki przy rejestracji/logowaniu
+## Backend:
 
 
 
@@ -450,7 +375,44 @@ Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest 
 
 ## Baza danych:
 
+# `AppDatabaseHelper.java`
+- **Opis**:  
+  Klasa pomocnicza do zarządzania lokalną bazą danych SQLite w aplikacji TerraQuest. Odpowiada za tworzenie i aktualizację struktury bazy danych oraz inicjalizację danych startowych (recenzje i artykuły pomocy).
 
+- **Funkcje**:
+    - Tworzenie tabel:
+        - `users` – dane użytkowników (email, hasło, imię, nazwisko, newsletter)
+        - `reviews_terraQuest` – recenzje obiektów
+        - `help` – sekcja pomocy z pytaniami i odpowiedziami
+        - `reservation` – informacje o rezerwacjach z kluczem obcym do użytkownika
+        - `date` – dodatkowe dane z oznaczeniem typu i wartości
+    - Wstawianie początkowych danych do tabel `reviews_terraQuest` i `help`
+    - Obsługa aktualizacji wersji bazy (`onUpgrade`)
+    - Zapewnienie spójności danych (np. unikalność adresów e-mail)
+
+---
+
+# `DatabaseHelper.java`
+- **Opis**:  
+  Prosta klasa pośrednicząca do obsługi lokalnej bazy danych w aplikacji TerraQuest. Ułatwia dostęp do metod odczytu i zapisu, wykorzystując `AppDatabaseHelper`.
+
+- **Funkcje**:
+    - Inicjalizacja pomocnika bazy danych (`AppDatabaseHelper`)
+    - Udostępnienie metod:
+        - `getReadableDatabase()` – uzyskanie instancji bazy danych tylko do odczytu
+        - `getWritableDatabase()` – uzyskanie instancji bazy danych z możliwością zapisu
+
+---
+
+# `UserDatabaseHelper.java`
+- **Opis**:  
+  Klasa pomocnicza odpowiedzialna za dostęp do bazy danych użytkowników w aplikacji TerraQuest. Działa jako pośrednik, wykorzystując `AppDatabaseHelper`.
+
+- **Funkcje**:
+    - Inicjalizacja obiektu `AppDatabaseHelper`
+    - Udostępnienie metod:
+        - `getReadableDatabase()` – otwiera bazę danych w trybie tylko do odczytu
+        - `getWritableDatabase()` – otwiera bazę danych w trybie do zapisu
 
 ---
 
