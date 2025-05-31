@@ -126,6 +126,8 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
     - `BottomNavigationView` zapewnia dolne menu nawigacyjne z ikonami i etykietami.
     - Spójny styl i kolorystyka zgodna z motywem aplikacji.
 
+---
+
 # `booking_item.xml`
 
 ## Opis
@@ -161,6 +163,8 @@ Layout reprezentujący pojedynczy element rezerwacji w aplikacji. Przeznaczony d
 - Komponent gotowy do obsługi interakcji użytkownika (np. rozwijanie po kliknięciu).
 - Może być używany w listach lub jako część większego widoku rezerwacji.
 
+---
+
 # `faq_item.xml`
 
 ## Opis
@@ -176,6 +180,8 @@ Layout pojedynczego elementu FAQ z tytułem i rozwijaną odpowiedzią. Stylizowa
 - **Stylizacja**:  
   Białe tło, padding wewnętrzny, spójny wygląd zgodny z resztą aplikacji.
 
+---
+
 # `fragment_about.xml`
 
 ## Opis
@@ -190,6 +196,8 @@ Widok przewijalny prezentujący sekcję „O nas” w aplikacji TerraQuest. Zawi
 
 ## Stylizacja
 Jasne kolory, przejrzysty układ, przewijalność dzięki `ScrollView`. Wyróżnione sekcje kolorem i paddingiem.
+
+---
 
 # `fragment_contact.xml`
 
@@ -212,8 +220,6 @@ Zaokrąglone tła, padding, cień (`elevation`) oraz kolorystyka zgodna z brandi
 ## Opis
 Ekran główny aplikacji TerraQuest – zawiera wyszukiwarkę hoteli, listę popularnych miejsc, formularz newslettera oraz oceny użytkowników.
 
----
-
 ## Sekcje i Funkcje
 
 ### 🎯 **Nagłówek promocyjny**
@@ -235,8 +241,6 @@ Ekran główny aplikacji TerraQuest – zawiera wyszukiwarkę hoteli, listę pop
 ### 🌟 **Oceny klientów**
 - Teksty promocyjne + `ViewPager2` (`reviewsViewPager`) z opiniami użytkowników
 
----
-
 ## Stylizacja
 - Zaokrąglone przyciski i pola tekstowe (`@drawable/rounded_button`, `rounded_edittext`)
 - Odcienie szarości (#757575), czerni i żółci dla kontrastu
@@ -244,15 +248,10 @@ Ekran główny aplikacji TerraQuest – zawiera wyszukiwarkę hoteli, listę pop
 
 ---
 
-## Użycie
-Widok ten służy jako **strona startowa** aplikacji, umożliwiając szybkie wyszukiwanie i przegląd promowanych ofert.
-
 # `fragment_help.xml`
 
 ## Opis
 Ekran pomocy użytkownika z możliwością przeszukiwania najczęściej zadawanych pytań (FAQ). Zawiera pole wyszukiwania, dynamicznie ładowane odpowiedzi i prostą paginację.
-
----
 
 ## Sekcje i Funkcje
 
@@ -271,8 +270,6 @@ Ekran pomocy użytkownika z możliwością przeszukiwania najczęściej zadawany
     - `prevButton` – przejście do poprzedniej strony
     - `nextButton` – przejście do kolejnej strony
 
----
-
 ## Styl i UI
 - Minimalistyczny, czytelny układ z dużymi marginesami bocznymi (`24dp`)
 - Użycie niestandardowego tła i zaokrąglonych elementów (`@drawable/rounded_edittext`)
@@ -280,22 +277,10 @@ Ekran pomocy użytkownika z możliwością przeszukiwania najczęściej zadawany
 
 ---
 
-## Użycie
-Ten fragment idealnie nadaje się do implementacji funkcji **Pomocy / FAQ**, gdzie dane są ładowane dynamicznie (np. z API), a użytkownik może przeszukiwać i przeglądać pytania z paginacją.
-
----
-
-## Wskazówki developerskie
-- `faqContainer` można wypełniać programowo np. poprzez `LayoutInflater`
-- Dla paginacji warto przechowywać aktualną stronę i ilość dostępnych stron w ViewModelu
-- Opcjonalnie można dodać debounce dla `searchInput`, by wyszukiwanie nie uruchamiało się przy każdym znaku
-
 # `fragment_home.xml`
 
 ## 📱 Opis
 Ekran startowy aplikacji TerraQuest, umożliwiający użytkownikowi wprowadzenie danych podróży: miejsca docelowego, daty oraz liczby osób. Zawiera także sekcję promującą oszczędności i porównywanie ofert.
-
----
 
 ## 📋 Zawartość widoku
 
@@ -313,8 +298,6 @@ Ekran startowy aplikacji TerraQuest, umożliwiający użytkownikowi wprowadzenie
 - **`Data`** (`editTextDate`) – zablokowane pole, domyślnie nieedytowalne, do otwierania np. `DatePickerDialog`
 - **`Osoby`** (`text_people`) – pole liczby uczestników
 
----
-
 ## 🎨 Styl i układ
 - Użycie `ScrollView` zapewnia przewijalność na mniejszych ekranach
 - Wszystkie główne pola i opisy mają boczne marginesy `24dp` dla spójnego layoutu
@@ -323,19 +306,6 @@ Ekran startowy aplikacji TerraQuest, umożliwiający użytkownikowi wprowadzenie
 - Formularz otoczony kartą (`@drawable/card_background`) z cieniem (`elevation="4dp"`)
 
 ---
-
-## 🛠️ Wskazówki developerskie
-- **`editTextDate`** – z uwagi na `focusable="false"`, można podpiąć listener otwierający `DatePickerDialog`
-- **Walidacja danych** – przed wykonaniem wyszukiwania, warto sprawdzić, czy pola nie są puste
-- **Responsywność** – warto przetestować działanie na różnych rozdzielczościach, szczególnie dla edytowalnych pól
-- **Animacje** – można dodać animację ładowania wyników po kliknięciu przycisku "Szukaj" (jeśli jest dodany programowo)
-
----
-
-## 🔗 Potencjalne rozszerzenia
-- Lista rozwijana z sugestiami miejsc (autocomplete API)
-- Pola wyboru dla liczby pokoi / dzieci
-- Integracja z systemem rezerwacji lub backendem
 
 
 
