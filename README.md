@@ -116,6 +116,12 @@ Aplikacja mobilna służy jako klient dla użytkowników, którzy chcą szybko i
 
 ---
 
+## Diagram bazy danych:
+
+<img src="Database_diagram" alt="Diagram" width="100">
+
+---
+
 ## Inne pliki
 
 - **Styles, drawable, layout itd.**: [Każdy]
