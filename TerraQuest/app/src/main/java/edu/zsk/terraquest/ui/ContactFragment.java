@@ -1,6 +1,7 @@
 package edu.zsk.terraquest.ui;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +55,16 @@ public class ContactFragment extends Fragment {
 
             if (imie.isEmpty() || nazwisko.isEmpty() || email.isEmpty() || wiadomosc.isEmpty()) {
                 Toast.makeText(getContext(), "Wszystkie pola są wymagane", Toast.LENGTH_SHORT).show();
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(getContext(), "Niepoprawny adres e-mail", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "Wysłano formularz", Toast.LENGTH_SHORT).show();
+
+                // Wyczyść pola
+                etImie.setText("");
+                etNazwisko.setText("");
+                etEmail.setText("");
+                etWiadomosc.setText("");
             }
         });
     }

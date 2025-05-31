@@ -2,6 +2,8 @@
     android:padding="12dp"
     android:background="@drawable/rounded_edittext"
     android:layout_marginBottom="12dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
