@@ -367,6 +367,288 @@ Ekran z pełnym tekstem Polityki Prywatności aplikacji TravelQuest. Tekst jest 
 
 ---
 
+# `fragment_product.xml`
+- **Opis**:  
+  Layout ekranu szczegółów produktu (np. hotelu) w aplikacji TerraQuest. Zaprojektowany do prezentacji informacji o obiekcie turystycznym wraz z galerią, cenami, opisem i opiniami klientów.
+
+- **Funkcje**:
+    - `ScrollView` umożliwia przewijanie całej zawartości ekranu.
+    - `ImageView` o ID `hotelImage` wyświetla główne zdjęcie hotelu z zaokrąglonymi narożnikami.
+    - `TextView` `hotelName` i `hotelLocation` pokazują nazwę oraz lokalizację hotelu.
+    - `TextView` `nightsCount` prezentuje liczbę nocy w formie wyróżnionej etykiety.
+    - Sekcja cen z `originalPrice` (przekreślona lub szara cena) i `discountedPrice` (cena promocyjna, wyróżniona kolorem czerwonym).
+    - Przycisk `btnReserve` do rezerwacji hotelu.
+    - Sekcja "Opis" z możliwością rozwinęcia dodatkowego tekstu (`textOpis`).
+    - Bloki z udogodnieniami (`textUdogodnienia`) oraz szczegółowymi informacjami o wyposażeniu (`textInfoOpis`).
+    - Sekcja ocen klientów z tytułami i `ViewPager2` (`reviewsViewPager`) do przeglądania opinii.
+
+---
+
+# `fragment_reg.xml`
+- **Opis**:  
+  Layout ekranu rejestracji użytkownika w aplikacji TerraQuest. Zaprojektowany tak, aby umożliwić wygodne wprowadzenie danych rejestracyjnych oraz przejście do logowania.
+
+- **Funkcje**:
+    - `ScrollView` umożliwia przewijanie zawartości na mniejszych ekranach.
+    - Sekcja nagłówkowa z logo aplikacji (`logoImage`) oraz nazwą `TerraQuest` (`logoText`).
+    - Formularz rejestracyjny z polami:
+        - `emailInput` — wprowadzanie adresu e-mail (typ `textEmailAddress`).
+        - `passwordInput` — wprowadzanie hasła (typ `textPassword`).
+        - `autoLoginCheckBox` — opcja automatycznego logowania.
+    - Przycisk `registerButton` do zatwierdzenia rejestracji.
+    - Wizualne rozdzielenie sekcji formularza od opcji alternatywnej za pomocą linii i tekstu „lub”.
+    - Link `loginLink` umożliwiający przejście do ekranu logowania.
+    - Całość utrzymana w jasnej, minimalistycznej kolorystyce z zaokrąglonymi polami tekstowymi i przyciskami.
+
+---
+
+# `fragment_search.xml`
+
+## Opis
+Layout ekranu wyszukiwania pokoi hotelowych w aplikacji TerraQuest. Umożliwia użytkownikowi podanie parametrów wyszukiwania, filtrowanie oraz sortowanie wyników, które są wyświetlane w postaci listy.
+
+## Główne elementy i funkcjonalności
+
+- **ScrollView**  
+  Zapewnia przewijalność zawartości i wypełnia cały ekran (`match_parent`). Tło ustawione na kolor z zasobów (`@color/background_main`).
+
+- **Nagłówki**
+    - `TextView` z komunikatem `"Oto wyniki twojego wyszukiwania"` – duża, pogrubiona czcionka.
+    - `TextView` z informacją o porównywaniu cen na wielu stronach – mniejsza, szara czcionka.
+
+- **Sekcja parametrów wyszukiwania (kontener z tłem i cieniem)**
+    - Pole tekstowe `input_destination` do wpisania miejsca docelowego podróży (np. "Rzym, Włochy").
+    - Dzieląca linia (`View`) oddzielająca miejsce od pozostałych parametrów.
+    - Dwa pola tekstowe w układzie poziomym:
+        - `editTextDate` – data wyjazdu, nieedytowalne pole (klikane, może otwierać kalendarz).
+        - `text_people` – liczba osób (liczbowy input).
+    - Przycisk `button_search` do rozpoczęcia wyszukiwania.
+
+- **Przycisk do przełączania widoczności filtrów**
+    - `button_toggle_filters` z napisem „Pokaż filtry”.
+
+- **Sekcja filtrów (domyślnie ukryta lub zwijana)**
+    - Etykieta "Cena (promocyjna)".
+    - Suwak `seekBarPrice` do wyboru maksymalnej ceny, z kolorowymi wskazaniami i suwakiem.
+    - Tekst wyświetlający aktualną wartość ceny (`textViewPriceValue`).
+
+- **Sortowanie wyników**
+    - Etykieta "Sortuj po:".
+    - Trzy przyciski do sortowania:
+        - `button_sort_newest` – sortuj po najnowszych ofertach.
+        - `button_sort_price_asc` – sortuj rosnąco po cenie.
+        - `button_sort_price_desc` – sortuj malejąco po cenie.
+
+- **Lista wyników wyszukiwania**
+    - `RecyclerView` (`recyclerViewHotels`) wyświetlający wyniki w formie listy z odstępem na dole.
+
+## Styl i wygląd
+- Layout utrzymany w jasnej, przejrzystej kolorystyce z akcentem na pomarańczowe i czarne kolory (np. przyciski i suwaki).
+- Zaokrąglone rogi przycisków i pól edycji (zdefiniowane w `@drawable/rounded_button` i `@drawable/edit_text_bg`).
+- Cienie i marginesy nadają przestrzenność i estetykę.
+
+---
+
+# `fragment_user.xml`
+
+## Opis
+Layout ekranu profilu użytkownika w aplikacji TerraQuest. Zawiera informacje o użytkowniku, ustawienia konta, dodatkowe opcje i historię rezerwacji.
+
+## Główne elementy i funkcjonalności
+
+- **ScrollView**  
+  Zapewnia przewijalność zawartości ekranu i wypełnia cały ekran. Tło ustawione na kolor `@color/background_main`.
+
+- **Główny kontener (LinearLayout, pionowy)**  
+  Ustawiony na środek poziomy, z paddingiem na górze i dole.
+
+- **Sekcja danych użytkownika:**
+    - `ImageView` (`user_image`) – avatar użytkownika (domyślnie ikona `ic_user`).
+    - `TextView` (`user_name`) – nazwa użytkownika, duża i pogrubiona.
+    - `TextView` (`user_email`) – email użytkownika, mniejsza szara czcionka.
+    - Informacja tekstowa z instrukcją aktualizacji nazwy użytkownika.
+
+- **Nagłówek sekcji "Dane użytkownika"**
+
+- **Opcje użytkownika (LinearLayout pionowy z elementami menu):**
+    - `time_settings` – opcja wyświetlająca "Czas i godzina (PM)" z ikoną zegara.
+    - `profile_update` – możliwość aktualizacji profilu, z ikoną aktualizacji.
+    - `logout_button` – wylogowanie, z ikoną logout.
+
+  Wszystkie elementy mają jednolity wygląd, marginesy, padding i tło `@drawable/menu_item_selector` (prawdopodobnie efekt nacisku).
+
+- **Separator (linia pozioma)**
+
+- **Sekcja "Dodatkowe"**
+    - `news_active` – status newslettera (czerwony, pogrubiony tekst "Aktywny newsletter" i ikona).
+    - `toNewsletter` – możliwość zapisania się do newslettera, z ikoną '@'.
+
+- **Separator (linia pozioma)**
+
+- **Sekcja "Historia rezerwacji"**
+    - Nagłówek tekstowy.
+    - `booking_container` – kontener pionowy, prawdopodobnie do dynamicznego dodawania elementów historii rezerwacji.
+
+## Styl i wygląd
+- Kolory stonowane, z akcentami (np. czerwony status newslettera).
+- Elementy menu mają jednolity styl i efekt nacisku (`@drawable/menu_item_selector`).
+- Teksty wyraźne, czytelne, z hierarchią rozmiarów i kolorów.
+- Całość responsywna, przewijalna, z wyśrodkowaną zawartością.
+
+---
+
+# `fragment_user_menu.xml`
+
+## Opis
+Layout ekranu menu konta użytkownika w aplikacji TerraQuest. Zawiera informacje o koncie, sekcje nawigacyjne do innych części aplikacji oraz odnośniki do produktów i informacji o firmie.
+
+## Główne elementy i układ
+
+- **ScrollView**  
+  Przewijalny kontener na cały ekran, z tłem `@color/background_main`.
+
+- **Główny LinearLayout (pionowy)**  
+  Padding na górze i dole, szerokość `match_parent`, wysokość `wrap_content`.
+
+### Sekcje:
+
+1. **Konto**
+    - Nagłówek `TextView` "Konto" - duży, pogrubiony czarny tekst.
+    - Podtytuł z opisem korzyści dla członków TerraQuest, mniejszy i szary tekst.
+    - Przycisk `btn_reg` — zachęta do logowania lub rejestracji, styl `@style/Log_reg_btn`.
+
+2. **Warto odwiedzić**
+    - Nagłówek sekcji.
+    - Pozycje menu jako `TextView` z tłem `@drawable/menu_item_selector`:
+        - `btn_weather` – Pogoda
+        - `btn_contact` – Kontakt
+
+3. **O nas**
+    - Nagłówek sekcji.
+    - Pozycje menu (także `TextView` z efektem nacisku):
+        - `btn_about` – Poznaj nas - TerraQuest
+        - `btn_help` – Centrum Pomocy
+        - `btn_privacy` – Polityka Prywatności
+
+4. **Nasze produkty**
+    - Nagłówek sekcji.
+    - Pozycje menu:
+        - `btn_website` – Website App
+        - `btn_mobile` – Mobile App
+        - `btn_desktop` – Desktop App
+        - `btn_project` – Projekt
+
+5. **Stopka**
+    - Tekst informacyjny o autorach:  
+      "Created by Wiktor Tatarynowicz, Filip Berg, Jacek Prokop"  
+      mały, szary, wyśrodkowany.
+
+### Styl i wygląd
+
+- Wszystkie interaktywne elementy (pozycje menu) to `TextView` z tłem `menu_item_selector` zapewniającym efekt kliknięcia.
+- Marginesy i paddingi dają przejrzysty, czytelny układ.
+- Kolory tekstów dobrze kontrastują z tłem: nagłówki ciemne, opisy i stopka szare.
+- Separator `View` o wysokości 1dp i jasnoszarym tle oddziela logicznie sekcje.
+
+---
+
+# `fragment_weather.xml`
+
+## Opis
+Prosty, informacyjny layout wyświetlający komunikat o trwających pracach technicznych w sekcji pogody.
+
+## Struktura
+
+- **LinearLayout** (główny kontener)
+    - Orientacja pionowa, wyśrodkowane elementy (`gravity="center"`).
+    - Padding 24dp, pełna szerokość i wysokość (`match_parent`).
+    - Tło: `@color/background_weather`.
+
+### Elementy wewnątrz:
+
+1. **ImageView**
+    - Id: `maintenance_image`
+    - Wymiary: 300dp x 300dp
+    - Źródło obrazka: `@drawable/img_1`
+    - `scaleType="centerInside"` zapewnia dopasowanie obrazka do rozmiaru bez rozciągania.
+    - Dolny margines 24dp.
+
+2. **TextView** (tytuł)
+    - Tekst: "Trwają prace techniczne"
+    - Rozmiar czcionki: 28sp, pogrubiony (`textStyle="bold"`).
+    - Kolor tekstu: `@color/black`.
+    - Dolny margines 8dp.
+
+3. **TextView** (podtytuł)
+    - Tekst: "Prosimy o cierpliwość"
+    - Rozmiar czcionki: 18sp.
+    - Kolor tekstu: `@color/black`.
+
+---
+
+# `hotel_item.xml`
+- **Opis**:  
+  Layout pojedynczego elementu listy hoteli, zawierający zdjęcie, nazwę, lokalizację oraz informacje o cenie i liczbie nocy.
+
+- **Funkcje**:
+    - Wyświetla obraz hotelu z dopasowaniem do rozmiaru (centerCrop).
+    - Pokazuje nazwę hotelu i lokalizację z ograniczeniem do jednej linii z elipsą.
+    - Sekcja cenowa zawiera liczbę nocy, oryginalną cenę (przekreśloną kolorystycznie) oraz cenę po rabacie (czerwona, pogrubiona).
+    - Estetyczne marginesy i zaokrąglone tło dla lepszego wyglądu w karuzeli lub liście.
+
+---
+
+# `hotel_item2.xml`
+- **Opis**:  
+  Layout pojedynczego elementu listy hoteli o szerokości dopasowanej do rodzica, zawierający obraz, nazwę, lokalizację oraz ceny.
+
+- **Funkcje**:
+    - Obraz hotelu wypełniający szerokość kontenera z dopasowaniem (centerCrop).
+    - Nazwa i lokalizacja hotelu z ograniczeniem do jednej linii i elipsą.
+    - Informacje o liczbie nocy oraz cenach: oryginalna (w szarym kolorze) i promocyjna (czerwona, pogrubiona).
+    - Marginesy po bokach zapewniające odstęp od innych elementów listy.
+    - Zaokrąglone tło i lekki cień (elevation) dla estetyki.
+
+---
+
+# `item_timeline_entry.xml`
+- **Opis**:  
+  Layout pojedynczego wpisu osi czasu, prezentujący rok, pionową linię z kropką oraz opis wydarzenia.
+
+- **Funkcje**:
+    - `TextView` z rokiem (40dp szerokości, pogrubiony tekst).
+    - `FrameLayout` zawierający pomarańczową pionową linię i dekoracyjną kropkę oznaczającą punkt na osi czasu.
+    - `TextView` z opisem wydarzenia, który zajmuje pozostałą szerokość (layout_weight = 1).
+    - Układ poziomy (LinearLayout) umożliwia czytelne rozdzielenie elementów osi czasu.
+
+---
+
+# `recenzja_item.xml`
+- **Opis**:  
+  Layout pojedynczej recenzji z gwiazdkami, tytułem, treścią oraz informacją o autorze i dacie.
+
+- **Funkcje**:
+    - `LinearLayout` poziomy na gwiazdki oceny (`gwiazdkiLayout`).
+    - Pogrubiony `TextView` z tytułem recenzji.
+    - `TextView` z treścią/opisem recenzji.
+    - Sekcja autora: obrazek awatara, imię autora (pogrubione, szary kolor) oraz data recenzji (mała czcionka, szary kolor).
+    - Całość otoczona obramowaniem (`@drawable/border_black`) i wypełniona paddingiem 16dp.
+
+---
+
+# `review_item.xml`
+- **Opis**:  
+  Layout pojedynczej recenzji prezentujący ocenę gwiazdkową, tytuł, treść oraz autora z datą.
+
+- **Funkcje**:
+    - Gwiazdki oceny wyświetlane w `TextView` z żółtym kolorem (`#FFC802`).
+    - Pogrubiony tytuł recenzji.
+    - Tekst z opisem/treścią recenzji.
+    - Informacja o autorze i dacie w szarym kolorze (`#777777`).
+    - Całość umieszczona na tle z zaokrąglonymi rogami (`@drawable/rounded_background_hotels`), z paddingiem i marginesami oraz lekkim cieniem (`elevation="2dp"`).
+
+---
+
 ## Backend:
 
 
