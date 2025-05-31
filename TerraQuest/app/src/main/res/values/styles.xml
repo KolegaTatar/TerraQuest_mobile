@@ -28,6 +28,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">#ffffff</item>
+        <item name="android:background">#919191</item>
+    </style>
 
 
 </resources>

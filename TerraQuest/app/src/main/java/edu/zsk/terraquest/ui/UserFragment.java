@@ -1,5 +1,6 @@
 package edu.zsk.terraquest.ui;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -65,21 +66,34 @@ public class UserFragment extends Fragment {
         saveBtn.setOnClickListener(v -> {
             Context context = requireContext();
 
-            // Tworzymy layout z dwoma EditTextami
+            // Layout
             LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setPadding(50, 40, 50, 10);
+            layout.setBackgroundColor(Color.parseColor("#dbdbdb"));
 
+            // Pierwszy EditText
             EditText firstNameEdit = new EditText(context);
             firstNameEdit.setHint("Imię");
+            firstNameEdit.setHintTextColor(Color.GRAY);  // kolor podpowiedzi
+            firstNameEdit.setTextColor(Color.BLACK);
+            firstNameEdit.setBackgroundColor(Color.parseColor("#dbdbdb"));
+            firstNameEdit.setPadding(20, 20, 20, 20);
 
+            // Drugi EditText
             EditText lastNameEdit = new EditText(context);
             lastNameEdit.setHint("Nazwisko");
+            lastNameEdit.setHintTextColor(Color.GRAY);
+            lastNameEdit.setTextColor(Color.BLACK);
+            lastNameEdit.setBackgroundColor(Color.parseColor("#dbdbdb"));
+            lastNameEdit.setPadding(20, 20, 20, 20);
 
+            // Dodanie do layoutu
             layout.addView(firstNameEdit);
             layout.addView(lastNameEdit);
 
-            new android.app.AlertDialog.Builder(context)
+            // Dialog
+            new AlertDialog.Builder(context, R.style.MyDialogTheme)
                     .setTitle("Aktualizuj profil")
                     .setView(layout)
                     .setPositiveButton("Zapisz", (dialog, which) -> {
@@ -93,7 +107,7 @@ public class UserFragment extends Fragment {
                         int updated = database.update("users", values, "email = ?", new String[]{email});
                         if (updated > 0) {
                             Toast.makeText(context, "Zaktualizowano profil!", Toast.LENGTH_SHORT).show();
-                            loadUserData(); // odśwież wyświetlane dane
+                            loadUserData();
                         } else {
                             Toast.makeText(context, "Błąd podczas aktualizacji.", Toast.LENGTH_SHORT).show();
                         }
@@ -101,6 +115,7 @@ public class UserFragment extends Fragment {
                     .setNegativeButton("Anuluj", null)
                     .show();
         });
+
 
         LinearLayout toNewsletterLayout = view.findViewById(R.id.toNewsletter);
         toNewsletterLayout.setOnClickListener(w -> {

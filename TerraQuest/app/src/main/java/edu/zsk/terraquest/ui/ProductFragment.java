@@ -123,10 +123,25 @@ public class ProductFragment extends Fragment {
 
             SQLiteDatabase writableDb = dbHelper.getWritableDatabase();
 
+            Cursor checkCursor = writableDb.rawQuery(
+                    "SELECT COUNT(*) FROM reservation WHERE user_id = ? AND hotel_name = ? AND check_in = ? AND check_out = ?",
+                    new String[]{String.valueOf(userId), hotelName, checkIn, checkOut}
+            );
+
+            if (checkCursor.moveToFirst() && checkCursor.getInt(0) > 0) {
+                Toast.makeText(getContext(), "Masz już taką rezerwację!", Toast.LENGTH_SHORT).show();
+                checkCursor.close();
+                return;
+            }
+            checkCursor.close();
+
+            // Dodaj rezerwację
             writableDb.execSQL(
                     "INSERT INTO reservation (user_id, hotel_name, prize, new_prize, hotel_location, check_in, check_out, guests) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                     new Object[]{userId, hotelName, prize, newPrize, location, checkIn, checkOut, guests}
             );
+
+            Toast.makeText(getContext(), "Rezerwacja dodana!", Toast.LENGTH_SHORT).show();
 
             Toast.makeText(getContext(), "Rezerwacja dodana!", Toast.LENGTH_SHORT).show();
         });
